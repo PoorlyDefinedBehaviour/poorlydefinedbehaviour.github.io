@@ -71,7 +71,52 @@ Since [collisions](https://en.wikipedia.org/wiki/Hash_collision) can happen some
 
 ## Removing an element from the set
 
-TODO
+As it stands, removing an element from the set is not actually possible. If we had a bloom filter that uses 3 hash functions that looks like this after adding `alice` and `bob` to it:
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/17282221/156785419-e7501222-9e4f-4a59-959c-5940c3e892d8.png" />
+</p>
+<p align="center">
+  <i>bloom filter after adding alice and bob to it with 3 hash functions</i>
+</p>
+
+Note that `alice` and `bob` hash to the same position in the bit-set for some of the hash functions
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/17282221/156785275-dc3016f2-211a-4b17-ac7e-4c74ca8c93ae.png" />
+</p>
+<p align="center">
+  <i>bits shared between alice and bob are in white</i>
+</p>
+
+The naive solution is to remove `alice` from the bloom filter by setting the bits mapped by hash<sub>i</sub>(alice) to `0`:
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/17282221/156785668-069767c2-f08e-4c72-a8c0-476bef9b92be.png" />
+</p>
+<p align="center">
+  <i>bits that were flipped to 0 are in white</i>
+</p>
+
+Now, let's check if `alice` is in the set, for a key to be in the set hash<sub>i</sub>(key) must map to bits set to `1`
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/17282221/156786462-6413cea3-c222-422e-b4fb-fbddcc8ce0c6.png" />
+<p/>
+<p align="center">
+  <i>hash<sub>i</sub>(alice) maps to bits set to 0 which means alice is not in the set</i>
+</p>
+
+`alice` is not in the set as expected. Let's see if `bob` is still in the set, it should be since we didn't remove it.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/17282221/156786853-65f9841c-a8f6-41be-a024-2492aca321e9.png" />
+</p>
+<p align="center">
+  <i>not every hash<sub>i</sub>(bob) maps to bits set to 1 which means bob is not in the set, bits set to 0 after removing alice from the set are in white</i>
+</p>
+
+`bob` is not in the set anymore, even though we didn't remove it. The problem is that since keys may share the positions in the bit-set, we cannot just flip bits back to `0` to remove a key from the set because in doing so we may flip bits that are used by other keys.
 
 # References
 
