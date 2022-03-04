@@ -77,7 +77,7 @@ params:
       url: "https://github.com/poorlydefinedbehaviour"
 
   editPost:
-    URL: "https://github.com/PoorlyDefinedBehaviour/poorlydefinedbehaviour.github.io/tree/main/content/posts"
+    URL: "https://github.com/PoorlyDefinedBehaviour/poorlydefinedbehaviour.github.io/tree/main/content"
     Text: "Suggest Changes" # edit text
     appendFilePath: true # to append file path to Edit link
 
