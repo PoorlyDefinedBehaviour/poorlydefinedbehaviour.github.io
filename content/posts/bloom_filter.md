@@ -142,6 +142,10 @@ Positions that have more than one key mapped to it will have a counter greater t
 
 After decrementing the counters, not every hash<sub>i</sub>(alice) maps to a counter greater than `0` which means `alice` is not in the set anymore. Unlike the bloom filter that uses only bits, hash<sub>i</sub>(bob) still maps to counters that are greater than `0` which means `bob` is still in the set.
 
+## Example in Rust
+
+https://github.com/PoorlyDefinedBehaviour/bloom_filter/
+
 # References
 
 Network Applications of Bloom Filters: A Survey - https://www.eecs.harvard.edu/~michaelm/postscripts/im2005b.pdf  
