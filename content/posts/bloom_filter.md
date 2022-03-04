@@ -138,7 +138,7 @@ Positions that have more than one key mapped to it will have a counter greater t
   <i>removing alice from the set by decrementing the counters mapped by hash<sub>i</sub>(alice)</i>
 </p>
 
-After decrementing the counters, not every hash<sub>i</sub>(alice) maps to a counter greater than `0` which means `alice` is not in the set anymore. Unlike the bloom filter that uses only bits, hash<sub>i</sub>(bob) still maps to counters that are greater than `1` which means `bob` is still in the set.
+After decrementing the counters, not every hash<sub>i</sub>(alice) maps to a counter greater than `0` which means `alice` is not in the set anymore. Unlike the bloom filter that uses only bits, hash<sub>i</sub>(bob) still maps to counters that are greater than `0` which means `bob` is still in the set.
 
 # References
 
