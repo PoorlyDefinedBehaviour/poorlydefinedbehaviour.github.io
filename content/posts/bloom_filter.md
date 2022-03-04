@@ -127,6 +127,9 @@ Positions that have more than one key mapped to it will have a counter greater t
 <p align="center">
   <img src="https://user-images.githubusercontent.com/17282221/156789341-ecabd5c1-fdb5-4343-8622-685684cca910.png" />
 </p>
+<p align="center">
+  <i>positions in white are shared between two or more keys and have a counter greater than 1</i>
+</p>
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/17282221/156789826-1b0bd61c-69ef-4da7-8918-65d3bae15a4b.png" />
