@@ -2,7 +2,7 @@
 title: "Bloom filter"
 date: 2022-03-03T20:56:31-03:00
 categories: ["today-i-learned", "probabilistic", "data-structures"]
-draft: true
+draft: false
 ---
 
 # What's a Bloom filter
@@ -13,7 +13,7 @@ A bloom filter is a data-structure that can be used to check if a set contains a
 
 Say we are building a [log-structured merge-tree](https://www.cs.umb.edu/~poneil/lsmtree.pdf), we can use a bloom filter to find out if the LSM-tree contains a particular key in O(1) time in most cases, the downside is that sometimes the bloom filter would say that the LSM-tree contains a key, but it actually does not and we would go searching for the value that's mapped to the key and never actually find it.
 
-It is used in a lot of [places](https://en.wikipedia.org/wiki/Bloom_filter#Examples)
+It is used in a lot of [places](https://en.wikipedia.org/wiki/Bloom_filter#Examples).
 
 # How it works
 
