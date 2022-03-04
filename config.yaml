@@ -1,4 +1,4 @@
-baseURL: "http://localhost:1313/"
+baseURL: "https://poorlydefinedbehaviour.github.io"
 paginate: 5
 theme: PaperMod
 
