@@ -118,6 +118,25 @@ Now, let's check if `alice` is in the set, for a key to be in the set hash<sub>i
 
 `bob` is not in the set anymore, even though we didn't remove it. The problem is that since keys may share the positions in the bit-set, we cannot just flip bits back to `0` to remove a key from the set because in doing so we may flip bits that are used by other keys.
 
+## Counting bloom filter
+
+Since we cannot flip bits back to `0` to remove a key from the set, we could maintain a counter instead of a single bit. When a key is added to the set, the counter is incremented and when a key is removed from the set, the counter is decremented. If the counter reaches 0, it means no keys are mapped to the position.
+
+Positions that have more than one key mapped to it will have a counter greater than `1`.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/17282221/156789341-ecabd5c1-fdb5-4343-8622-685684cca910.png" />
+</p>
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/17282221/156789826-1b0bd61c-69ef-4da7-8918-65d3bae15a4b.png" />
+</p>
+<p align="center">
+  <i>removing alice from the set by decrementing the counters mapped by hash<sub>i</sub>(alice)</i>
+</p>
+
+After decrementing the counters, not every hash<sub>i</sub>(alice) maps to a counter greater than `0` which means `alice` is not in the set anymore. Unlike the bloom filter that uses only bits, hash<sub>i</sub>(bob) still maps to counters that are greater than `1` which means `bob` is still in the set.
+
 # References
 
 Network Applications of Bloom Filters: A Survey - https://www.eecs.harvard.edu/~michaelm/postscripts/im2005b.pdf  
