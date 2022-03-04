@@ -15,6 +15,12 @@ jobs:
           submodules: true # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
 
+      - name: Get Theme
+        run: git submodule update --init --recursive
+
+      - name: Update theme to Latest commit
+        run: git submodule update --remote --merge
+
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
@@ -22,7 +28,7 @@ jobs:
           # extended: true
 
       - name: Build
-        run: hugo --minify
+        run: hugo --buildDrafts --minify
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
