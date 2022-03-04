@@ -3,10 +3,10 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>today-i-learned | </title><meta name=keywords content>
+<title>distributed | </title><meta name=keywords content>
 <meta name=description content>
 <meta name=author content="poorlydefinedbehaviour">
-<link rel=canonical href=https://poorlydefinedbehaviour.github.io/categories/today-i-learned/>
+<link rel=canonical href=https://poorlydefinedbehaviour.github.io/categories/distributed/>
 <link crossorigin=anonymous href=/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css integrity="sha256-yIlj/i15RiAA/Q+xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as=style>
 <link rel=icon href=https://poorlydefinedbehaviour.github.io/favicon.ico>
 <link rel=icon type=image/png sizes=16x16 href=https://poorlydefinedbehaviour.github.io/favicon-16x16.png>
@@ -15,15 +15,15 @@
 <link rel=mask-icon href=https://poorlydefinedbehaviour.github.io/safari-pinned-tab.svg>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<link rel=alternate type=application/rss+xml href=https://poorlydefinedbehaviour.github.io/categories/today-i-learned/index.xml>
+<link rel=alternate type=application/rss+xml href=https://poorlydefinedbehaviour.github.io/categories/distributed/index.xml>
 <noscript>
-<style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:title" content="today-i-learned">
+<style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:title" content="distributed">
 <meta property="og:description" content>
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://poorlydefinedbehaviour.github.io/categories/today-i-learned/"><meta property="og:image" content="https://poorlydefinedbehaviour.github.io/papermod-cover.png">
+<meta property="og:url" content="https://poorlydefinedbehaviour.github.io/categories/distributed/"><meta property="og:image" content="https://poorlydefinedbehaviour.github.io/papermod-cover.png">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://poorlydefinedbehaviour.github.io/papermod-cover.png">
-<meta name=twitter:title content="today-i-learned">
+<meta name=twitter:title content="distributed">
 <meta name=twitter:description content>
 </head><body class=list id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script>
@@ -52,7 +52,7 @@
 <span>Search</span>
 </a>
 </li></ul></nav></header><main class=main>
-<header class=page-header><div class=breadcrumbs><a href=https://poorlydefinedbehaviour.github.io>Home</a>&nbsp;»&nbsp;<a href=https://poorlydefinedbehaviour.github.io/categories/>Categories</a></div><h1>today-i-learned</h1></header><article class="post-entry tag-entry">
+<header class=page-header><div class=breadcrumbs><a href=https://poorlydefinedbehaviour.github.io>Home</a>&nbsp;»&nbsp;<a href=https://poorlydefinedbehaviour.github.io/categories/>Categories</a></div><h1>distributed</h1></header><article class="post-entry tag-entry">
 <header class=entry-header>
 <h2>Raft notes
 </h2></header><section class=entry-content>
@@ -61,12 +61,6 @@ The authors claim Raft to be more understandable than Paxos because Raft separat
 Leader election Log replication Safety and enforces a stronger degree of coherency to reduce the number of states that must be considered.
 Raft also includes a new mechanism for changing cluster membership.
 What is a consensus algorithm Consensus algorithms allow a collection of machines to work as a coherent group that can survive the failures of some of its members....</p></section><footer class=entry-footer><span title="2022-03-04 17:48:19 -0300 -0300">March 4, 2022</span>&nbsp;·&nbsp;17 min&nbsp;·&nbsp;poorlydefinedbehaviour</footer><a class=entry-link aria-label="post link to Raft notes" href=https://poorlydefinedbehaviour.github.io/posts/raft_notes/></a>
-</article><article class="post-entry tag-entry">
-<header class=entry-header>
-<h2>Bloom filter
-</h2></header><section class=entry-content>
-<p>What’s a Bloom filter A bloom filter is a data-structure that can be used to check if a set contains an element. It uses way less memory than a conventional set data-structure by sacrificing accuracy.
-Example Say we are building a log-structured merge-tree, we can use a bloom filter to find out if the LSM-tree contains a particular key in O(1) time in most cases, the downside is that sometimes the bloom filter would say that the LSM-tree contains a key, but it actually does not and we would go searching for the value that’s mapped to the key and never actually find it....</p></section><footer class=entry-footer><span title="2022-03-03 20:56:31 -0300 -0300">March 3, 2022</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;poorlydefinedbehaviour</footer><a class=entry-link aria-label="post link to Bloom filter" href=https://poorlydefinedbehaviour.github.io/posts/bloom_filter/></a>
 </article></main><footer class=footer>
 <span>&copy; 2022 <a href=https://poorlydefinedbehaviour.github.io></a></span>
 <span>

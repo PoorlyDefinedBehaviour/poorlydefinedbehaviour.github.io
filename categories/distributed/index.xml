@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>today-i-learned on </title>
-    <link>https://poorlydefinedbehaviour.github.io/categories/today-i-learned/</link>
-    <description>Recent content in today-i-learned on </description>
+    <title>distributed on </title>
+    <link>https://poorlydefinedbehaviour.github.io/categories/distributed/</link>
+    <description>Recent content in distributed on </description>
     <image>
       <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 04 Mar 2022 17:48:19 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/today-i-learned/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 04 Mar 2022 17:48:19 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/distributed/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Raft notes</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/raft_notes/</link>
@@ -21,16 +21,6 @@ The authors claim Raft to be more understandable than Paxos because Raft separat
  Leader election Log replication Safety  and enforces a stronger degree of coherency to reduce the number of states that must be considered.
 Raft also includes a new mechanism for changing cluster membership.
 What is a consensus algorithm Consensus algorithms allow a collection of machines to work as a coherent group that can survive the failures of some of its members.</description>
-    </item>
-    
-    <item>
-      <title>Bloom filter</title>
-      <link>https://poorlydefinedbehaviour.github.io/posts/bloom_filter/</link>
-      <pubDate>Thu, 03 Mar 2022 20:56:31 -0300</pubDate>
-      
-      <guid>https://poorlydefinedbehaviour.github.io/posts/bloom_filter/</guid>
-      <description>What&amp;rsquo;s a Bloom filter A bloom filter is a data-structure that can be used to check if a set contains an element. It uses way less memory than a conventional set data-structure by sacrificing accuracy.
-Example Say we are building a log-structured merge-tree, we can use a bloom filter to find out if the LSM-tree contains a particular key in O(1) time in most cases, the downside is that sometimes the bloom filter would say that the LSM-tree contains a key, but it actually does not and we would go searching for the value that&amp;rsquo;s mapped to the key and never actually find it.</description>
     </item>
     
   </channel>
