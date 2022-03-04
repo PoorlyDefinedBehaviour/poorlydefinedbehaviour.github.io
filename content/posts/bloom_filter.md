@@ -5,9 +5,11 @@ categories: ["today-i-learned", "probabilistic", "data-structures"]
 draft: true
 ---
 
-# Bloom filter
+# What's a Bloom filter
 
 A bloom filter is a data-structure that can be used to check if a set contains an element. It uses way less memory than a [conventional set data-structure](<https://en.wikipedia.org/wiki/Set_(abstract_data_type)#Implementations>) by sacrificing accuracy.
+
+## Example
 
 Say we are building a [log-structured merge-tree](https://www.cs.umb.edu/~poneil/lsmtree.pdf), we can use a bloom filter to find out if the LSM-tree contains a particular key in O(1) time in most cases, the downside is that sometimes the bloom filter would say that the LSM-tree contains a key, but it actually does not and we would go searching for the value that's mapped to the key and never actually find it.
 
@@ -66,6 +68,10 @@ Since [collisions](https://en.wikipedia.org/wiki/Hash_collision) can happen some
 <p align="center">
   <i>since john maps to the same bits as bob and the bits were set to 1 after bob was added to the set, we got a false positive</i>
 </p>
+
+## Removing an element from the set
+
+TODO
 
 # References
 
