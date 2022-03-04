@@ -1,7 +1,7 @@
 ---
 title: "Bloom filter"
 date: 2022-03-03T20:56:31-03:00
-categories: ["today-i-learned", "probabilistic", "data-structures"]
+categories: ["today-i-learned", "probabilistic", "data-structures", "papers"]
 draft: false
 ---
 
