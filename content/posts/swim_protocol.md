@@ -1,5 +1,5 @@
 ---
-title: "Swim_protocol"
+title: "Swim protocol"
 date: 2022-03-12T16:53:46-03:00
 categories: ["today-i-learned", "distributed", "protocols", "papers"]
 draft: true
@@ -13,4 +13,4 @@ I have just joined a company that uses [Consul](https://www.consul.io/) among se
 
 [SWIM: Scalable Weakly-consistent Infection-style Process Group Membership Protocol](https://www.cs.cornell.edu/projects/Quicksilver/public_pdfs/SWIM.pdf)  
 [Consul gossip architecture](https://www.consul.io/docs/architecture/gossip)  
-[Gossip protocol - wikipedia](https://en.wikipedia.org/wiki/Gossip_protocol)  
+[Gossip protocol - wikipedia](https://en.wikipedia.org/wiki/Gossip_protocol)
