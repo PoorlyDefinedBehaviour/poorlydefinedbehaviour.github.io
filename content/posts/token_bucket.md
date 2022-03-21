@@ -48,7 +48,7 @@ struct Bucket {
 }
 ```
 
-A thread is spawned to refill the bucket every `1/Config::requests_per_second`.
+A thread is spawned to refill the bucket every `1/Config::requests_per_second`, at this rate the bucket will accept around `Config::requests_per_second` requests per second.
 
 ```rust
 impl Bucket {
