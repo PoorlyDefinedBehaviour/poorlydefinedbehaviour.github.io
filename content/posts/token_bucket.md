@@ -133,3 +133,7 @@ impl Bucket {
   }
 }
 ```
+
+# References
+
+https://en.wikipedia.org/wiki/Token_bucket
