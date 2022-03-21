@@ -27,7 +27,9 @@ Requests that are received when the bucket is empty can just be dropped or enque
 
 # Implementation in Rust
 
-This bucket accepts `x` requests per second.
+The source code can be found [here](https://github.com/PoorlyDefinedBehaviour/token_bucket).
+
+The bucket will accept `x` requests per second.
 
 ```rust
 #[derive(Debug)]
