@@ -69,7 +69,7 @@ impl Bucket {
     bucket
   }
 
-    fn add_tokens_to_bucket_on_interval(bucket: Weak<Bucket>, receiver: Receiver<()>) {
+  fn add_tokens_to_bucket_on_interval(bucket: Weak<Bucket>, receiver: Receiver<()>) {
     let interval = {
       match bucket.upgrade() {
         None => {
