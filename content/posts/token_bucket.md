@@ -2,7 +2,7 @@
 title: "Token bucket"
 date: 2022-03-20T22:21:07-03:00
 categories: ["today-i-learned", "algorithms", "rate-limiting"]
-draft: true
+draft: false
 ---
 
 # Intro
