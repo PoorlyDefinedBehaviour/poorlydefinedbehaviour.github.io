@@ -66,7 +66,11 @@ impl Bucket {
     });
 
     let bucket_clone = Arc::downgrade(&bucket);
-    std:\:thread::spawn(move || Bucket::add_tokens_to_bucket_on_interval(bucket_clone, receiver));
+    std::thread::spawn(move ||
+      Bucket::add_tokens_to_bucket_on_interval(
+        bucket_clone, receiver
+      )
+    );
 
     bucket
   }
@@ -76,11 +80,13 @@ impl Bucket {
       match bucket.upgrade() {
         None => {
           error!(
-            "unable to define interval to add tokens to bucket because bucket has been dropped"
+            "unable to define interval to add tokens to bucket
+            because bucket has been dropped"
           );
           return;
         }
-        Some(bucket) => Duration::from_secs_f64(1.0 / (bucket.config.requests_per_second as f64)),
+        Some(bucket) =>
+          Duration::from_secs_f64(1.0 / (bucket.config.requests_per_second as f64)),
       }
     };
 
@@ -104,10 +110,14 @@ impl Bucket {
           }
         },
         recv(receiver) -> message => {
-          // An error is returned when we try to received from a channel that has been closed
-          // and this channel will only be closed when the bucket is dropped.
+          // An error is returned when we try to received from a
+          // channel that has been closed and this channel
+          // will only be closed when the bucket is dropped.
           if message == Err(RecvError) {
-            debug!("bucket has been dropped, won't add try to add tokens to the bucket anymore");
+            debug!("
+              bucket has been dropped,
+              won't add try to add tokens to the bucket anymore"
+            );
             return;
           }
         }
