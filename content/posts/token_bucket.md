@@ -66,7 +66,7 @@ impl Bucket {
     });
 
     let bucket_clone = Arc::downgrade(&bucket);
-    std::thread::spawn(move ||
+    std{?::}thread::spawn(move ||
       Bucket::add_tokens_to_bucket_on_interval(
         bucket_clone, receiver
       )
