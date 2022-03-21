@@ -39,7 +39,7 @@ A bucket with 1 token that is refilled each second means the service accepts one
 </span></span><span style=display:flex><span>    bucket
 </span></span><span style=display:flex><span>  }
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>add_tokens_to_bucket_on_interval</span>(bucket: <span style=color:#a6e22e>Weak</span><span style=color:#f92672>&lt;</span>Bucket<span style=color:#f92672>&gt;</span>, receiver: <span style=color:#a6e22e>Receiver</span><span style=color:#f92672>&lt;</span>()<span style=color:#f92672>&gt;</span>) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>fn</span> <span style=color:#a6e22e>add_tokens_to_bucket_on_interval</span>(bucket: <span style=color:#a6e22e>Weak</span><span style=color:#f92672>&lt;</span>Bucket<span style=color:#f92672>&gt;</span>, receiver: <span style=color:#a6e22e>Receiver</span><span style=color:#f92672>&lt;</span>()<span style=color:#f92672>&gt;</span>) {
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>let</span> interval <span style=color:#f92672>=</span> {
 </span></span><span style=display:flex><span>      <span style=color:#66d9ef>match</span> bucket.upgrade() {
 </span></span><span style=display:flex><span>        None <span style=color:#f92672>=&gt;</span> {
