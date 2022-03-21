@@ -3,42 +3,30 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://poorlydefinedbehaviour.github.io/</loc>
-    <lastmod>2022-03-20T22:21:07-03:00</lastmod>
+    <lastmod>2022-03-04T17:48:19-03:00</lastmod>
   </url><url>
     <loc>https://poorlydefinedbehaviour.github.io/categories/algorithms/</loc>
-    <lastmod>2022-03-20T22:21:07-03:00</lastmod>
+    <lastmod>2022-03-04T17:48:19-03:00</lastmod>
   </url><url>
     <loc>https://poorlydefinedbehaviour.github.io/categories/</loc>
-    <lastmod>2022-03-20T22:21:07-03:00</lastmod>
-  </url><url>
-    <loc>https://poorlydefinedbehaviour.github.io/posts/</loc>
-    <lastmod>2022-03-20T22:21:07-03:00</lastmod>
-  </url><url>
-    <loc>https://poorlydefinedbehaviour.github.io/categories/rate-limiting/</loc>
-    <lastmod>2022-03-20T22:21:07-03:00</lastmod>
-  </url><url>
-    <loc>https://poorlydefinedbehaviour.github.io/categories/today-i-learned/</loc>
-    <lastmod>2022-03-20T22:21:07-03:00</lastmod>
-  </url><url>
-    <loc>https://poorlydefinedbehaviour.github.io/posts/token_bucket/</loc>
-    <lastmod>2022-03-20T22:21:07-03:00</lastmod>
-  </url><url>
-    <loc>https://poorlydefinedbehaviour.github.io/categories/distributed/</loc>
-    <lastmod>2022-03-12T16:53:46-03:00</lastmod>
-  </url><url>
-    <loc>https://poorlydefinedbehaviour.github.io/categories/papers/</loc>
-    <lastmod>2022-03-12T16:53:46-03:00</lastmod>
-  </url><url>
-    <loc>https://poorlydefinedbehaviour.github.io/categories/protocols/</loc>
-    <lastmod>2022-03-12T16:53:46-03:00</lastmod>
-  </url><url>
-    <loc>https://poorlydefinedbehaviour.github.io/posts/swim_protocol/</loc>
-    <lastmod>2022-03-12T16:53:46-03:00</lastmod>
+    <lastmod>2022-03-04T17:48:19-03:00</lastmod>
   </url><url>
     <loc>https://poorlydefinedbehaviour.github.io/categories/consensus/</loc>
     <lastmod>2022-03-04T17:48:19-03:00</lastmod>
   </url><url>
+    <loc>https://poorlydefinedbehaviour.github.io/categories/distributed/</loc>
+    <lastmod>2022-03-04T17:48:19-03:00</lastmod>
+  </url><url>
     <loc>https://poorlydefinedbehaviour.github.io/posts/raft_notes/</loc>
+    <lastmod>2022-03-04T17:48:19-03:00</lastmod>
+  </url><url>
+    <loc>https://poorlydefinedbehaviour.github.io/categories/papers/</loc>
+    <lastmod>2022-03-04T17:48:19-03:00</lastmod>
+  </url><url>
+    <loc>https://poorlydefinedbehaviour.github.io/posts/</loc>
+    <lastmod>2022-03-04T17:48:19-03:00</lastmod>
+  </url><url>
+    <loc>https://poorlydefinedbehaviour.github.io/categories/today-i-learned/</loc>
     <lastmod>2022-03-04T17:48:19-03:00</lastmod>
   </url><url>
     <loc>https://poorlydefinedbehaviour.github.io/posts/bloom_filter/</loc>

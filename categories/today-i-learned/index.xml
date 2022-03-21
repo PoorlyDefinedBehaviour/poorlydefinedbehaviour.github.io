@@ -9,30 +9,7 @@
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 20 Mar 2022 22:21:07 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/today-i-learned/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Token bucket</title>
-      <link>https://poorlydefinedbehaviour.github.io/posts/token_bucket/</link>
-      <pubDate>Sun, 20 Mar 2022 22:21:07 -0300</pubDate>
-      
-      <guid>https://poorlydefinedbehaviour.github.io/posts/token_bucket/</guid>
-      <description>Intro Token bucket is an algorithm that can be used to rate limit requests received by a service.
-How it works The algorithm is called token bucket because of they way it works: imagine we have a bucket with x tokens where each accepted request consumes one token from the bucket and a token is added back to the bucket at an interval.
-A bucket with 1 token that is refilled each second means the service accepts one request per second.</description>
-    </item>
-    
-    <item>
-      <title>Swim protocol</title>
-      <link>https://poorlydefinedbehaviour.github.io/posts/swim_protocol/</link>
-      <pubDate>Sat, 12 Mar 2022 16:53:46 -0300</pubDate>
-      
-      <guid>https://poorlydefinedbehaviour.github.io/posts/swim_protocol/</guid>
-      <description>Intro I have just joined a company that uses Consul among several other tools. Consul is usually used for service discovery and while reading its documentation, i found out it uses SWIM &amp;ndash; a gossip protocol &amp;ndash; to manage cluster membership.
-References SWIM: Scalable Weakly-consistent Infection-style Process Group Membership Protocol
-Consul gossip architecture
-Gossip protocol - wikipedia</description>
-    </item>
-    
+    <lastBuildDate>Fri, 04 Mar 2022 17:48:19 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/today-i-learned/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Notes taken from the Raft paper</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/raft_notes/</link>
