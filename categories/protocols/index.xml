@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>protocols on </title>
+    <link>https://poorlydefinedbehaviour.github.io/categories/protocols/</link>
+    <description>Recent content in protocols on </description>
+    <image>
+      <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
+      <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 12 Mar 2022 16:53:46 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/protocols/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Swim_protocol</title>
+      <link>https://poorlydefinedbehaviour.github.io/posts/swim_protocol/</link>
+      <pubDate>Sat, 12 Mar 2022 16:53:46 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/posts/swim_protocol/</guid>
+      <description>Intro I have just joined a company that uses Consul among several other tools. Consul is usually used for service discovery and while reading its documentation, i found out it uses SWIM &amp;ndash; a gossip protocol &amp;ndash; to manage cluster membership.
+References SWIM: Scalable Weakly-consistent Infection-style Process Group Membership Protocol
+Consul gossip architecture
+Gossip protocol - wikipedia</description>
+    </item>
+    
+  </channel>
+</rss>

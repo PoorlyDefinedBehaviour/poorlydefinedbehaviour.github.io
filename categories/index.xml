@@ -9,13 +9,58 @@
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 04 Mar 2022 17:48:19 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Mar 2022 22:21:07 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>algorithms</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/algorithms/</link>
-      <pubDate>Fri, 04 Mar 2022 17:48:19 -0300</pubDate>
+      <pubDate>Sun, 20 Mar 2022 22:21:07 -0300</pubDate>
       
       <guid>https://poorlydefinedbehaviour.github.io/categories/algorithms/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rate-limiting</title>
+      <link>https://poorlydefinedbehaviour.github.io/categories/rate-limiting/</link>
+      <pubDate>Sun, 20 Mar 2022 22:21:07 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/categories/rate-limiting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>today-i-learned</title>
+      <link>https://poorlydefinedbehaviour.github.io/categories/today-i-learned/</link>
+      <pubDate>Sun, 20 Mar 2022 22:21:07 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/categories/today-i-learned/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>distributed</title>
+      <link>https://poorlydefinedbehaviour.github.io/categories/distributed/</link>
+      <pubDate>Sat, 12 Mar 2022 16:53:46 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/categories/distributed/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>papers</title>
+      <link>https://poorlydefinedbehaviour.github.io/categories/papers/</link>
+      <pubDate>Sat, 12 Mar 2022 16:53:46 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/categories/papers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>protocols</title>
+      <link>https://poorlydefinedbehaviour.github.io/categories/protocols/</link>
+      <pubDate>Sat, 12 Mar 2022 16:53:46 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/categories/protocols/</guid>
       <description></description>
     </item>
     
@@ -25,33 +70,6 @@
       <pubDate>Fri, 04 Mar 2022 17:48:19 -0300</pubDate>
       
       <guid>https://poorlydefinedbehaviour.github.io/categories/consensus/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>distributed</title>
-      <link>https://poorlydefinedbehaviour.github.io/categories/distributed/</link>
-      <pubDate>Fri, 04 Mar 2022 17:48:19 -0300</pubDate>
-      
-      <guid>https://poorlydefinedbehaviour.github.io/categories/distributed/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>papers</title>
-      <link>https://poorlydefinedbehaviour.github.io/categories/papers/</link>
-      <pubDate>Fri, 04 Mar 2022 17:48:19 -0300</pubDate>
-      
-      <guid>https://poorlydefinedbehaviour.github.io/categories/papers/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>today-i-learned</title>
-      <link>https://poorlydefinedbehaviour.github.io/categories/today-i-learned/</link>
-      <pubDate>Fri, 04 Mar 2022 17:48:19 -0300</pubDate>
-      
-      <guid>https://poorlydefinedbehaviour.github.io/categories/today-i-learned/</guid>
       <description></description>
     </item>
     
