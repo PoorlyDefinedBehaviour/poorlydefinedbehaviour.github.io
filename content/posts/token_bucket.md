@@ -7,7 +7,7 @@ draft: false
 
 # Intro
 
-[Token bucket](https://en.wikipedia.org/wiki/Token_bucket) is an algorithm that can be used to rate limit requests received by a service.
+[Token bucket](https://en.wikipedia.org/wiki/Token_bucket) is an algorithm that can be used to rate limit requests made or received by a service.
 
 # How it works
 
