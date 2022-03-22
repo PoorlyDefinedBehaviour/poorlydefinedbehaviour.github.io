@@ -16,7 +16,7 @@
       <pubDate>Sun, 20 Mar 2022 22:21:07 -0300</pubDate>
       
       <guid>https://poorlydefinedbehaviour.github.io/posts/token_bucket/</guid>
-      <description>Intro Token bucket is an algorithm that can be used to rate limit requests received by a service.
+      <description>Intro Token bucket is an algorithm that can be used to rate limit requests made or received by a service.
 How it works The algorithm is called token bucket because of the way it works: imagine we have a bucket with x tokens where each accepted request consumes one token from the bucket and a token is added back to the bucket at an interval.
 A bucket with 1 token that is refilled each second means the service accepts one request per second.</description>
     </item>
