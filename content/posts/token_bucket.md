@@ -116,7 +116,7 @@ impl Bucket {
           if message == Err(RecvError) {
             debug!("
               bucket has been dropped,
-              won't add try to add tokens to the bucket anymore"
+              won't try to add tokens to the bucket anymore"
             );
             return;
           }
