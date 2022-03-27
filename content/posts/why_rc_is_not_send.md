@@ -83,8 +83,8 @@ struct RcBox<T: ?Sized> {
 When a `Rc<T>` is created, its `strong` count will be `1` because there is only one reference to the value inside of it. If we need more references (the point of using `Rc<T>`) we can just clone the `Rc<T>`
 
 ```rust
-  let a: Rc<String> = Rc::new(String::from("hello world"));
-  let b: Rc<String> = a.clone();
+let a: Rc<String> = Rc::new(String::from("hello world"));
+let b: Rc<String> = a.clone();
 ```
 
 Cloning an `Rc<T>` means increasing its `strong` count and creating a copy of the `RcBox<T>`.
