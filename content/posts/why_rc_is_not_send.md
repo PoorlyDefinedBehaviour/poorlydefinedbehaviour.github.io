@@ -66,7 +66,7 @@ pub struct Rc<T: ?Sized> {
 
 > `?Sized` means the size of `T` does not need to be known at compile-time. It's fine to accept a `T` that's not `Sized` because `Rc<T>` is `Sized`.
 
-A `Rc<T>` pretty must boils down to a struct with two counters and pointer to a value of type `T`. In the `Rc<T>` source code, the struct is called `RcBox<T>`:
+A `Rc<T>` pretty much boils down to a struct with two counters and pointer to a value of type `T`. In the `Rc<T>` source code, the struct is called `RcBox<T>`:
 
 ```rust
 // Note that Cell is used for internal mutability.
