@@ -55,7 +55,7 @@ let b = Rc::clone(&a);
 
 ### Rc internals
 
-If we take a look at the `Rc<T>` [source code](https://github.com/rust-lang/rust/blob/5aba816672d08a076eaa8005a109968af8ce1083/library/alloc/src/rc.rs#L284) we sill see that it is actually kinda simple:
+If we take a look at the `Rc<T>` [source code](https://github.com/rust-lang/rust/blob/5aba816672d08a076eaa8005a109968af8ce1083/library/alloc/src/rc.rs#L284) we will see that it is actually kinda simple:
 
 ```rust
 pub struct Rc<T: ?Sized> {
