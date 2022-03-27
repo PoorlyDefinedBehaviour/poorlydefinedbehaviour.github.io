@@ -9,7 +9,17 @@
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 20 Mar 2022 22:21:07 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 27 Mar 2022 17:20:07 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why_rc_is_not_send</title>
+      <link>https://poorlydefinedbehaviour.github.io/posts/why_rc_is_not_send/</link>
+      <pubDate>Sun, 27 Mar 2022 17:20:07 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/posts/why_rc_is_not_send/</guid>
+      <description>Why Rc cannot be sent between threads We get an compile error if we try to send Rc&amp;lt;T&amp;gt; to another thread:
+use std::rc::Rc;  fn main() {  let rc = Rc::new(1);  std::thread::spawn(|| {  println!(&amp;#34;{}&amp;#34;, *rc);  })  .join(); }  error[E0277]: `Rc&amp;lt;i32&amp;gt;` cannot be shared between threads safely  --&amp;gt; src/main.rs:5:3  | 5 | std::thread::spawn(|| {  | ^^^^^^^^^^^^^^^^^^ `Rc&amp;lt;i32&amp;gt;` cannot be shared between threads safely  |  = help: the trait `Sync` is not implemented for `Rc&amp;lt;i32&amp;gt;`  = note: required because of the requirements on the impl of `Send` for `&amp;amp;Rc&amp;lt;i32&amp;gt;`  = note: required because it appears within the type `[closure@src/main.</description>
+    </item>
+    
     <item>
       <title>Token bucket</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/token_bucket/</link>
