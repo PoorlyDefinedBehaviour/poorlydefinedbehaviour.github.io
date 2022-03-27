@@ -73,7 +73,7 @@ A `Rc<T>` pretty much boils down to a struct with two counters and a pointer to 
 struct RcBox<T: ?Sized> {
     /// How many references we have to this value.
     strong: Cell<usize>,
-    // Weak ref? What's that?
+    // Weak ref? We'll ignore it for now.
     weak: Cell<usize>,
     /// The actual value
     value: T,
