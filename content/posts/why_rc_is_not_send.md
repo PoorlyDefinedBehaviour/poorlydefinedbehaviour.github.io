@@ -2,7 +2,7 @@
 title: "Why_rc_is_not_send"
 date: 2022-03-27T17:20:07-03:00
 categories: ["rust"]
-draft: true
+draft: false
 ---
 
 # Why Rc<T> cannot be sent between threads
@@ -134,5 +134,19 @@ After the clone, this is how things look like:
   <img src="https://user-images.githubusercontent.com/17282221/160302841-b04e1b5e-aab1-4afd-b608-51431eaab181.png" />
 </p>
 
+## Why Rc<T> is not Send after all?
 
-  
+Every time a `Rc<T>` is cloned, its `strong` count is incremented. If we had two or more threads trying to clone an `Rc<T>` at the same time, there would be a race condition since the access to the `strong` count that's in the `RcBox<T>` is not synchronized.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/17282221/160303759-f89c1cf8-406f-4290-81ce-7e0f86559e3c.png" />
+</p>
+
+# References
+
+https://github.com/rust-lang/rust  
+https://doc.rust-lang.org/std/marker/trait.Send.html  
+https://doc.rust-lang.org/nomicon/send-and-sync.html  
+https://doc.rust-lang.org/std/rc/struct.Rc.html  
+https://doc.rust-lang.org/std/sync/struct.Arc.html  
+https://doc.rust-lang.org/std/ptr/struct.NonNull.html
