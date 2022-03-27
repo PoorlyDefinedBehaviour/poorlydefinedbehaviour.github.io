@@ -150,7 +150,10 @@ unsafe impl<#[may_dangle] T: ?Sized> Drop for Rc<T> {
                 self.inner().dec_weak();
 
                 if self.inner().weak() == 0 {
-                    Global.deallocate(self.ptr.cast(), Layout::for_value(self.ptr.as_ref()));
+                    Global.deallocate(
+                      self.ptr.cast(),
+                      Layout::for_value(self.ptr.as_ref())
+                    );
                 }
             }
         }
