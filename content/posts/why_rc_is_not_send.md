@@ -134,6 +134,31 @@ After the clone, this is how things look like:
   <img src="https://user-images.githubusercontent.com/17282221/160302841-b04e1b5e-aab1-4afd-b608-51431eaab181.png" />
 </p>
 
+The `strong` count is decrement in the `Rc<T>` [Drop](https://doc.rust-lang.org/std/ops/trait.Drop.html) implementation and the memory is freed if there's no references left.
+
+```rust
+unsafe impl<#[may_dangle] T: ?Sized> Drop for Rc<T> {
+    fn drop(&mut self) {
+        unsafe {
+            self.inner().dec_strong();
+            if self.inner().strong() == 0 {
+                // destroy the contained object
+                ptr::drop_in_place(Self::get_mut_unchecked(self));
+
+                // remove the implicit "strong weak" pointer now that we've
+                // destroyed the contents.
+                self.inner().dec_weak();
+
+                if self.inner().weak() == 0 {
+                    Global.deallocate(self.ptr.cast(), Layout::for_value(self.ptr.as_ref()));
+                }
+            }
+        }
+    }
+}
+
+```
+
 ## Why Rc<T> is not Send after all?
 
 Every time a `Rc<T>` is cloned, its `strong` count is incremented. If we had two or more threads trying to clone an `Rc<T>` at the same time, there would be a race condition since the access to the `strong` count that's in the `RcBox<T>` is not synchronized.
