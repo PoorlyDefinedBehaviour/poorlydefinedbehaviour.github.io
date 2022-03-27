@@ -7,7 +7,7 @@ draft: false
 
 # Why Rc<T> cannot be sent between threads
 
-We get an compile error if we try to send `Rc<T>` to another thread:
+We get a compile error if we try to send `Rc<T>` to another thread:
 
 ```rust
 use std::rc::Rc;
