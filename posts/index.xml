@@ -11,7 +11,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sun, 27 Mar 2022 17:20:07 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Why_rc_is_not_send</title>
+      <title>Why Rc&lt;T&gt; is not Send</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/why_rc_is_not_send/</link>
       <pubDate>Sun, 27 Mar 2022 17:20:07 -0300</pubDate>
       
