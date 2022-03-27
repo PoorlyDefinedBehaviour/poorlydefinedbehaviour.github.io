@@ -161,7 +161,7 @@ unsafe impl<#[may_dangle] T: ?Sized> Drop for Rc<T> {
 }
 ```
 
-> `#[may_dangle]` has to with [drop check](https://doc.rust-lang.org/nomicon/dropck.html)
+> `#[may_dangle]` has to do with [drop check](https://doc.rust-lang.org/nomicon/dropck.html)
 
 ## Why Rc<T> is not Send after all?
 
