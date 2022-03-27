@@ -1,5 +1,5 @@
 ---
-title: "Why_rc_is_not_send"
+title: "Why Rc<T> is not Send"
 date: 2022-03-27T17:20:07-03:00
 categories: ["rust"]
 draft: false
