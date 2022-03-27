@@ -134,7 +134,7 @@ After the clone, this is how things look like:
   <img src="https://user-images.githubusercontent.com/17282221/160302841-b04e1b5e-aab1-4afd-b608-51431eaab181.png" />
 </p>
 
-The `strong` count is decrement in the `Rc<T>` [Drop](https://doc.rust-lang.org/std/ops/trait.Drop.html) implementation and the memory is freed if there's no references left.
+The `strong` count is decremented in the `Rc<T>` [Drop](https://doc.rust-lang.org/std/ops/trait.Drop.html) implementation and the memory is freed if there's no references left.
 
 ```rust
 unsafe impl<#[may_dangle] T: ?Sized> Drop for Rc<T> {
