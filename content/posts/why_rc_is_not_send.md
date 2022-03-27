@@ -165,7 +165,7 @@ unsafe impl<#[may_dangle] T: ?Sized> Drop for Rc<T> {
 
 ## Why Rc<T> is not Send after all?
 
-Every time a `Rc<T>` is cloned, its `strong` count is incremented. If we had two or more threads trying to clone an `Rc<T>` at the same time, there would be a race condition since access to the `strong` count that's in the `RcBox<T>` is not synchronized.
+Every time a `Rc<T>` is cloned, its `strong` count is incremented. If we had two or more threads trying to clone a `Rc<T>` at the same time, there would be a race condition since access to the `strong` count that's in the `RcBox<T>` is not synchronized.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/17282221/160305288-e2926793-7d61-4413-ad0a-f750f2054371.png" />
