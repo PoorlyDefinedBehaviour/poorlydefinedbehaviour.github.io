@@ -127,3 +127,12 @@ unsafe fn from_inner(ptr: NonNull<RcBox<T>>) -> Self {
   Self { ptr, phantom: PhantomData }
 }
 ```
+
+After the clone, this is how things look like:
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/17282221/160302841-b04e1b5e-aab1-4afd-b608-51431eaab181.png" />
+</p>
+
+
+  
