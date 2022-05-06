@@ -163,7 +163,6 @@ async fn foo() {
   let _permit = permits.clone().acquire_owned().await.unwrap();
 }
 
-// main is a task with a budget of 128
 #[tokio::main]
 async fn main() {
   let permits = Arc::new(Semaphore::new(1));
