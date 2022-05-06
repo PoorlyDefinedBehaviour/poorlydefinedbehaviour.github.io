@@ -144,7 +144,7 @@ async fn main() {
 
 > Task and Future will be used interchangeably
 
-[tokio] does the budget think per task and each time a task interacts with a resource, its budget is decreased until it reaches 0 and control is yielded back to the scheduler.
+[tokio] does the budget think per task and each time a task interacts with a resource, its budget is [decreased](https://github.com/tokio-rs/tokio/blob/c5ff797dcfb44f003cc9cb2080a5f2544c3cca7f/tokio/src/coop.rs#L169) until it reaches 0 and control is yielded back to the scheduler.
 
 Each task [starts](https://github.com/tokio-rs/tokio/blob/c5ff797dcfb44f003cc9cb2080a5f2544c3cca7f/tokio/src/coop.rs#L55) with a budget of 128 and the budget is consumed when interacting with a resource (a [Semaphore], for example)
 
