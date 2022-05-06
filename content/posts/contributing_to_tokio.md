@@ -95,7 +95,7 @@ fn foo<T:>(t: T) {
 fn main() {}
 ```
 
-> `~^ ERROR` says the error is expected and the test fails if the error does not occur
+> `~^ ERROR` tells the test runner that the error is expected and the test fails if the error does not occur
 
 and a `.stderr` file containing the expected error message
 
