@@ -21,7 +21,7 @@ I actually go through a few notifications each day in hope to find something to 
 
 [Rust] supports [async await] but it does not come with a [runtime](https://www.ncameron.org/blog/what-is-an-async-runtime/) by default. It is left for the user to define which runtime their program will use and [tokio] is the most popular one.
 
-I was going through my nofications as usual and one issue caught my attention: someone wanted to add a method to get the address the [UdpSocket] is connected to.
+I was going through my notifications as usual and one issue caught my attention: someone wanted to add a method to get the address the [UdpSocket] is connected to.
 
 It seemed easy enough so i went and claimed it:
 
