@@ -9,7 +9,17 @@
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 27 Mar 2022 17:20:07 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 17 Apr 2022 14:29:20 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Contributing to Rust and tokio</title>
+      <link>https://poorlydefinedbehaviour.github.io/posts/contributing_to_tokio/</link>
+      <pubDate>Sun, 17 Apr 2022 14:29:20 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/posts/contributing_to_tokio/</guid>
+      <description>Contributing for the first time I have been trying to force myself to do harder things lately in order to practice and learn new things. Since i&amp;rsquo;m doing Rust full time now, i thought it would be a good a idea to contribute to the ecosystem, so i went and enabled notifications for a bunch of Rust related projects and for the Rust project itself.
+I thought i would be able to keep up with the notifications.</description>
+    </item>
+    
     <item>
       <title>Why Rc&lt;T&gt; is not Send</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/why_rc_is_not_send/</link>
