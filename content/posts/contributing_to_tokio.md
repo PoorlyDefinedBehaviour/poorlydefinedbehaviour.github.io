@@ -363,7 +363,7 @@ macro_rules! join {
         let mut fut = unsafe { Pin::new_unchecked(fut) };
 
         // Try polling
-        if crate::coop::budget(|| fut.poll(cx)).is_pending() {
+        if fut.poll(cx).is_pending() {
           is_pending = true;
         }
       }
@@ -455,7 +455,7 @@ macro_rules! join {
                     let mut fut = unsafe { Pin::new_unchecked(fut) };
 
                     // Try polling
-                    if crate::coop::budget(|| fut.poll(cx)).is_pending() {
+                    if fut.poll(cx).is_pending() {
                       is_pending = true;
                     }
                 }
