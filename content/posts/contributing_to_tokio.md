@@ -17,7 +17,7 @@ I have been trying to force myself to do harder things lately in order to practi
 
 I actually go through a few notifications each day in hope to find something to work on.
 
-## First tokio contribution
+# First tokio contribution
 
 [Rust] supports [async await] but it does not come a [runtime](https://www.ncameron.org/blog/what-is-an-async-runtime/) by default. It is left for the user to define which runtime their program will use and [tokio] is the most popular one.
 
@@ -35,13 +35,13 @@ The [implementation](https://github.com/tokio-rs/tokio/pull/4611/files) was actu
 
 Everything went as expected and my change got released on tokio [1.18.0](https://github.com/tokio-rs/tokio/pull/4641).
 
-## First Rust contribution
+# First Rust contribution
 
 A few days went by and a [Rust] issue caught my attention: a compiler message was incorrect, it turns out, fixing compiler messages is one of the main ways people start contributing to the [Rust] compiler.
 
 Anyway, [Rust] is known for its nice error messages, it does have good error messages indeed but they come at a development cost. The [Rust] compiler has several functions and methods just to decide which error message to show the user.
 
-### The offender
+## The offender
 
 It is actually valid to add `:` after a type variable
 
@@ -121,7 +121,7 @@ For more information about this error, try `rustc --explain E0599`.
 
 It took me some time to get used to the compiler but the [fix](https://github.com/rust-lang/rust/pull/95991/files) was really easy thanks to [WaffleLapkin] who was working on a similar issue.
 
-## Second tokio contribution
+# Second tokio contribution
 
 [tokio] has the [join!] macro that can be used when we want to wait for several futures to complete before doing something.
 
@@ -220,7 +220,7 @@ async fn poor_little_task(permits: Arc<Semaphore>) {
 > [Poll] is the type returned when the runtime checks if a [Future] is completed.
 > [Poll::pending] means the [Future] is not ready. In this case, the [Future] is actually ready but since it has no budget to spend, it pretends it isn't ready.
 
-### First try
+## First try
 
 At first i thought we would just be able to give each future passed to [join!] its own budget instead of letting them share the current task budget.
 
@@ -329,7 +329,7 @@ loop {
 
 The future would spend its budget but not the budget of the surrounding task, causing it to never yield.
 
-### Second try
+## Second try
 
 Each time the task created by [join!] is polled, poll a different future first so as time goes by, every future gets a chance to make progress.
 
@@ -401,7 +401,7 @@ macro_rules! count {
 
 aaaand... [join!] accepts up to 125 futures without changing the [recursion limit] so this solution wasn't accepted because it would be a breaking change.
 
-### Third try
+## Third try
 
 Start the polling round in a different future each time still seems like a good idea. To bypass `$crate::count!`'s limitation, i decided to use a [procedural macro].
 
@@ -409,7 +409,7 @@ Start the polling round in a different future each time still seems like a good 
 
 Turns out people don't like [procedural macro]s very much and it was not accepted.
 
-### Fourth try
+## Fourth try
 
 Still the same solution but implemented in a different way. What if instead of using `$crate::count!` inside the macro to get the index of a future, we counted up front?
 
@@ -486,7 +486,7 @@ macro_rules! join {
 
 It works but could be faster. Say we pass 5 futures to `join!`, how many times would the if statements that check if it is the future's turn to be polled conditions be checked?
 
-### Fifth try (the last one)
+## Fifth try (the last one)
 
 The same idea still, poll a different future first every time, except we avoid checking if statement conditions without it necessity.
 
