@@ -100,6 +100,8 @@ fn main() {}
 and a `.stderr` file containing the expected error message
 
 ```terminal
+~src/test/ui/traits/issue-95898.stderr
+
 error[E0599]: no method named `clone` found for type parameter `T` in the current scope
   --> $DIR/issue-95898.rs:5:7
    |
