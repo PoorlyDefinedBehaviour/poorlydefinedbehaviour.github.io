@@ -79,7 +79,7 @@ I thought it was easy enough and decided to fix it.
 
 Testing that the compiler error messages are correct is pretty easy, [Rust] calls this type of test an `ui` test.
 
-All i need to do was to addd a file containing the code that's supposed to error to the `ui` folder which contains `ui` tests
+All i needed to do was to add a file containing the code that's supposed to error to the `ui` folder.
 
 ```rust
 ~src/test/ui/traits/issue-95898.rs
