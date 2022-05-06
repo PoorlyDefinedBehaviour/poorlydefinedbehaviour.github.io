@@ -321,7 +321,7 @@ macro_rules! join {
 
 > Note that i added `crate::coop::budget`
 
-Turns out this doesn't work since. It is still pretty easy to create a future that never yields even though it consumes its whole budget:
+Turns out this doesn't work. It is still pretty easy to create a future that never yields even though it consumes its whole budget:
 
 ```rust
 ...
