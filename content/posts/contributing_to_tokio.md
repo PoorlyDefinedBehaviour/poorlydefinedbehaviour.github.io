@@ -176,6 +176,8 @@ async fn main() {
 
 The point of giving a budget to each task to stop bad tasks from starving other tasks but it turns out, it is still possible for one task to starve other tasks because [join!] polls every future inside [the same task](https://docs.rs/tokio/latest/tokio/macro.join.html#runtime-characteristics) which means every future passed to [join!] shares the same task budget of `128`.
 
+> Note that `join!` creates a new task
+
 A task can starve other tasks by just consuming the whole budget of the task that invoked [join!] so by the time the other tasks passed to [join!] are polled, the budget is already 0 which causes them to yield control back to the runtime.
 
 ```rust
