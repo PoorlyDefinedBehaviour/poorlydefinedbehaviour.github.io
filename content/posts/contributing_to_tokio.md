@@ -77,7 +77,7 @@ I thought it was easy enough and decided to fix it.
   <img src="https://user-images.githubusercontent.com/17282221/167047347-0354ba5b-44d7-42d4-b179-412f760758d8.png" />
 </p>
 
-Testing that the compiler error messages are correct is pretty easy, [Rust] calls this type of test and `ui` test.
+Testing that the compiler error messages are correct is pretty easy, [Rust] calls this type of test an `ui` test.
 
 All i need to do was to addd a file containing the code that's supposed to error to the `ui` folder which contains `ui` tests
 
