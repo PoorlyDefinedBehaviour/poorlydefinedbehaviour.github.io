@@ -491,6 +491,8 @@ It works but could be faster. Say we pass 5 futures to `join!`, how many times w
 
 ## Fifth try (the last one)
 
+[PR](https://github.com/tokio-rs/tokio/pull/4624)
+
 The same idea still, poll a different future first every time, except we avoid checking if statement conditions without necessity.
 
 ```rust
