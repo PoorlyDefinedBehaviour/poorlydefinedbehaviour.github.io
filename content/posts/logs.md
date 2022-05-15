@@ -19,7 +19,21 @@ What i called a record is a entry in the log. The entry can be anything in any f
 
 # You have seen a log before
 
-Logs are used everywhere, from databases like Postgres[^postgres-write-ahead-log] where logs enable recovery after crashes, leader-follower replication and change data capture[^change-data-capture], file systems[^journaling-file-system] to avoid data corruption, distributed systems such as Kafka which considers a message as accepted by the cluster after the quorum of in-sync replicas(configuration dependent) have written the message to their log[^kafka-the-definitive-guide] and consensus algorithms such as Raft[^raft-paper] aka replicated state machines[^replicated-state-machines].
+## Databases
+
+Postgres uses a write-ahead log to ensure data is not lost if a crash happens[^postgres-write-ahead-log], to enable replication and change data capture. Tables and indexes are modified only after the change been written to the log in which case if a crash happens, the log can be used to go back to a valid state.
+
+## File systems
+
+Some file systems known as journaling file systems[^journaling-file-system] write changes to a log before actually applying them to the internal file system structures to enable crash recovery and avoid data corruption.
+
+## Distributed systems
+
+Distributed systems such as Kafka which considers a message as accepted by the cluster after the quorum of in-sync replicas(configuration dependent) have written the message to their log[^kafka-the-definitive-guide]
+
+## Consensus
+
+Consensus algorithms such as Raft[^raft-paper] aka replicated state machines[^replicated-state-machines].
 
 [^ostep-hard-disk-drives]: [Operating systems: Three easy pieces - Hard Disk Drives](https://pages.cs.wisc.edu/~remzi/OSTEP/file-disks.pdf)
 [^postgres-write-ahead-log]: [Postgres write-ahead log](https://www.postgresql.org/docs/current/wal-intro.html)
