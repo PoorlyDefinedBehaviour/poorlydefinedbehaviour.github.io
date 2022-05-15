@@ -16,9 +16,8 @@
       <pubDate>Sat, 30 Apr 2022 16:46:09 -0300</pubDate>
       
       <guid>https://poorlydefinedbehaviour.github.io/posts/logs/</guid>
-      <description>What is a log A log is just a immutable sequence of records. It is usually 0 indexed file where new entries are appended because expensive disk seeks can usually be avoided when appending to a file1.
- Not to be confused with the type of logs most people are used to: application logs that are meant to be read by humans.
- What i called a record is a entry in the log.</description>
+      <description>What is a log A log is just a immutable sequence of records that can be used to provide durability, replication and to model consensus. It is usually 0 indexed file where new entries are appended because expensive disk seeks can usually be avoided when appending to a file1.
+ Not to be confused with the type of logs most people are used to: application logs that are meant to be read by humans.</description>
     </item>
     
     <item>
