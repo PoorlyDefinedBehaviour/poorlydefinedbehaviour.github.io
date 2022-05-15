@@ -17,7 +17,7 @@
       
       <guid>https://poorlydefinedbehaviour.github.io/posts/logs/</guid>
       <description>What is a log A log is just a immutable sequence of records that can be used to provide durability, replication and to model consensus. It is usually a 0 indexed file that new entries are appended to because expensive disk seeks can usually be avoided when appending to a file1.
- Not to be confused with the type of logs most people are used to: application logs that are meant to be read by humans.</description>
+ Not to be confused with the type of logs most people are used to: application logs that are meant to be read by humans although application logs are a degenerative case of the log we are talking about[^i-love-logs].</description>
     </item>
     
     <item>
