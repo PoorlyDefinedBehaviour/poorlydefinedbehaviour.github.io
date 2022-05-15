@@ -13,7 +13,7 @@ A log is just a immutable sequence of records that can be used to provide durabi
 <img src="https://user-images.githubusercontent.com/17282221/168452116-a751154f-ec58-4a65-91f5-a90269529963.png" />
 </p>
 
-> Not to be confused with the type of logs most people are used to: application logs that are meant to be read by humans.
+> Not to be confused with the type of logs most people are used to: application logs that are meant to be read by humans although application logs are a degenerative case of the log we are talking about[^i-love-logs].
 
 What i called a record is a entry in the log. The entry can be anything in any format.
 
@@ -28,3 +28,4 @@ Logs are used everywhere, from databases like Postgres[^postgres-write-ahead-log
 [^kafka-the-definitive-guide]: [Kafka: The Definitive Guide: Real-Time Data and Stream Processing at Scale](https://www.confluent.io/resources/kafka-the-definitive-guide-v2/)
 [^replicated-state-machines]: [Replicated state machines](https://en.wikipedia.org/wiki/State_machine_replication)
 [^raft-paper]: [In Search of an Understandable Consensus Algorithm](https://raft.github.io/raft.pdf)
+[^i-love-logs] [I Love logs](https://www.confluent.io/ebook/i-heart-logs-event-data-stream-processing-and-data-integration/)
