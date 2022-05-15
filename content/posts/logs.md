@@ -1,6 +1,7 @@
 ---
 title: "Logs"
 date: 2022-04-30T16:46:09-03:00
+categories: ["algorithms", "distributed", "data-structures"]
 draft: true
 ---
 
