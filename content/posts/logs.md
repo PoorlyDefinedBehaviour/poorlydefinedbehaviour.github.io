@@ -28,4 +28,4 @@ Logs are used everywhere, from databases like Postgres[^postgres-write-ahead-log
 [^kafka-the-definitive-guide]: [Kafka: The Definitive Guide: Real-Time Data and Stream Processing at Scale](https://www.confluent.io/resources/kafka-the-definitive-guide-v2/)
 [^replicated-state-machines]: [Replicated state machines](https://en.wikipedia.org/wiki/State_machine_replication)
 [^raft-paper]: [In Search of an Understandable Consensus Algorithm](https://raft.github.io/raft.pdf)
-[^i-love-logs] [I Love logs](https://www.confluent.io/ebook/i-heart-logs-event-data-stream-processing-and-data-integration/)
+[^i-love-logs]: [I Love logs](https://www.confluent.io/ebook/i-heart-logs-event-data-stream-processing-and-data-integration/)
