@@ -23,6 +23,8 @@ What i called a record is a entry in the log. The entry can be anything in any f
 
 Postgres uses a write-ahead log to ensure data is not lost if a crash happens[^postgres-write-ahead-log], to enable replication and change data capture. Tables and indexes are modified only after the change been written to the log in which case if a crash happens, the log can be used to go back to a valid state.
 
+> Datomic takes it to the next level by being a log-centric database[^rich-hickey-descontructing-the-database].
+
 ## File systems
 
 Some file systems known as journaling file systems[^journaling-file-system] write changes to a log before actually applying them to the internal file system structures to enable crash recovery and avoid data corruption.
@@ -43,3 +45,4 @@ Consensus algorithms such as Raft[^raft-paper] aka replicated state machines[^re
 [^replicated-state-machines]: [Replicated state machines](https://en.wikipedia.org/wiki/State_machine_replication)
 [^raft-paper]: [In Search of an Understandable Consensus Algorithm](https://raft.github.io/raft.pdf)
 [^i-love-logs]: [I Love logs](https://www.confluent.io/ebook/i-heart-logs-event-data-stream-processing-and-data-integration/)
+[^rich-hickey-descontructing-the-database]: [Rich Hickey: Deconstructing the Database](https://www.youtube.com/watch?v=Cym4TZwTCNU)
