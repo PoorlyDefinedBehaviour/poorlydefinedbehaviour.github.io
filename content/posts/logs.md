@@ -7,7 +7,7 @@ draft: false
 
 # What is a log
 
-A log is just a immutable sequence of records that can be used to provide durability, replication and to model consensus. It is usually 0 indexed file where new entries are appended because expensive disk seeks can usually be avoided when appending to a file[^ostep-hard-disk-drives].
+A log is just a immutable sequence of records that can be used to provide durability, replication and to model consensus. It is usually a 0 indexed file where new entries are appended because expensive disk seeks can usually be avoided when appending to a file[^ostep-hard-disk-drives].
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/17282221/168452116-a751154f-ec58-4a65-91f5-a90269529963.png" />
