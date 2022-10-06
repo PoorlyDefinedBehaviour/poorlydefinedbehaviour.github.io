@@ -17,7 +17,7 @@
       
       <guid>https://poorlydefinedbehaviour.github.io/posts/why_rc_is_not_send/</guid>
       <description>Why Rc cannot be sent between threads We get a compile error if we try to send Rc&amp;lt;T&amp;gt; to another thread:
-use std::rc::Rc;  fn main() {  let rc = Rc::new(1);  std::thread::spawn(|| {  println!(&amp;#34;{}&amp;#34;, *rc);  })  .join(); }  error[E0277]: `Rc&amp;lt;i32&amp;gt;` cannot be shared between threads safely  --&amp;gt; src/main.rs:5:3  | 5 | std::thread::spawn(|| {  | ^^^^^^^^^^^^^^^^^^ `Rc&amp;lt;i32&amp;gt;` cannot be shared between threads safely  |  = help: the trait `Sync` is not implemented for `Rc&amp;lt;i32&amp;gt;`  = note: required because of the requirements on the impl of `Send` for `&amp;amp;Rc&amp;lt;i32&amp;gt;`  = note: required because it appears within the type `[closure@src/main.</description>
+use std::rc::Rc; fn main() { let rc = Rc::new(1); std::thread::spawn(|| { println!(&amp;#34;{}&amp;#34;, *rc); }) .join(); } error[E0277]: `Rc&amp;lt;i32&amp;gt;` cannot be shared between threads safely --&amp;gt; src/main.rs:5:3 | 5 | std::thread::spawn(|| { | ^^^^^^^^^^^^^^^^^^ `Rc&amp;lt;i32&amp;gt;` cannot be shared between threads safely | = help: the trait `Sync` is not implemented for `Rc&amp;lt;i32&amp;gt;` = note: required because of the requirements on the impl of `Send` for `&amp;amp;Rc&amp;lt;i32&amp;gt;` = note: required because it appears within the type `[closure@src/main.</description>
     </item>
     
   </channel>

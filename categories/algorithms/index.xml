@@ -17,7 +17,7 @@
       
       <guid>https://poorlydefinedbehaviour.github.io/posts/logs/</guid>
       <description>What is a log A log is just a immutable sequence of records wih strong ordering semantics that can be used to provide durability, replication and to model consensus. It is usually a 0 indexed file that new entries are appended to because expensive disk seeks can usually be avoided when appending to a file1.
- Not to be confused with the type of logs most people are used to: application logs that are meant to be read by humans although application logs are a degenerative case of the log we are talking about2.</description>
+Not to be confused with the type of logs most people are used to: application logs that are meant to be read by humans although application logs are a degenerative case of the log we are talking about2.</description>
     </item>
     
     <item>
@@ -39,7 +39,7 @@ A bucket with 1 token that is refilled each second means the service accepts one
       <guid>https://poorlydefinedbehaviour.github.io/posts/raft_notes/</guid>
       <description>Replicated And Fault Tolerant Raft is a consensus algorithm for managing a replicated log.
 The authors claim Raft to be more understandable than Paxos because Raft separates the key elements of consensus
- Leader election Log replication Safety  and enforces a stronger degree of coherency to reduce the number of states that must be considered.
+Leader election Log replication Safety and enforces a stronger degree of coherency to reduce the number of states that must be considered.
 Raft also includes a new mechanism for changing cluster membership.
 What is a consensus algorithm Consensus algorithms allow a collection of machines to work as a coherent group that can survive the failures of some of its members.</description>
     </item>

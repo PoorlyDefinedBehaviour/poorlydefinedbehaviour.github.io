@@ -18,7 +18,7 @@
       <guid>https://poorlydefinedbehaviour.github.io/posts/raft_notes/</guid>
       <description>Replicated And Fault Tolerant Raft is a consensus algorithm for managing a replicated log.
 The authors claim Raft to be more understandable than Paxos because Raft separates the key elements of consensus
- Leader election Log replication Safety  and enforces a stronger degree of coherency to reduce the number of states that must be considered.
+Leader election Log replication Safety and enforces a stronger degree of coherency to reduce the number of states that must be considered.
 Raft also includes a new mechanism for changing cluster membership.
 What is a consensus algorithm Consensus algorithms allow a collection of machines to work as a coherent group that can survive the failures of some of its members.</description>
     </item>
