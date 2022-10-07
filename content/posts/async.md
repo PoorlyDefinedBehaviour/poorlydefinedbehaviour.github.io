@@ -109,7 +109,29 @@ On Linux, threads usually have a stack size of 2MB[^pthread_create] and the acti
 
 Goroutines use a technique known as `M:N` scheduling, [green threads] or stackfull coroutines where `M` goroutines, which are also known as tasks or lightweight threads, are multiplexed over `N` system threads. The tasks, that need to hold less maintenance state, cooperate with a scheduler that runs in [user mode][protection_ring] which removes the need to switch to kernel-mode whenever a task needs to run.
 
-Back in the day, Goroutines started with a small stack that grew as needed. Whenever the goroutine needed to put something on the task and it ran out of space, a new `segment` would be created and that segment would become part of the goroutine's stack[^cloudflare_how_stacks_are_handled_in_go].
+Back in the day, Goroutines used a segmented stack. The goroutine started with a small stack and whenever the goroutine needed to put something on the stack and but it was out of space, a new `segment` would be created and that segment would become part of the goroutine's stack[^cloudflare_how_stacks_are_handled_in_go].
+
+Go ended up abandoning segmented stacks because it had a problem where given an almost full stack, a call would force a new segment to be allocated and immediately deallocated when the call returned[^docs_contiguous_stacks].
+
+Go abandoned the segmented stacks approach in favor of the same approach used to create growable arrays like Rust's [Vec]: when the stack is full, just allocate a bigger stack, copy the data from the old stack to it and deallocate the old stack. Note that with this approach, it is possible to allocate memory that won't actually be used if a lot of stack space is needed by a goroutine only at the beginning of its execution.
+
+## Rust and green threads
+
+Rust actually had a runtime that supported both threads and green threads back in the day. The standard libraries would have to evolve to support both threading models which was something considered too much work, so the green thread support was removed[^rfc_0000-remove-runtime].
+
+## Rust, stackless coroutines and compiler generated state machines
+
+Rust supports the async await[^rust_async_book_async_await] model with a little compiler help.
+
+```rust
+async fn f() -> i32 {
+  let x = g().await;
+  let y = h().await;
+  x + y
+}
+```
+
+A runtime schedules tasks, [Future]s in this case, that cooperate yield control back to the runtime whenever an async operation, like reading a file, is not complete.
 
 # TODO: compare how languages do concurrency/parallelism
 
@@ -147,5 +169,14 @@ Back in the day, Goroutines started with a small stack that grew as needed. When
 [syscall]: https://en.wikipedia.org/wiki/System_call
 [kernel]: https://en.wikipedia.org/wiki/Kernel_(operating_system)
 [protection_ring]: https://en.wikipedia.org/wiki/Protection_ring
+[vec]: https://doc.rust-lang.org/std/vec/struct.Vec.html
 
 [^cloudflare_how_stacks_are_handled_in_go]: https://blog.cloudflare.com/how-stacks-are-handled-in-go/
+[^docs_contiguous_stacks]: https://docs.google.com/document/d/1wAaf1rYoM4S4gtnPh0zOlGzWtrZFQ5suE8qr2sD8uWQ/pub
+
+[fibers under the magnifying glass]: https://www.open-std.org/JTC1/SC22/WG21/docs/papers/2018/p1364r0.pdf
+
+[^rfc_0000-remove-runtime]: https://github.com/aturon/rfcs/blob/remove-runtime/active/0000-remove-runtime.md
+[^rust_async_book_async_await]: https://rust-lang.github.io/async-book/03_async_await/01_chapter.html
+
+[future]: https://doc.rust-lang.org/std/future/trait.Future.html
