@@ -97,6 +97,20 @@ The process just describe is also known as cooperative scheduling[^cooperative_s
 
 The main problem with cooperative scheduling is that a rogue task can block a thread or even the whole runtime depending on how many threads are in use.
 
+## Coroutines
+
+Coroutines allow program execution to be stopped and then resumed at a later time.
+
+## Go and stackfull coroutines
+
+Go has [goroutines] which are a cheap lightweight thread abstraction managed by the [Go runtime][^nindalf_how_goroutines_work]. They are usually executed over several threads based on how many cores are available in the system.
+
+On Linux, threads usually have a stack size of 2MB[^pthread_create] and the action of switching between threads is called [context switching][context_switch] which involves transitioning into [kernel mode][kernel] and [syscalls][sycall], then copying several registers[^nindalf_how_goroutines_work], stack pointer and program counter and storying them away so the thread can be resumed later. Turns out that creating threads and switching between them can provide relevant overhead.
+
+Goroutines use a technique known as `M:N` scheduling, [green threads] or stackfull coroutines where `M` goroutines, which are also known as tasks or lightweight threads, are multiplexed over `N` system threads. The tasks, that need to hold less maintenance state, cooperate with a scheduler that runs in [user mode][protection_ring] which removes the need to switch to kernel-mode whenever a task needs to run.
+
+Back in the day, Goroutines started with a small stack that grew as needed. Whenever the goroutine needed to put something on the task and it ran out of space, a new `segment` would be created and that segment would become part of the goroutine's stack[^cloudflare_how_stacks_are_handled_in_go].
+
 # TODO: compare how languages do concurrency/parallelism
 
 [i/o]: https://en.wikipedia.org/wiki/Input/output
@@ -122,3 +136,16 @@ The main problem with cooperative scheduling is that a rogue task can block a th
 [^preemptive_scheduling]: https://en.wikipedia.org/wiki/Preemption_(computing)
 
 [cloudflare_the_sad_state_of_linux_socket_balancing]: https://blog.cloudflare.com/the-sad-state-of-linux-socket-balancing/
+[goroutines]: https://go.dev/tour/concurrency/1
+[go runtime]: https://go.dev/blog/go119runtime
+[green threads]: https://en.wikipedia.org/wiki/Green_thread
+
+[^nindalf_how_goroutines_work]: https://blog.nindalf.com/posts/how-goroutines-work/
+[^pthread_create]: https://man7.org/linux/man-pages/man3/pthread_create.3.html
+
+[context_switch]: https://en.wikipedia.org/wiki/Context_switch
+[syscall]: https://en.wikipedia.org/wiki/System_call
+[kernel]: https://en.wikipedia.org/wiki/Kernel_(operating_system)
+[protection_ring]: https://en.wikipedia.org/wiki/Protection_ring
+
+[^cloudflare_how_stacks_are_handled_in_go]: https://blog.cloudflare.com/how-stacks-are-handled-in-go/
