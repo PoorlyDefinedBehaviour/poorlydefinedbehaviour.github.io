@@ -156,7 +156,21 @@ async fn f() -> i32 {
 }
 ```
 
-This type of coroutine also allows execution to be stopped and resumed at `await` points. The coroutines are stackless because unlike goroutines they do need a stack. They are modelled as state machines with a little helper from the compiler.
+This type of coroutine also allows execution to be stopped and resumed at `await` points. The coroutines are stackless because unlike goroutines they do not need a stack.
+
+The [Future] trait has a single method called that is meant to be called in order to make the computation move forward.
+
+```rust
+pub trait Future {
+    type Output;
+
+    fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Self::Output>;
+}
+```
+
+The `async` keyword tell the Rust compiler to generate a type that implements the [Future] trait, the future will have its `poll` method called possibly multiple times by the runtime until is able to signal that the computation is completed by producing a [Poll::Ready][poll] value. Each time it is polled, it will try to make as much progress as possible.
+
+The async function `f` is transformed in a state machine (simplified) that tries to move through as many states as possible every time the future is polled. After taking a look at how `poll` is structured, it becomes clear why futures do not make progress until polled for the first time.
 
 ```rust
 async fn f() -> i32 {
@@ -165,8 +179,6 @@ async fn f() -> i32 {
   x + y
 }
 ```
-
-The async function `f` is transformed in a state machine (simplified) that tries to move through as many states as possible every time the future is polled. Futures are lazy and need to polled in order to make progress. After taking a look at how `poll` is structured, it becomes clear why futures do not make progress until polled for the first time.
 
 ```rust
 enum Future_f {
@@ -270,3 +282,5 @@ Both stackful and stackless coroutines shine in applications where most of the t
 
 [^morsmachine_go_scheduler]: https://morsmachine.dk/go-scheduler
 [^tokio_tutorial]: https://tokio.rs/tokio/tutorial
+
+[poll]: https://doc.rust-lang.org/stable/std/task/enum.Poll.html
