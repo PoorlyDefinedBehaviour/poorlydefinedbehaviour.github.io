@@ -113,10 +113,17 @@ Goroutines use a technique known as `M:N` scheduling, [green threads] or stackfu
   <img src="https://user-images.githubusercontent.com/17282221/194678599-544514e5-1bf9-4f68-b17c-e19c8a333654.png" />
 </p>
 <p align="center">
-  <i>M goroutines being scheduled over N threads</i>
+  <i>M goroutines being scheduled over N threads.</i>
 </p>
 
 Back in the day, Goroutines used a segmented stack. The goroutine started with a small stack and whenever the goroutine needed to put something on the stack and but it was out of space, a new `segment` would be created and that segment would become part of the goroutine's stack[^cloudflare_how_stacks_are_handled_in_go].
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/17282221/194678763-e46a29a3-1c42-4500-8332-cf2e0ddf9171.png" />
+</p>
+<p align="center">
+  <i>A segmented stack.</i>
+</p>
 
 Go ended up abandoning segmented stacks because it had a problem where given an almost full stack, a call would force a new segment to be allocated and immediately deallocated when the call returned[^docs_contiguous_stacks].
 
