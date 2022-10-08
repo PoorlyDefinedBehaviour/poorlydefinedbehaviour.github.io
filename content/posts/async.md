@@ -121,7 +121,7 @@ Rust actually had a runtime that supported both threads and green threads back i
 
 ## Rust, stackless coroutines and compiler generated state machines
 
-Rust supports the async await[^rust_async_book_async_await] model with a little compiler help.
+Rust supports the async await[^rust_async_book_async_await] model with a little compiler help. The `async` keyword tells to compiler to generate a type that implements the [Future] trait.
 
 ```rust
 async fn f() -> i32 {
@@ -131,9 +131,82 @@ async fn f() -> i32 {
 }
 ```
 
-A runtime schedules tasks, [Future]s in this case, that cooperate yield control back to the runtime whenever an async operation, like reading a file, is not complete.
+A runtime schedules tasks, [Futures][future] in this case, that cooperate by yielding control back to the runtime whenever an async operation is not ready at `await` points. An `await` point if whenever `await` is found inside of a async context.
 
-# TODO: compare how languages do concurrency/parallelism
+```rust
+async fn f() -> i32 {
+  let x = g().await; <- await point
+  ..
+  let y = h().await; <- await point
+  x + y
+}
+```
+
+This type of coroutine also allows execution to be stopped and resumed at a later time, execution is stopped at `await` points. The coroutines are stackless because unlike goroutines they do need a stack. They are modelled as state machines with a little helper from the compiler.
+
+```rust
+async fn f() -> i32 {
+  let x = g().await;
+  let y = h().await;
+  x + y
+}
+```
+
+The async function `f` is transformed in a state machine (simplified) that tries to move through as many states as possible every time the future is polled. Futures are lazy and need to polled in order to make progress. After taking a look at how `poll` is structured, it becomes clear why futures do not make progress until polled for the first time.
+
+```rust
+enum Future_f {
+  /// The initial state
+  State0,
+  /// The state after the first await point.
+  State1 { x: i32 },
+  /// The state after the second await point.
+  State2 { x: i32, y: i32 },
+  /// Completed
+  State3,
+}
+
+impl Future for Future_f {
+  type Output = i32;
+
+  fn poll(mut self: Pin<&mut Self>, cx: &mut task::Context<'_>) -> Poll<Self::Output> {
+    use Future_f::*;
+    loop {
+      match *self {
+        State0 => match g().poll(cx) {
+          Poll::Pending => return Poll::Pending,
+          Poll::Ready(x) => {
+            *self = State1 { x };
+          }
+        },
+        State1 { x } => match h().poll(cx) {
+          Poll::Pending => return Poll::Pending,
+          Poll::Ready(y) => {
+            *self = State2 { x, y };
+          }
+        },
+        State2 { x, y } => {
+          *self = State3;
+          return Poll::Ready(x + y);
+        }
+        State3 => {
+          panic!("polled completed future");
+        }
+      }
+    }
+  }
+}
+```
+
+Note that instead of having a stack, each task holds only the data necessary to transition to the next state aka the coroutines are stackless. Having lightweight tasks allows the runtime to handle huge numbers of concurrent operations at once.
+
+## Tokio
+
+Go ships with its own runtime and scheduler[^morsmachine_go_scheduler] that decides which and when goroutines get a chance to run but Rust doesn't.
+
+Rust isn't capable to execute futures by default, so a asynchronous runtime is needed. Enter tokio, an asynchronous runtime for the Rust programming language. It provides both a single-threaded and multi-threaded runtime for executing asynchronous code[^tokio_tutorial].
+
+Both stackfull and stackless coroutines shine in applications where most of the time is spent waiting on I/O instead of performing CPU heavy computations.
 
 [i/o]: https://en.wikipedia.org/wiki/Input/output
 
@@ -180,3 +253,6 @@ A runtime schedules tasks, [Future]s in this case, that cooperate yield control 
 [^rust_async_book_async_await]: https://rust-lang.github.io/async-book/03_async_await/01_chapter.html
 
 [future]: https://doc.rust-lang.org/std/future/trait.Future.html
+
+[^morsmachine_go_scheduler]: https://morsmachine.dk/go-scheduler
+[^tokio_tutorial]: https://tokio.rs/tokio/tutorial
