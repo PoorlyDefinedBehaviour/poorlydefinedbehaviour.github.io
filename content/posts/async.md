@@ -135,7 +135,7 @@ Rust actually had a runtime that supported both threads and green threads back i
 
 ## Rust, stackless coroutines and compiler generated state machines
 
-Rust supports the async await[^rust_async_book_async_await] model with a little compiler help. The `async` keyword tells to compiler to generate a type that implements the [Future] trait.
+Rust supports the async await[^rust_async_book_async_await] model with a little compiler help which is a type of coroutines that also allows execution to be stopped and resumed, in this case, execution is suspended and resumed at `await` points.
 
 ```rust
 async fn f() -> i32 {
@@ -145,7 +145,7 @@ async fn f() -> i32 {
 }
 ```
 
-A runtime schedules tasks, [Futures][future] in this case, that cooperate by yielding control back to the runtime whenever an async operation is not ready at `await` points. An `await` point if whenever `await` is found inside of a async context.
+A runtime schedules tasks, [Futures][future] in this case, that cooperate by yielding control back to the runtime whenever an async operation is not ready at an `await` point. An `await` point is whenever `await` is found inside of a async context.
 
 ```rust
 async fn f() -> i32 {
@@ -155,8 +155,6 @@ async fn f() -> i32 {
   x + y
 }
 ```
-
-This type of coroutine also allows execution to be stopped and resumed at `await` points. The coroutines are stackless because unlike goroutines they do not need a stack.
 
 The [Future] trait has a single method called that is meant to be called in order to make the computation move forward.
 
@@ -224,7 +222,7 @@ impl Future for Future_f {
 }
 ```
 
-Note that instead of having a stack, each task holds only the data necessary to transition to the next state aka the coroutines are stackless. Having lightweight tasks allows the runtime to handle huge numbers of concurrent operations at once.
+Note that instead of having a stack, each task holds only the data necessary to transition to the next state aka the coroutines are stackless. Having lightweight tasks allows the runtime to handle huge numbers of concurrent operations at once. This type of coroutines is known as stackless because unlike goroutines they do not need a stack to hold data necessary to complete the computation.
 
 ## Tokio
 
