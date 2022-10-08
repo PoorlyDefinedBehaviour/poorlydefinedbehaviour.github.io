@@ -156,7 +156,7 @@ async fn f() -> i32 {
 }
 ```
 
-This type of coroutine also allows execution to be stopped and resumed at a later time, execution is stopped at `await` points. The coroutines are stackless because unlike goroutines they do need a stack. They are modelled as state machines with a little helper from the compiler.
+This type of coroutine also allows execution to be stopped and resumed at `await` points. The coroutines are stackless because unlike goroutines they do need a stack. They are modelled as state machines with a little helper from the compiler.
 
 ```rust
 async fn f() -> i32 {
