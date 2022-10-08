@@ -87,27 +87,34 @@ While the task that started an async operation is waiting for the operation to p
   <i>Thead starts executing another task.</i>
 </p>
 
-When the async operation started by the first task is ready, the operating systems notifies the runtime and then the task that's associated with the operation is moved from the pending queue to the ready queue because it can make progress again. Note that the thread that's executing tasks would just go to sleep if there were no tasks ready to be executed while the first task is pending instead of busy waiting and wasting [CPU cycle]s.
+When the async operation started by the first task is ready, the operating system notifies the runtime and then the task that's associated with the operation is moved from the pending queue to the ready queue because it can make progress again. Note that the thread that's executing tasks would just go to sleep if there were no tasks ready to be executed while the first task is pending instead of busy waiting and wasting [CPU cycles][cpu cycle].
 
 Since there's only one thread, tasks will be moved from the pending queue to the ready queue only when the current task yields control back to the runtime by performing an operation that puts it to sleep.
 
 ## Cooperative scheduling
 
-The process just describe is also known as cooperative scheduling[^cooperative_scheduling] where a scheduler decides which task gets to run next after the currently running task cooperates by yielding control back to the scheduler after pre defined events. In contrast to cooperative scheduling, there is preemptive scheduling where a task is interrupted by the scheduler without the need for cooperation[^preemptive_scheduling]. Preemptive schedulers are the type of scheduler that will be found in most operating systems.
+The process just described is also known as cooperative scheduling[^cooperative_scheduling] where a scheduler decides which task gets to run next after the currently running task cooperates by yielding control back to the scheduler when specific operations are performed, like calling a function `sleep(ms)` for example. In contrast to cooperative scheduling, there is a type of scheduling known as preemptive scheduling where a task is interrupted by the scheduler without the need for cooperation[^preemptive_scheduling]. Preemptive schedulers are the type of scheduler used to schedule processes that will be found in most operating systems.
 
-The main problem with cooperative scheduling is that a rogue task can block a thread or even the whole runtime depending on how many threads are in use.
+The main problem with cooperative scheduling is that a rogue task can block a thread or even the whole runtime depending on how many threads the runtime are available for the runtime to use.
 
 ## Coroutines
 
 Coroutines allow program execution to be stopped and then resumed at a later time.
 
-## Go and stackfull coroutines
+## Go and stackful coroutines
 
 Go has [goroutines] which are a cheap lightweight thread abstraction managed by the [Go runtime][^nindalf_how_goroutines_work]. They are usually executed over several threads based on how many cores are available in the system.
 
-On Linux, threads usually have a stack size of 2MB[^pthread_create] and the action of switching between threads is called [context switching][context_switch] which involves transitioning into [kernel mode][kernel] and [syscalls][sycall], then copying several registers[^nindalf_how_goroutines_work], stack pointer and program counter and storying them away so the thread can be resumed later. Turns out that creating threads and switching between them can provide relevant overhead.
+On Linux, threads usually have a stack size of 2MB[^pthread_create] and the action of switching between threads is called [context switching][context_switch] which involves transitioning into [kernel mode][kernel] and [syscalls][syscall], then copying several registers[^nindalf_how_goroutines_work], stack pointer and program counter and storying them away so the thread can resume execution at a later time. Turns out that creating threads and switching between them can provide significant overhead.
 
-Goroutines use a technique known as `M:N` scheduling, [green threads] or stackfull coroutines where `M` goroutines, which are also known as tasks or lightweight threads, are multiplexed over `N` system threads. The tasks, that need to hold less maintenance state, cooperate with a scheduler that runs in [user mode][protection_ring] which removes the need to switch to kernel-mode whenever a task needs to run.
+Goroutines use a technique known as `M:N` scheduling, [green threads] or stackful coroutines where `M` goroutines, which are also known as tasks or lightweight threads, are multiplexed over `N` system threads. The tasks, that need to hold less maintenance state, cooperate with a scheduler that runs in [user mode][protection_ring] which removes the need to switch to kernel-mode whenever a task needs to run.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/17282221/194678599-544514e5-1bf9-4f68-b17c-e19c8a333654.png" />
+</p>
+<p align="center">
+  <i>M goroutines being scheduled over N threads</i>
+</p>
 
 Back in the day, Goroutines used a segmented stack. The goroutine started with a small stack and whenever the goroutine needed to put something on the stack and but it was out of space, a new `segment` would be created and that segment would become part of the goroutine's stack[^cloudflare_how_stacks_are_handled_in_go].
 
@@ -206,7 +213,7 @@ Go ships with its own runtime and scheduler[^morsmachine_go_scheduler] that deci
 
 Rust isn't capable to execute futures by default, so a asynchronous runtime is needed. Enter tokio, an asynchronous runtime for the Rust programming language. It provides both a single-threaded and multi-threaded runtime for executing asynchronous code[^tokio_tutorial].
 
-Both stackfull and stackless coroutines shine in applications where most of the time is spent waiting on I/O instead of performing CPU heavy computations.
+Both stackful and stackless coroutines shine in applications where most of the time is spent waiting on I/O instead of performing CPU heavy computations.
 
 [i/o]: https://en.wikipedia.org/wiki/Input/output
 
