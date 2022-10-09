@@ -232,7 +232,7 @@ Note that instead of having a stack, each task holds only the data necessary to 
 
 Go ships with its own runtime and scheduler[^morsmachine_go_scheduler] that decides which and when goroutines get a chance to run but Rust does not include a runtime and scheduler.
 
-Rust isn't capable to execute futures by default, an asynchronous runtime must be provided to use the async await feature. Enter tokio, an asynchronous runtime for the Rust programming language. It provides both a single-threaded and multi-threaded runtime for executing asynchronous code[^tokio_tutorial].
+Rust isn't capable of executing futures by default, an asynchronous runtime must be provided to use the async await feature. Enter tokio, an asynchronous runtime for the Rust programming language. It provides both a single-threaded and multi-threaded runtime for executing asynchronous code[^tokio_tutorial].
 
 Both stackful and stackless coroutines shine in applications where most of the time is spent waiting on I/O instead of performing CPU heavy computations.
 
