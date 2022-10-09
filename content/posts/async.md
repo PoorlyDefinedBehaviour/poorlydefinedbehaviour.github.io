@@ -78,7 +78,7 @@ When a task needs to perform async I/O, [epoll] can be used, and the runtime tha
   <i>Thread puts the blocked task in the pending queue.</i>
 </p>
 
-While the task that started an async operation is waiting for the operation to progress, the runtime starts executing another threads right away, given that there are tasks ready to be executed.
+While the task that started an async operation is waiting for the operation to progress, the runtime starts executing another task right away, given that there are tasks ready to be executed.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/17282221/194185846-48b5d333-0f89-403d-8965-4316ee3a48c4.png" />
@@ -93,21 +93,21 @@ Since there's only one thread, tasks will be moved from the pending queue to the
 
 ## Cooperative scheduling
 
-The process just described is also known as cooperative scheduling[^cooperative_scheduling] where a scheduler decides which task gets to run next after the currently running task cooperates by yielding control back to the scheduler when specific operations are performed, like calling a function `sleep(ms)` for example. In contrast to cooperative scheduling, there is a type of scheduling known as preemptive scheduling where a task is interrupted by the scheduler without the need for cooperation[^preemptive_scheduling]. Preemptive schedulers are the type of scheduler used to schedule processes that will be found in most operating systems.
+The process just described is also known as cooperative scheduling[^cooperative_scheduling] where a scheduler decides which task gets to run next after the currently running task cooperates by yielding control back to the scheduler when specific operations are performed, like calling a function `sleep(ms)` for example. In contrast to cooperative scheduling, there is a type of scheduling known as preemptive scheduling where a task is interrupted by the scheduler without the need for cooperation[^preemptive_scheduling]. Preemptive scheduler is the type of scheduler used to schedule processes that will be found in most operating systems.
 
-The main problem with cooperative scheduling is that a rogue task can block a thread or even the whole runtime depending on how many threads the runtime are available for the runtime to use.
+The main problem with cooperative scheduling is that a rogue task can block a thread or even the whole runtime depending on how many threads are available for the runtime to use.
 
 ## Coroutines
 
-Coroutines allow program execution to be stopped and then resumed at a later time.
+What i've been calling a task is also knwon as a coroutine. Coroutines allow program execution to be stopped and then resumed at a later time, a property that allows the runtime to stop and resume task execution.
 
 ## Go and stackful coroutines
 
-Go has [goroutines] which are a cheap lightweight thread abstraction managed by the [Go runtime][^nindalf_how_goroutines_work]. They are usually executed over several threads based on how many cores are available in the system.
+Go has [goroutines] which are a cheap lightweight thread abstraction managed by the Go runtime[^nindalf_how_goroutines_work]. Goroutines can be multiplexed over several threads based on how many cores are available in the system. They also work in a single thread context.
 
-On Linux, threads usually have a stack size of 2MB[^pthread_create] and the action of switching between threads is called [context switching][context_switch] which involves transitioning into [kernel mode][kernel] and [syscalls][syscall], then copying several registers[^nindalf_how_goroutines_work], stack pointer and program counter and storying them away so the thread can resume execution at a later time. Turns out that creating threads and switching between them can provide significant overhead.
+On Linux, threads usually have a stack size of 2MB[^pthread_create] and the action of switching between threads kown as [context switching][context_switch] which involves transitioning into [kernel mode][kernel] and [syscalls][syscall], then copying several registers[^nindalf_how_goroutines_work], stack pointer and program counter and storying them away so the thread can resume execution at a later time. Turns out that creating threads and switching between them can provide significant overhead due to the transitioning from user mode to kernel mode and the need to copy the thread context.
 
-Goroutines use a technique known as `M:N` scheduling, [green threads] or stackful coroutines where `M` goroutines, which are also known as tasks or lightweight threads, are multiplexed over `N` system threads. The tasks, that need to hold less maintenance state, cooperate with a scheduler that runs in [user mode][protection_ring] which removes the need to switch to kernel-mode whenever a task needs to run.
+Goroutines use a technique known as `M:N` scheduling where `M` goroutines, which are also known as tasks or lightweight threads, are multiplexed over `N` system threads. The tasks, that need to hold less maintenance state, cooperate with a scheduler that runs in [user mode][protection_ring] which removes the need to switch to kernel-mode whenever a task needs to run.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/17282221/194678599-544514e5-1bf9-4f68-b17c-e19c8a333654.png" />
@@ -116,7 +116,7 @@ Goroutines use a technique known as `M:N` scheduling, [green threads] or stackfu
   <i>M goroutines being scheduled over N threads.</i>
 </p>
 
-Back in the day, Goroutines used a segmented stack. The goroutine started with a small stack and whenever the goroutine needed to put something on the stack and but it was out of space, a new `segment` would be created and that segment would become part of the goroutine's stack[^cloudflare_how_stacks_are_handled_in_go].
+Goroutines can also be called stackful corotuines because each goroutine has its own stack. Back in the day, Goroutines used a segmented stack. The goroutine started with a small stack and whenever the goroutine needed to put something on the stack and but it was out of space, a new `segment` would be created and that segment would become part of the goroutine's stack[^cloudflare_how_stacks_are_handled_in_go].
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/17282221/194678763-e46a29a3-1c42-4500-8332-cf2e0ddf9171.png" />
@@ -125,9 +125,9 @@ Back in the day, Goroutines used a segmented stack. The goroutine started with a
   <i>A segmented stack.</i>
 </p>
 
-Go ended up abandoning segmented stacks because it had a problem where given an almost full stack, a call would force a new segment to be allocated and immediately deallocated when the call returned[^docs_contiguous_stacks].
+Go ended up abandoning segmented stacks because it had a problem where given an almost full stack, a function call would force a new segment to be allocated and immediately deallocated when the call returned[^docs_contiguous_stacks] which is problematic especially if it happens when a function is being called inside of a tight loop.
 
-Go abandoned the segmented stacks approach in favor of the same approach used to create growable arrays like Rust's [Vec]: when the stack is full, just allocate a bigger stack, copy the data from the old stack to it and deallocate the old stack. Note that with this approach, it is possible to allocate memory that won't actually be used if a lot of stack space is needed by a goroutine only at the beginning of its execution.
+Go abandoned the segmented stacks approach in favor of the same approach used to create growable arrays like Rust's [Vec]: when the stack is full, just allocate a bigger stack, copy the data from the old stack to it and deallocate the old stack[^golang_changing_segmented_stacks_to_contiguous_stacks]. Note that with this approach, it is possible to allocate memory that won't actually be used if a lot of stack space is needed by a goroutine only at the beginning of its execution.
 
 ## Rust and green threads
 
@@ -168,7 +168,7 @@ pub trait Future {
 
 The `async` keyword tell the Rust compiler to generate a type that implements the [Future] trait, the future will have its `poll` method called possibly multiple times by the runtime until is able to signal that the computation is completed by producing a [Poll::Ready][poll] value. Each time it is polled, it will try to make as much progress as possible.
 
-The async function `f` is transformed in a state machine (simplified) that tries to move through as many states as possible every time the future is polled. After taking a look at how `poll` is structured, it becomes clear why futures do not make progress until polled for the first time.
+The async function `f` is transformed in a state machine (simplified) that tries to move through as many states as possible every time the future is polled.
 
 ```rust
 async fn f() -> i32 {
@@ -177,6 +177,8 @@ async fn f() -> i32 {
   x + y
 }
 ```
+
+Conceptually, the state machine generated for `f` looks like this:
 
 ```rust
 enum Future_f {
@@ -222,13 +224,15 @@ impl Future for Future_f {
 }
 ```
 
-Note that instead of having a stack, each task holds only the data necessary to transition to the next state aka the coroutines are stackless. Having lightweight tasks allows the runtime to handle huge numbers of concurrent operations at once. This type of coroutines is known as stackless because unlike goroutines they do not need a stack to hold data necessary to complete the computation.
+After taking a look at how `poll` is structured, it becomes clear why futures do not make progress until polled for the first time.
+
+Note that instead of having a stack, each task holds only the data necessary to transition to the next state. Having lightweight tasks allows the runtime to handle huge numbers of concurrent operations at once. This type of coroutines is known as stackless because unlike goroutines they do not need a stack to hold data necessary to complete the computation.
 
 ## Tokio
 
-Go ships with its own runtime and scheduler[^morsmachine_go_scheduler] that decides which and when goroutines get a chance to run but Rust doesn't.
+Go ships with its own runtime and scheduler[^morsmachine_go_scheduler] that decides which and when goroutines get a chance to run but Rust does not include a runtime and scheduler.
 
-Rust isn't capable to execute futures by default, so a asynchronous runtime is needed. Enter tokio, an asynchronous runtime for the Rust programming language. It provides both a single-threaded and multi-threaded runtime for executing asynchronous code[^tokio_tutorial].
+Rust isn't capable to execute futures by default, an asynchronous runtime must be provided to use the async await feature. Enter tokio, an asynchronous runtime for the Rust programming language. It provides both a single-threaded and multi-threaded runtime for executing asynchronous code[^tokio_tutorial].
 
 Both stackful and stackless coroutines shine in applications where most of the time is spent waiting on I/O instead of performing CPU heavy computations.
 
@@ -282,3 +286,5 @@ Both stackful and stackless coroutines shine in applications where most of the t
 [^tokio_tutorial]: https://tokio.rs/tokio/tutorial
 
 [poll]: https://doc.rust-lang.org/stable/std/task/enum.Poll.html
+
+[^golang_changing_segmented_stacks_to_contiguous_stacks]: https://groups.google.com/g/golang-dev/c/i7vORoJ3XIw
