@@ -5,7 +5,7 @@ categories: ["algorithms", "os", "concurrency", "languages", "parallelism"]
 draft: true
 ---
 
-# Web services
+## Web services
 
 Web services spend a lot of time waiting on [I/O] to the point where the main bottleneck is not in the operations performed by the application itself but in the time spent waiting on a I/O operation to finish.
 
@@ -60,7 +60,7 @@ It can be desirable for a thread to continue executing while an I/O operation is
 
 A single thread with a task queue can execute several tasks concurrently increasing the overall amount of progress done at each time unit as long as the tasks perform non-blocking operations. The thread can also be brought to a halt if one or more tasks perform blocking operations, effectively blocking the whole runtime[^nodejs_event_loop].
 
-Given a simple task queue, the thread starts executing tasks in [FIFO] order
+Given a simple task queue, the thread starts executing tasks in [FIFO] order.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/17282221/194185701-8662c64c-ca19-4df2-80e3-04f022ac8b7a.png" />
@@ -69,7 +69,7 @@ Given a simple task queue, the thread starts executing tasks in [FIFO] order
   <i>Single thread multiplexing several tasks.</i>
 </p>
 
-When a task needs to perform async I/O, [epoll] can be used, and the runtime that's managing the tasks(the main thread in this case) inserts the task in the back of the pending queue. The task will stay there until the async operation associated with it is complete.
+When a task needs to perform async I/O, the runtime that's managing the tasks(the main thread in this case) inserts the task in the back of the pending queue. The task will stay there until the async operation associated with it is complete.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/17282221/194186820-09df75a1-6f98-44f9-ac02-ee786bc0b31e.png" />
@@ -93,21 +93,23 @@ Since there's only one thread, tasks will be moved from the pending queue to the
 
 ## Cooperative scheduling
 
-The process just described is also known as cooperative scheduling[^cooperative_scheduling] where a scheduler decides which task gets to run next after the currently running task cooperates by yielding control back to the scheduler when specific operations are performed, like calling a function `sleep(ms)` for example. In contrast to cooperative scheduling, there is a type of scheduling known as preemptive scheduling where a task is interrupted by the scheduler without the need for cooperation[^preemptive_scheduling]. Preemptive scheduler is the type of scheduler used to schedule processes that will be found in most operating systems.
+The process just described is also known as cooperative scheduling[^cooperative_scheduling] where a scheduler decides which task gets to run next after the currently running task cooperates by yielding control back to the scheduler when specific operations are performed, like calling a function `sleep(ms)`, for example.
+
+In contrast to cooperative scheduling, there is a type of scheduling known as preemptive scheduling where a task is interrupted by the scheduler without the need for cooperation[^preemptive_scheduling]. Preemptive scheduling is the scheduling strategy that will be found in most operating system schedulers.
 
 The main problem with cooperative scheduling is that a rogue task can block a thread or even the whole runtime depending on how many threads are available for the runtime to use.
 
 ## Coroutines
 
-What i've been calling a task is also knwon as a coroutine. Coroutines allow program execution to be stopped and then resumed at a later time, a property that allows the runtime to stop and resume task execution.
+What i've been calling a task is also known as a coroutine. Coroutines allow program execution to be stopped and then resumed at a later time, a property that allows the runtime to stop and resume task execution.
 
 ## Go and stackful coroutines
 
 Go has [goroutines] which are a cheap lightweight thread abstraction managed by the Go runtime[^nindalf_how_goroutines_work]. Goroutines can be multiplexed over several threads based on how many cores are available in the system. They also work in a single thread context.
 
-On Linux, threads usually have a stack size of 2MB[^pthread_create] and the action of switching between threads kown as [context switching][context_switch] which involves transitioning into [kernel mode][kernel] and [syscalls][syscall], then copying several registers[^nindalf_how_goroutines_work], stack pointer and program counter and storying them away so the thread can resume execution at a later time. Turns out that creating threads and switching between them can provide significant overhead due to the transitioning from user mode to kernel mode and the need to copy the thread context.
+On Linux, threads usually have a stack size of 2MB[^pthread_create] and the action of switching between threads kown as [context switching][context_switch] which involves [syscalls][syscall] and transitioning into [kernel mode][kernel], then copying several registers[^nindalf_how_goroutines_work], stack pointer and program counter and storying them away so the thread can resume execution at a later time. Turns out that creating threads and switching between them can result in significant overhead due to the transitioning from user mode to kernel mode and the need to copy the thread context.
 
-Goroutines use a technique known as `M:N` scheduling where `M` goroutines, which are also known as tasks or lightweight threads, are multiplexed over `N` system threads. The tasks, that need to hold less maintenance state, cooperate with a scheduler that runs in [user mode][protection_ring] which removes the need to switch to kernel-mode whenever a task needs to run.
+Goroutines use a technique known as `M:N` scheduling where `M` goroutines are multiplexed over `N` system threads. The tasks, that need to hold less maintenance state, cooperate with a scheduler that runs in [user mode][protection_ring] which removes the need to switch to kernel-mode whenever a task needs to run.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/17282221/194678599-544514e5-1bf9-4f68-b17c-e19c8a333654.png" />
@@ -116,7 +118,7 @@ Goroutines use a technique known as `M:N` scheduling where `M` goroutines, which
   <i>M goroutines being scheduled over N threads.</i>
 </p>
 
-Goroutines can also be called stackful corotuines because each goroutine has its own stack. Back in the day, Goroutines used a segmented stack. The goroutine started with a small stack and whenever the goroutine needed to put something on the stack and but it was out of space, a new `segment` would be created and that segment would become part of the goroutine's stack[^cloudflare_how_stacks_are_handled_in_go].
+Goroutines can also be called stackful coroutines because each goroutine has its own stack. Back in the day, Goroutines used a segmented stack. The goroutine started with a small stack and whenever the goroutine needed to put something on the stack and but it was out of space, a new `segment` would be created and that segment would become part of the goroutine's stack[^cloudflare_how_stacks_are_handled_in_go].
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/17282221/194678763-e46a29a3-1c42-4500-8332-cf2e0ddf9171.png" />
@@ -135,7 +137,7 @@ Rust actually had a runtime that supported both threads and green threads back i
 
 ## Rust, stackless coroutines and compiler generated state machines
 
-Rust supports the async await[^rust_async_book_async_await] model with a little compiler help which is a type of coroutines that also allows execution to be stopped and resumed, in this case, execution is suspended and resumed at `await` points.
+Rust supports the async await[^rust_async_book_async_await] model with a little compiler help which is a type of coroutine that also allows execution to be stopped and resumed, in this case, execution is suspended and resumed at `await` points.
 
 ```rust
 async fn f() -> i32 {
@@ -156,7 +158,7 @@ async fn f() -> i32 {
 }
 ```
 
-The [Future] trait has a single method called that is meant to be called in order to make the computation move forward.
+The [Future] trait has a single method that is meant to be called in order to make the computation move forward.
 
 ```rust
 pub trait Future {
@@ -166,7 +168,7 @@ pub trait Future {
 }
 ```
 
-The `async` keyword tell the Rust compiler to generate a type that implements the [Future] trait, the future will have its `poll` method called possibly multiple times by the runtime until is able to signal that the computation is completed by producing a [Poll::Ready][poll] value. Each time it is polled, it will try to make as much progress as possible.
+The `async` keyword tell the Rust compiler to generate a type that implements the [Future] trait, the future will have its `poll` method called or or more times by the runtime until is able to signal that the computation is completed by producing a [Poll::Ready][poll] value. Each time it is polled, it will try to make as much progress as possible.
 
 The async function `f` is transformed in a state machine (simplified) that tries to move through as many states as possible every time the future is polled.
 
@@ -226,7 +228,7 @@ impl Future for Future_f {
 
 After taking a look at how `poll` is structured, it becomes clear why futures do not make progress until polled for the first time.
 
-Note that instead of having a stack, each task holds only the data necessary to transition to the next state. Having lightweight tasks allows the runtime to handle huge numbers of concurrent operations at once. This type of coroutines is known as stackless because unlike goroutines they do not need a stack to hold data necessary to complete the computation.
+Note that instead of having a stack, each task holds only the data necessary to transition to the next state. Having lightweight tasks allows the runtime to handle huge numbers of concurrent operations at once with less memory. This type of coroutines is known as stackless because unlike goroutines they do not need a stack to hold data necessary to complete the computation.
 
 ## Tokio
 
