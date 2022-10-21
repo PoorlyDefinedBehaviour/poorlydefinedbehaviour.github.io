@@ -9,7 +9,34 @@
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 30 Apr 2022 16:46:09 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 23 May 2022 20:39:07 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>concurrency</title>
+      <link>https://poorlydefinedbehaviour.github.io/categories/concurrency/</link>
+      <pubDate>Mon, 23 May 2022 20:39:07 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/categories/concurrency/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>languages</title>
+      <link>https://poorlydefinedbehaviour.github.io/categories/languages/</link>
+      <pubDate>Mon, 23 May 2022 20:39:07 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/categories/languages/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>parallelism</title>
+      <link>https://poorlydefinedbehaviour.github.io/categories/parallelism/</link>
+      <pubDate>Mon, 23 May 2022 20:39:07 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/categories/parallelism/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>algorithms</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/algorithms/</link>
