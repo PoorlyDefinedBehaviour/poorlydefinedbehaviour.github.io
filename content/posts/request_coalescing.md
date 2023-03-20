@@ -2,7 +2,7 @@
 title: "Avoid overloading your systems: Request coalescing"
 date: 2023-03-19T20:54:00-03:00
 categories: ["algorithms", "concurrency", "parallelism"]
-draft: true
+draft: false
 ---
 
 ## The problem
