@@ -1,6 +1,6 @@
 ---
 title: "Database anomalies and isolation levels"
-date: 2023-03-14T15:43:00-03:00
+date: 2023-03-24T15:43:00-03:00
 categories: ["databases"]
 draft: false
 ---
