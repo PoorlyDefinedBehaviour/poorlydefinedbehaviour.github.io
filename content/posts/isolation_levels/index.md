@@ -79,7 +79,7 @@ Same as read committed but reading `x` will always result in the same value.
 
 ### Serializable
 
-Each transaction behaves like they are executed to completion before another transactions starts executing.
+Each transaction behaves like they are executed to completion before other transactions starts executing.
 
 ## References
 
