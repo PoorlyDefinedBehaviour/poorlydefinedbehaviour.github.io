@@ -22,6 +22,17 @@ Fetching the data only once If N requests asking for the same data arrive at the
     </item>
     
     <item>
+      <title>Database anomalies and isolation levels</title>
+      <link>https://poorlydefinedbehaviour.github.io/posts/isolation_levels/</link>
+      <pubDate>Tue, 14 Mar 2023 15:43:00 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/posts/isolation_levels/</guid>
+      <description>Anomalies An anomaly or read phenomena can happen when a transaction reads data that may have been modified by another concurrent transaction.
+Dirty read A dirty read happens when a transaction T1 reads data that has been modified by a concurrent transaction T2 that has not has been committed or rolled back yet. T1 ends up working with stale data if T2 does not commit.
+T2 starts executing and sets x to a new value, T1 starts executing and reads x, the value of x is the value just set by T2, T2 rolls back, the value of x is not persisted to the database but T1 will move forward with the stale value of x that was written before T2 rolled back.</description>
+    </item>
+    
+    <item>
       <title>Do Go programs with common data races compile in Rust?</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/rust_compile_time_safety_1/</link>
       <pubDate>Mon, 23 May 2022 20:39:07 -0300</pubDate>
