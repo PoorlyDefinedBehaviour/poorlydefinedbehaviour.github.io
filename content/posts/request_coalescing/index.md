@@ -28,18 +28,18 @@ If there's a large number of servers, it may be desirable to route requests for 
 
 ![](images/requests_for_x_going_to_one_server.png)
 
-## Doing it in Rust
+## Example
 
 Given a route to fetch some data by its id, the id can be used to decide when a request can be deduplicated.
 
 ```rust
-route("fetch/{id}", handler)
-
 async fn handler(id: u64) -> Response {
     let data = deduplicator.dedup(id, fetch(id)).await;
     Response::new(data)
 }
 ```
+
+[Example deduplicator implementation](https://github.com/PoorlyDefinedBehaviour/request-deduplicator-rs)
 
 ## Notes
 
