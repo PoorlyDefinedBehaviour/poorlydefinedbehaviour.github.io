@@ -10,11 +10,11 @@
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 14 Mar 2023 15:43:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/databases/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Mar 2023 15:43:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/databases/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Database anomalies and isolation levels</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/isolation_levels/</link>
-      <pubDate>Tue, 14 Mar 2023 15:43:00 -0300</pubDate>
+      <pubDate>Fri, 24 Mar 2023 15:43:00 -0300</pubDate>
       
       <guid>https://poorlydefinedbehaviour.github.io/posts/isolation_levels/</guid>
       <description>Anomalies An anomaly or read phenomena can happen when a transaction reads data that may have been modified by another concurrent transaction.
