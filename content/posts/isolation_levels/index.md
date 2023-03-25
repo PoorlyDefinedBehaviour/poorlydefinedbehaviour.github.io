@@ -51,6 +51,14 @@ A `lost update` may happen when transactions `T1` and `T2` both read and try to 
 
 In this example, there are two transactions `T1`and `T2`. Both are executing concurrently and both read `x` and increment its value by `1`, if `x` had the value 0 the expectation would be that the new value of `x` would be `2` after both transactions commit but the reality is that the new value of `x` will be `1` because both transactions read `0` before incrementing it by `1`.
 
+### Dirty writes
+
+A `dirty write` happens when a transaction reads an uncommitted value from another transaction, modifies and writes it.
+
+![](images/dirty_write_1.png)
+
+`T1` and `T2` are executing concurrently, `T2` sets `x` to `1`, `T1` reads `x` with value `1`, `T2` rolls back, `T1` increments `x` by `1` resulting in `2` and writes it. The value of `x` is `2` instead of its previous value increased by `1`.
+
 ### Write skew
 
 A `write skew` happens when concurrent transactions respect database invariants(e.g `table.x > 0`) but when committed break one or more invariants.
