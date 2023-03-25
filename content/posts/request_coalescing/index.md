@@ -24,7 +24,7 @@ If there's more than one server it is possible that the number of requests sent 
 
 ![](images/n_servers_n_database_queries_1.png)
 
-If there's a large number of servers, it may be desirable to route requests for the same data to the same server to decrease the number of requests sent to the database. In this case every request to `GET X` is route to the first server.
+If there's a large number of servers, it may be desirable to route requests for the same data to the same server to decrease the number of requests sent to the database. In this case every request to `GET X` is routed to the first server.
 
 ![](images/requests_for_x_going_to_one_server.png)
 
