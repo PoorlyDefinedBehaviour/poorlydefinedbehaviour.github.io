@@ -71,7 +71,7 @@ Read and write anomalies can be avoided by choosing the right isolation level.
 
 ### Read committed
 
-Allows transaction `T1` to read data that has been committed by other transactions while `T1` is still executing, `repeatable-reads` are not guaranteed.
+Allows transaction `T1` to read data that has been committed by other transactions while `T1` is still executing, `repeatable reads` are not guaranteed.
 
 ### Repeatable reads
 
