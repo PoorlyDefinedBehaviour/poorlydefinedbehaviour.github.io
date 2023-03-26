@@ -17,6 +17,8 @@ There are two processes: Process `A` wants to acquire a lock on `resource 1` and
 
 In this specific execution process `A` acquires a lock on `resource 1` and process `B` acquires a lock on resource `2`, when process `A` tries to acquire a lock on `resource 2` it blocks waiting for process `B` to release the lock that it is holding on `resource 2`. The problem is that the lock on `resource 2` will never be released because process `B` is waiting for process `A` to release the lock on `resource 1`.
 
+> Databases are being used as an example but deadlocks and the solutions do not appear only in databases.
+
 | Process A | Process B | 
 | --------- | --------- |
 | LOCK 1    | LOCK 2    |
