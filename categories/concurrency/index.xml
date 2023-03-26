@@ -10,7 +10,28 @@
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 19 Mar 2023 20:54:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/concurrency/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 25 Mar 2023 20:35:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/concurrency/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The simple way to avoid dead locks</title>
+      <link>https://poorlydefinedbehaviour.github.io/posts/the_simple_way_to_avoid_deadlocks/</link>
+      <pubDate>Sat, 25 Mar 2023 20:35:00 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/posts/the_simple_way_to_avoid_deadlocks/</guid>
+      <description>A deadlock happens when there&amp;rsquo;s at least one resource that can be only acquired by one process at a time and there&amp;rsquo;s a process P1 that is waiting to acquire a resource currently held by a process P2 and P2 is waiting to acquire a resource currently held by P1.
+There are two processes: Process A wants to acquire a lock on resource 1 and then a lock on resource 2.</description>
+    </item>
+    
+    <item>
+      <title>Database anomalies and isolation levels</title>
+      <link>https://poorlydefinedbehaviour.github.io/posts/isolation_levels/</link>
+      <pubDate>Fri, 24 Mar 2023 15:43:00 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/posts/isolation_levels/</guid>
+      <description>Anomalies An anomaly or read phenomena can happen when a transaction reads data that may have been modified by another concurrent transaction.
+Dirty read A dirty read happens when a transaction T1 reads data that has been modified by a concurrent transaction T2 that has not has been committed or rolled back yet. T1 ends up working with stale data if T2 does not commit.
+T2 starts executing and sets x to a new value, T1 starts executing and reads x, the value of x is the value just set by T2, T2 rolls back, the value of x is not persisted to the database but T1 will move forward with the stale value of x that was written before T2 rolled back.</description>
+    </item>
+    
     <item>
       <title>Avoid overloading your systems: Request coalescing</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/request_coalescing/</link>
