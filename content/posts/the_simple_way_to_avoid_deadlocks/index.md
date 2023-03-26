@@ -9,7 +9,7 @@ draft: false
 
 A deadlock happens when there's at least one resource that can be only acquired by one process at a time and there's a process `P1` that is waiting to acquire a resource currently held by a process `P2` and `P2` is waiting to acquire a resource currently held by `P1`.
 
-> The word `process` does not mean we are talking about OS processes.
+> The word `process` does not mean we are talking about just OS processes.
 
 ![](images/deadlock_example_1.png)
 
