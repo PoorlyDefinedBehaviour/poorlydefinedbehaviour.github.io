@@ -37,7 +37,7 @@ Deadlocks can be easily avoided in this case by having both processes try to acq
 | RELEASE 1 | RELEASE 1 |
 | RELEASE 2 | RELEASE 2 |
 
-By having both processes try to acquire the locks in the same order, the process that acquires the first lock will be able to proceed and acquire the other lock while the second process will block waiting for the first lock instead of acquiring another lock. When the first lock is released the process that is waiting will be able to proceed.
+By having both processes try to acquire the locks in the same order, the process that acquires the first lock will be able to proceed and acquire the other lock while the second process will block waiting for the first lock instead of acquiring another lock. When the first lock is released the process that is waiting for it will be able to proceed.
 
 ![](images/processes_acquiring_locks_in_the_same_order_1.png)
 
