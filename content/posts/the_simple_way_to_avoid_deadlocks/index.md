@@ -28,7 +28,7 @@ A table showing the operations performed by each process concurrently. Dead lock
 
 ![](images/cars_deadlock_1.jpeg)
 
-In this example, deadlocks can be easily avoided by having both processes try to acquire locks on resources in the same order.
+Deadlocks can be easily avoided in this case by having both processes try to acquire locks on resources in the same order.
 
 | Process A | Process B | 
 | --------- | --------- |
