@@ -1,5 +1,5 @@
 ---
-title: "The simple way to avoid dead locks"
+title: "The simple way to avoid deadlocks"
 date: 2023-03-25T20:35:00-03:00
 categories: ["databases", "concurrency"]
 draft: false
@@ -24,7 +24,7 @@ In this specific execution process `A` acquires a lock on `resource 1` and proce
 | RELEASE 1 | RELEASE 2 |
 | RELEASE 2 | RELEASE 1 |
 
-A table showing the operations performed by each process concurrently. Dead lock occurs at the second set of operations when process `A` tries to lock `resource 2` and process `B` tries to lock `resource 1`.
+A table showing the operations performed by each process concurrently. Deadlock occurs at the second set of operations when process `A` tries to lock `resource 2` and process `B` tries to lock `resource 1`.
 
 ![](images/cars_deadlock_1.jpeg)
 
