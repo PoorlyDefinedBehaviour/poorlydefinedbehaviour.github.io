@@ -11,7 +11,7 @@ It feels like most people are not used to thinking about how things can fail, pr
 
 ![](images/networks_cannot_fail_meme.jpg)
 
-Since many things actually work as expected most of the time, it is easy to forget that something like the network is `un`[reliable](https://aphyr.com/posts/288-the-network-is-reliable) system where messages can be delayed, lost[^wikipedia_packet_loss] and reordered[^wikipedia_out_of_order_delivery] and that most of the time it is the systems and protocols that run on top of the network that need to handle the work necessary to make the network `seem` reliable.
+Since many things actually work as expected most of the time, it is easy to forget that something like the network is an `un`[reliable](https://aphyr.com/posts/288-the-network-is-reliable) system where messages can be delayed, lost[^wikipedia_packet_loss] and reordered[^wikipedia_out_of_order_delivery] and that most of the time it is the systems and protocols that run on top of the network that need to handle the work necessary to make the network `seem` reliable.
 
 ![](images/fair_loss_link_1.png)
 
