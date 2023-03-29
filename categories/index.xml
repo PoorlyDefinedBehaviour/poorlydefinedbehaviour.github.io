@@ -10,7 +10,25 @@
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 25 Mar 2023 20:35:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Mar 2023 20:30:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>distributed systems</title>
+      <link>https://poorlydefinedbehaviour.github.io/categories/distributed-systems/</link>
+      <pubDate>Tue, 28 Mar 2023 20:30:00 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/categories/distributed-systems/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>networking</title>
+      <link>https://poorlydefinedbehaviour.github.io/categories/networking/</link>
+      <pubDate>Tue, 28 Mar 2023 20:30:00 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/categories/networking/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>concurrency</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/concurrency/</link>
@@ -62,15 +80,6 @@
       <pubDate>Sat, 30 Apr 2022 16:46:09 -0300</pubDate>
       
       <guid>https://poorlydefinedbehaviour.github.io/categories/data-structures/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>distributed</title>
-      <link>https://poorlydefinedbehaviour.github.io/categories/distributed/</link>
-      <pubDate>Sat, 30 Apr 2022 16:46:09 -0300</pubDate>
-      
-      <guid>https://poorlydefinedbehaviour.github.io/categories/distributed/</guid>
       <description></description>
     </item>
     
