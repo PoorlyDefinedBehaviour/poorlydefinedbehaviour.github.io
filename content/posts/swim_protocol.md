@@ -1,7 +1,7 @@
 ---
 title: "Swim protocol"
 date: 2022-03-12T16:53:46-03:00
-categories: ["today-i-learned", "distributed", "protocols", "papers"]
+categories: ["today-i-learned", "distributed systems", "protocols", "papers"]
 draft: true
 ---
 

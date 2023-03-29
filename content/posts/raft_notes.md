@@ -1,7 +1,7 @@
 ---
 title: "Notes taken from the Raft paper"
 date: 2022-03-04T17:48:19-03:00
-categories: ["today-i-learned", "algorithms", "consensus", "distributed", "papers"]
+categories: ["today-i-learned", "algorithms", "consensus", "distributed systems", "papers"]
 draft: false
 ---
 
