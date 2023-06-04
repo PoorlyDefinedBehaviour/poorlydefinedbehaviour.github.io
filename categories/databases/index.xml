@@ -10,6 +10,7 @@
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
     <lastBuildDate>Sat, 25 Mar 2023 20:35:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/databases/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The simple way to avoid deadlocks</title>
