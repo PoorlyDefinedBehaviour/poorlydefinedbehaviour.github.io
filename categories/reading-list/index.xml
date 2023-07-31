@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>reading list on </title>
+    <link>https://poorlydefinedbehaviour.github.io/categories/reading-list/</link>
+    <description>Recent content in reading list on </description>
+    <image>
+      <title></title>
+      <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
+      <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 31 Jul 2022 16:46:09 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/reading-list/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reading list July 2023</title>
+      <link>https://poorlydefinedbehaviour.github.io/posts/reading_list_jul_31_2023/</link>
+      <pubDate>Sun, 31 Jul 2022 16:46:09 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/posts/reading_list_jul_31_2023/</guid>
+      <description>This month&amp;rsquo;s reading list The right way to define a C function with no arguments - https://www.youtube.com/watch?v=VsRs0H4hXEE TREE-STRUCTURED CONCURRENCY — 2023-07-01 - https://blog.yoshuawuyts.com/tree-structured-concurrency/ Myths Programmers Believe about CPU Caches - https://software.rajivprab.com/2018/04/29/myths-programmers-believe-about-cpu-caches/ Eventual vs Strong Consistency in Distributed Databases - https://hackernoon.com/eventual-vs-strong-consistency-in-distributed-databases-282fdad37cf7 Accounting For Developers, Part I - https://www.moderntreasury.com/journal/accounting-for-developers-part-i Accounting For Developers, Part II - https://www.moderntreasury.com/journal/accounting-for-developers-part-ii Accounting for Developers Part III: Building a Lending Marketplace - https://www.moderntreasury.com/journal/accounting-for-developers-part-iii What is a Wire Transfer? - https://www.</description>
+    </item>
+    
+  </channel>
+</rss>
