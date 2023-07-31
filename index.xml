@@ -11,7 +11,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 22 Jul 2023 12:00:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 31 Jul 2023 00:00:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reading list July 2023</title>
+      <link>https://poorlydefinedbehaviour.github.io/posts/reading_list_jul_31_2023/</link>
+      <pubDate>Mon, 31 Jul 2023 00:00:00 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/posts/reading_list_jul_31_2023/</guid>
+      <description>This month&amp;rsquo;s reading list The right way to define a C function with no arguments - https://www.youtube.com/watch?v=VsRs0H4hXEE TREE-STRUCTURED CONCURRENCY — 2023-07-01 - https://blog.yoshuawuyts.com/tree-structured-concurrency/ Myths Programmers Believe about CPU Caches - https://software.rajivprab.com/2018/04/29/myths-programmers-believe-about-cpu-caches/ Eventual vs Strong Consistency in Distributed Databases - https://hackernoon.com/eventual-vs-strong-consistency-in-distributed-databases-282fdad37cf7 Accounting For Developers, Part I - https://www.moderntreasury.com/journal/accounting-for-developers-part-i Accounting For Developers, Part II - https://www.moderntreasury.com/journal/accounting-for-developers-part-ii Accounting for Developers Part III: Building a Lending Marketplace - https://www.moderntreasury.com/journal/accounting-for-developers-part-iii What is a Wire Transfer? - https://www.</description>
+    </item>
+    
     <item>
       <title>Sending logs and traces to Grafana cloud from your Rust application</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/rust_sending_logs_and_traces_to_grafana_cloud/</link>
@@ -60,15 +69,6 @@ T2 starts executing and sets x to a new value, T1 starts executing and reads x, 
       <guid>https://poorlydefinedbehaviour.github.io/posts/request_coalescing/</guid>
       <description>The problem You are developing an application backed by a database, something happens and then several of your users try to access the same content. Several requests are sent to your backend at almost the same time and your backend hits the database once for each request to fetch the same data.
 Fetching the data only once If N requests asking for the same data arrive at the backend at around the same time, the backend could hit the database to fetch the data when the first request arrives and force the other requests to await until the data is fetched.</description>
-    </item>
-    
-    <item>
-      <title>Reading list July 2023</title>
-      <link>https://poorlydefinedbehaviour.github.io/posts/reading_list_jul_31_2023/</link>
-      <pubDate>Sun, 31 Jul 2022 00:00:00 -0300</pubDate>
-      
-      <guid>https://poorlydefinedbehaviour.github.io/posts/reading_list_jul_31_2023/</guid>
-      <description>This month&amp;rsquo;s reading list The right way to define a C function with no arguments - https://www.youtube.com/watch?v=VsRs0H4hXEE TREE-STRUCTURED CONCURRENCY — 2023-07-01 - https://blog.yoshuawuyts.com/tree-structured-concurrency/ Myths Programmers Believe about CPU Caches - https://software.rajivprab.com/2018/04/29/myths-programmers-believe-about-cpu-caches/ Eventual vs Strong Consistency in Distributed Databases - https://hackernoon.com/eventual-vs-strong-consistency-in-distributed-databases-282fdad37cf7 Accounting For Developers, Part I - https://www.moderntreasury.com/journal/accounting-for-developers-part-i Accounting For Developers, Part II - https://www.moderntreasury.com/journal/accounting-for-developers-part-ii Accounting for Developers Part III: Building a Lending Marketplace - https://www.moderntreasury.com/journal/accounting-for-developers-part-iii What is a Wire Transfer? - https://www.</description>
     </item>
     
     <item>
