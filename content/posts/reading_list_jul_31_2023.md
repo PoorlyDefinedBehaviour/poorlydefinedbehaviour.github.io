@@ -5,7 +5,7 @@ categories: ["reading list"]
 draft: false
 ---
 
-## This month's reading list
+## The list of things I read or watched this month
 
 * The right way to define a C function with no arguments - https://www.youtube.com/watch?v=VsRs0H4hXEE
 * TREE-STRUCTURED CONCURRENCY — 2023-07-01 - https://blog.yoshuawuyts.com/tree-structured-concurrency/
