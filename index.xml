@@ -11,7 +11,17 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 31 Jul 2023 00:00:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Aug 2023 00:00:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How I write CI pipelines in 2023</title>
+      <link>https://poorlydefinedbehaviour.github.io/posts/how_i_write_ci_pipelines_in_2023/</link>
+      <pubDate>Sat, 05 Aug 2023 00:00:00 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/posts/how_i_write_ci_pipelines_in_2023/</guid>
+      <description>Dagger is a programmable CI/CD engine that runs your pipelines in containers1. It runs your pipelines inside containers which makes it easier to test things locally. Not having to write yaml/bash/etc is a huge advantage for me.
+I&amp;rsquo;m working on a personal project that will allow people to deploy their code by selecting a [GitHub] repository. We have decided to use Dagger to clone the user provided [Git] repository and build a [Docker] image and it was extremely easy to get it working.</description>
+    </item>
+    
     <item>
       <title>Reading list July 2023</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/reading_list_jul_31_2023/</link>
