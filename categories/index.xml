@@ -11,7 +11,25 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 05 Aug 2023 00:00:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Aug 2023 00:00:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>formal-languages</title>
+      <link>https://poorlydefinedbehaviour.github.io/categories/formal-languages/</link>
+      <pubDate>Tue, 08 Aug 2023 00:00:00 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/categories/formal-languages/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>today-i-learned</title>
+      <link>https://poorlydefinedbehaviour.github.io/categories/today-i-learned/</link>
+      <pubDate>Tue, 08 Aug 2023 00:00:00 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/categories/today-i-learned/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>automation</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/automation/</link>
@@ -171,15 +189,6 @@
       <pubDate>Sun, 20 Mar 2022 22:21:07 -0300</pubDate>
       
       <guid>https://poorlydefinedbehaviour.github.io/categories/rate-limiting/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>today-i-learned</title>
-      <link>https://poorlydefinedbehaviour.github.io/categories/today-i-learned/</link>
-      <pubDate>Sun, 20 Mar 2022 22:21:07 -0300</pubDate>
-      
-      <guid>https://poorlydefinedbehaviour.github.io/categories/today-i-learned/</guid>
       <description></description>
     </item>
     

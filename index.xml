@@ -11,7 +11,17 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 05 Aug 2023 00:00:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Aug 2023 00:00:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Notes on formal languages: alphabets, strings and languages</title>
+      <link>https://poorlydefinedbehaviour.github.io/formal_languages_alphabet_strings_and_languages/</link>
+      <pubDate>Tue, 08 Aug 2023 00:00:00 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/formal_languages_alphabet_strings_and_languages/</guid>
+      <description>An alphabet is any set of finite symbols such as a and b. For example, the alphabet Σ = {a, b} is an alphabet that contains the strings that can be built by combining a and b and the alphabet Σ = {0, 1} is the an alphabet that contains the strings that can be built by combining 0 and 1.
+Symbols such as a and b put together to form something like bbaa are called strings.</description>
+    </item>
+    
     <item>
       <title>How I write CI pipelines in 2023</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/how_i_write_ci_pipelines_in_2023/</link>
