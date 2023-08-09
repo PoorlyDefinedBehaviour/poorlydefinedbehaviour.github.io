@@ -5,9 +5,9 @@ categories: ["ci", "rust", "dagger", "automation", "docker", "containers"]
 draft: false
 ---
 
-[Dagger] is a programmable CI/CD engine that runs your pipelines in containers[^what_is_dagger]. It runs your pipelines inside containers which makes it easier to test things locally. Not having to write yaml/bash/etc is a huge advantage for me.  
+[Dagger] is a programmable CI/CD engine that runs your pipelines inside containers[^what_is_dagger] which makes it easier to test things locally and to setup complex workflows. Not having to write yaml/bash/etc as the workflow gets more complex is a huge advantage for me.  
 
-I'm working on a personal project that will allow people to deploy their code by selecting a [GitHub] repository. We have decided to use Dagger to clone the user provided [Git] repository and build a [Docker] image and it was extremely easy to get it working.
+I'm working on a personal project that will allow people to deploy their code by selecting a [GitHub] repository. Me and a friend have decided to use Dagger to clone the user provided [Git] repository and build a [Docker] image and it was extremely easy to get it working.
 
 ```rust
 pub async fn build(repo_url: &str, branch: &str, image: &str) -> Result<String> {
