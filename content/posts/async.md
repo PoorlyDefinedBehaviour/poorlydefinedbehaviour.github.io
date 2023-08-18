@@ -20,6 +20,8 @@ A simple single thread server that's using HTTP as its protocol can just wait fo
   <i>Simple single-threaded server that receives a request and creates a response immediately.</i>
 </p>
 
+# TODO write about how the kernel handles the syn and accept queues
+
 ## Multiple workers, single accept queue
 
 Instead of having one process that handles one request at a time, the work can be divided between several workers that consume from the same accept queue.
