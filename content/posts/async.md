@@ -242,6 +242,8 @@ Rust isn't capable of executing futures by default, an asynchronous runtime must
 
 Both stackful and stackless coroutines shine in applications where most of the time is spent waiting on I/O instead of performing CPU heavy computations.
 
+# TODO: should how to implement a mini tokio runtime
+
 [i/o]: https://en.wikipedia.org/wiki/Input/output
 
 [^distributedsystems]: https://www.distributed-systems.net/index.php/books/ds3/
