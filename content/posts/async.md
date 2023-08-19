@@ -93,6 +93,8 @@ When the async operation started by the first task is ready, the operating syste
 
 Since there's only one thread, tasks will be moved from the pending queue to the ready queue only when the current task yields control back to the runtime by performing an operation that puts it to sleep.
 
+# TODO write about how PHP handles multiple requests at the same time
+
 ## Cooperative scheduling
 
 The process just described is also known as cooperative scheduling[^cooperative_scheduling] where a scheduler decides which task gets to run next after the currently running task cooperates by yielding control back to the scheduler when specific operations are performed, like calling a function `sleep(ms)`, for example.
