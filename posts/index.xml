@@ -11,7 +11,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 08 Aug 2023 00:00:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Sep 2023 00:00:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reading list August 2023</title>
+      <link>https://poorlydefinedbehaviour.github.io/posts/reading_list_august_2023/</link>
+      <pubDate>Fri, 01 Sep 2023 00:00:00 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/posts/reading_list_august_2023/</guid>
+      <description>The list of things I read or watched this month Aplicação do Open Closed Principle: Exemplo prático com metaprogramação mais polimorfismo - https://www.youtube.com/watch?v=-gOR0WXZmYg Firecracker: Lightweight Virtualization for Serverless Applications - https://www.usenix.org/system/files/nsdi20-paper-agache.pdf SEC02-BP02 Use temporary credentials - https://docs.aws.amazon.com/wellarchitected/latest/framework/sec_identities_unique.html 5 Tips for Building Resilient Architecture - https://www.youtube.com/watch?v=gm6Y4vPlOLg Containers at the edge: it’s not what you think, or maybe it is - https://blog.cloudflare.com/containers-on-the-edge/ What is a Point of Presence (PoP) in networking? - https://rahi.</description>
+    </item>
+    
     <item>
       <title>Notes on formal languages: alphabets, strings and languages</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/formal_languages_alphabet_strings_and_languages/</link>
