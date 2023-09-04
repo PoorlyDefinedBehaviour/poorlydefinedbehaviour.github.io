@@ -21,10 +21,10 @@ Compensation comes up often in conversations with my friends and I tend to encou
 
 Seems like engineers could be divided in two groups: the group where people are past some kind of barrier and are able to aim for more interesting projects and higher compensation and the group of people that are unable to improve their skills, in many cases because of obstacles created by themselves.
 
-[MIT 6.824: Distributed systems](https://www.youtube.com/watch?v=cQP8WApzIQQ&list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB)  
-[Time, Clocks, and the Ordering of Events in a Distributed System](https://lamport.azurewebsites.net/pubs/time-clocks.pdf)  
-[The Chubby lock service for loosely-coupled distributed systems](https://static.googleusercontent.com/media/research.google.com/en//archive/chubby-osdi06.pdf)  
-[Paxos made simple](https://lamport.azurewebsites.net/pubs/paxos-simple.pdf)  
-[In Search of an Understandable Consensus Algorithm](https://raft.github.io/raft.pdf)  
-[Bigtable: A Distributed Storage System for Structured Data](https://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf)  
-[Dynamo: Amazon’s Highly Available Key-value Store](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)
+[MIT 6.824: Distributed systems]: https://www.youtube.com/watch?v=cQP8WApzIQQ&list=PLrw6a1wE39_tb2fErI4-WkMbsvGQk9_UB
+[Time, Clocks, and the Ordering of Events in a Distributed System]: https://lamport.azurewebsites.net/pubs/time-clocks.pdf
+[The Chubby lock service for loosely-coupled distributed systems]: https://static.googleusercontent.com/media/research.google.com/en//archive/chubby-osdi06.pdf
+[Paxos made simple]: https://lamport.azurewebsites.net/pubs/paxos-simple.pdf
+[In Search of an Understandable Consensus Algorithm]: https://raft.github.io/raft.pdf
+[Bigtable: A Distributed Storage System for Structured Data]: https://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf
+[Dynamo: Amazon’s Highly Available Key-value Store]: https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf
