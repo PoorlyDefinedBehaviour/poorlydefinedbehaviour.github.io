@@ -22,6 +22,15 @@
     </item>
     
     <item>
+      <title>Reading list October 2023</title>
+      <link>https://poorlydefinedbehaviour.github.io/posts/reading_list_october_2023/</link>
+      <pubDate>Fri, 01 Sep 2023 00:00:00 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/posts/reading_list_october_2023/</guid>
+      <description>The list of things I read or watched this month Farewell EC2-Classic, it’s been swell - https://www.allthingsdistributed.com/2023/09/farewell-ec2-classic.html Building a Firecracker-Powered Course Platform To Learn Docker and Kubernetes - https://iximiuz.com/en/posts/iximiuz-labs-story/ The Power Of Struct Embedding And Interfaces In Golang - https://www.youtube.com/watch?v=fXZJu_JuH0A Beginners Should Think Differently When Writing Golang - https://www.youtube.com/watch?v=PyDMqgOkiR8 How to Get Transactions Between (Almost) Any Data Stores - https://petereliaskraft.net/blog/epoxy How to do Distributed Transactions the RIGHT way? Microservices - https://www.</description>
+    </item>
+    
+    <item>
       <title>Reading list July 2023</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/reading_list_jul_31_2023/</link>
       <pubDate>Mon, 31 Jul 2023 00:00:00 -0300</pubDate>
