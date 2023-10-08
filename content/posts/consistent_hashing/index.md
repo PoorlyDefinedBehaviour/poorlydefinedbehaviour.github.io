@@ -5,32 +5,32 @@ categories: ["algorithms", "distributed systems"]
 draft: false
 ---
 
-As the [World Wide Web](https://en.wikipedia.org/wiki/World_Wide_Web) became more popular all of sudden a server could receive way more traffic than it could handle causing the server to service requests slowly or to not be able to serve them at all[^web_caching_with_consistent_hashing]. An intuitive solution to this problem is to cache[^cache] the content served by the servers and allow the clients to fetch content from the caches instead of going through the original server. Several clients communicate with the same cache servers which means that if client `1` fetches the contents for the page `example.com`, client `2` can fetch the same contents from the cache instead of going to the oirignal server if it decides to visit `example.com` as well.  
+As the [World Wide Web](https://en.wikipedia.org/wiki/World_Wide_Web) became more popular all of sudden a server could receive way more traffic than it could handle causing the server to service requests slowly or to not be able to serve them at all[^web_caching_with_consistent_hashing]. An intuitive solution to this problem is to cache[^cache] the content served by the servers and allow the clients to fetch content from the caches instead of going to the original server. Several clients communicate with the same cache servers which means that if client `1` fetches the contents for the page `example.com`, client `2` can fetch the same contents from the cache instead of going to the oirignal server if it decides to visit `example.com` as well.  
 
 ![](images/cached_response_1.png)
-<p align="center"><i>When the first client fetches the contents for example.com a request is sent to the original server but when the second client tries to fetch the content for example.com the contents are cached in the cache server</i></p>
+<p align="center"><i>When the first client fetches the contents for example.com a request is sent to the original server but when the second client tries to fetch the content for example.com the contents are returned from the cache server</i></p>
 
 Running a single cache server is not feasible given the amount of data it would need to store could be huge and if the cache stopped for working for any reason, the clients would go directly to the original servers that have content the clients wish to download and the servers could get overloaded.
 
 ![](images/dead_cache.png)
 <p align="center"><i>Client can't connect to the cache so it goes directly to the server</i></p>
 
-The single point of failure can be removed by running many cache serves instead of just one but that creates another problems with one them being: **how does the client know which cache should have the contents for the website it wants to fetch the contents**?  
+The single point of failure can be removed by running many cache servers instead of just one but that creates other problems with one them being: **how does the client know which cache should have the contents for the website it wants to visit**?  
 
 Given a fixed number `n` of cache servers, identified by a number from `0` to `n - 1`, the client can [mod](https://en.wikipedia.org/wiki/Modulo) the [hash](hash_function) of the [url](https://en.wikipedia.org/wiki/URL) by `n` to find out which cache server a request should be sent to. Since the same input will always hash to the same value, different clients trying to fetch the contents for the same url would always go for the same cache.
 
 ![](images/hash_with_fixed_number_of_servers.png)
 <p align="center"><i>Clients hash the url to find out which cache server to contact</i></p>
 
-In reality there would be a large number of cache servers instead of just a few which means some cache servers would stop working and that new cache servers would be added all the time. Using the hash of the url mod the number of cache servers invalidates the cached data as soon as the number of cache servers changes even if most of the data is still valid. It would be nice to be able to change the number of cache serves while keeping the as much as possible of the cached contents.
+In reality there would be a large number of cache servers instead of just a few which means some cache servers would stop working and that new cache servers would be added all the time. Using the hash of the url mod the number of cache servers invalidates most of the cached data as soon as the number of cache servers changes since the hash mod the number of servers may yield a different number when the number of servers changes. It would be nice to be able to change the number of cache servers while keeping the as much as possible of the cached contents.
 
 ![](images/new_server_added_with_fixed_number_of_servers.png)
 <p align="center"><i>Since a new server was added, the result of mod operation changes which causes clients to contact a cache server that does not have the contents they are looking for. The contents are in cache 1.</i></p>
 
-Consistent hashing allows the number of cache servers to be changed while invalidating only a small part of the cached data. The clients are still going the hash the url to find out which server a request should be sent to but instead of using the mod of the hash to find the server, servers are going to be in a ring.  
+Consistent hashing allows the number of cache servers to be changed while invalidating only a small part of the cached data. The clients are still going the hash the url to find out which server a request should be sent to but instead of using the hash mod the number of servers to find the server, servers are going to be in a ring.  
 
 ![](images/ring_1.png)
-<p align="center"><i>A ring containing 3 cache servers. The position of each cache server in the ring is found by hashing something that identifies each server</i></p>
+<p align="center"><i>A ring containing 3 cache servers. The position of each cache server in the ring is found by hashing something that identifies each server such as the server address</i></p>
 
 Given a ring, the server identifiers are hashed and the hash value is used to decide where each server is located in the ring. A client that needs to decide which cache server should handle a request hashes the url and uses the value of the hash to determine where the url is located in the ring, after locating the url in the ring, the request is sent to the next server in the clockwise direction starting from the url location.
 
@@ -44,16 +44,12 @@ After adding the cache server `Cache 3`, a client looking for the contents of `m
 ![](images/ring_new_server_added.png)
 <p align="center"><i>Cache 3 was added and the only partition of the cached data that a client won't find in the next request before it is cached in another cache server is the cached contents for mysite.com</i></p>
 
-At this time, the contents for each url are stored only in a single server, if higher durability is needed, the contents could be stored in more than one of the servers. The data could be replicated to the next `n` servers instead of the first server in the clockwise direction or more than one hash function could be used to find which servers should have the data.
+At this time, the contents for each url are stored only in a single server, if higher fault-tolerance is needed, the contents could be stored in more than one of the servers. The data could be replicated to the next `n` servers instead of the first server in the clockwise direction or more than one hash function could be used to find which servers should have the data.
 
 ![](images/replication_1.png)
 <p align="center"><i>The contents of example.com are stored in Cache Cache 1, Cache 0 and Cache 3 at the same time</i></p>
 
-Cache servers that have more resources should be able to store more data and handle more requests, at the moment the resources a cache server has are ignored.   
-
-It is possible to use amount of resources a cache server has to decide how many times it appears in the ring, servers with more resources appear more times causing more requests to be sent to it because more hash values are going to be located near it.  
-
-A way to decide where to place the same server is to use more than once hash function to find the server location in the ring. Servers that appear in the ring more than once are usually referred to as virtual servers.
+Since hash functions are being used to place servers in the ring, it is possible that some serves end up responsible for larger sections of the ring. It is possible to decrease the change of a single server being responsible for a large section of the ring by using virtual servers, meaning that each server will appear in several locations of the ring. The use of virtual servers also allows cache servers that have more resources to store more data and handle more requests, a server that has more resources can appear more times than other servers for example. A way to decide where to place the same server is to use more than once hash function to find the server location in the ring.
 
 ![](images/virtual_servers.png)
 <p align="center"><i>Cache 1 appears more than once in the ring because it has enough resources to handle 3 times more the number of requests other servers can handle</i></p>
