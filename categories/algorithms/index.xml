@@ -11,7 +11,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 19 Mar 2023 20:54:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/algorithms/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Oct 2023 20:00:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/algorithms/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Consistent hashing</title>
+      <link>https://poorlydefinedbehaviour.github.io/posts/consistent_hashing/</link>
+      <pubDate>Fri, 06 Oct 2023 20:00:00 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/posts/consistent_hashing/</guid>
+      <description>As the World Wide Web became more popular all of sudden a server could receive way more traffic than it could handle causing the server to service requests slowly or to not be able to serve them at all[^web_caching_with_consistent_hashing]. An intuitive solution to this problem is to cache[^cache] the content served by the servers and allow the clients to fetch content from the caches instead of going through the original server.</description>
+    </item>
+    
     <item>
       <title>Avoid overloading your systems: Request coalescing</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/request_coalescing/</link>
