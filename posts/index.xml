@@ -18,7 +18,7 @@
       <pubDate>Fri, 06 Oct 2023 20:00:00 -0300</pubDate>
       
       <guid>https://poorlydefinedbehaviour.github.io/posts/consistent_hashing/</guid>
-      <description>As the World Wide Web became more popular all of sudden a server could receive way more traffic than it could handle causing the server to service requests slowly or to not be able to serve them at all1. An intuitive solution to this problem is to cache2 the content served by the servers and allow the clients to fetch content from the caches instead of going through the original server.</description>
+      <description>As the World Wide Web became more popular all of sudden a server could receive way more traffic than it could handle causing the server to service requests slowly or to not be able to serve them at all1. An intuitive solution to this problem is to cache2 the content served by the servers and allow the clients to fetch content from the caches instead of going to the original server.</description>
     </item>
     
     <item>
