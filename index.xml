@@ -11,7 +11,21 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 06 Oct 2023 20:00:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Oct 2023 20:00:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hire me</title>
+      <link>https://poorlydefinedbehaviour.github.io/posts/hire_me/</link>
+      <pubDate>Tue, 17 Oct 2023 20:00:00 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/posts/hire_me/</guid>
+      <description>Contact me at brunotj2015@hotmail.com
+Github
+Building scalable and fault-tolerant web services, interested in distributed systems. Rust is my preferred programming language but I have used several others and I&amp;rsquo;m willing to work with any of them.
+OPEN SOURCE The Rust programming language
+Improved compiler diagnostics Tokio – the asynchronous Rust runtime
+Fixed task starvation issue PROJECTS Data structures and algorithms in more than 16 languages Single decree paxos Bitcask SWIM (gossip protocol) Hashed and hierarchical timing wheels (for implementing timers) Raft in Rust Redis protocol Bully leader election Interpreted language Task deduplicator Partial socks5 protocol Parser combinators Container orchestrator like k8s Vector clocks Key-Value store Assault cube cheat in Rust Bytecode virtual machine JSON parser in F# Merkle tree Observables Knight&amp;rsquo;s tour solver with 3D projection in C++ Cuphead boss fight in C++ INTERESTING BLOG POSTS Consistent hashing Thinking about failure, fair-loss links and two generals Database anomalies and isolation levels Do Go programs with common data races compile in Rust?</description>
+    </item>
+    
     <item>
       <title>Consistent hashing</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/consistent_hashing/</link>
