@@ -1,6 +1,6 @@
 ---
 title: "Hire me"
-date: 2030-01-01T00:00:00-03:00
+date: 2023-10-06T20:00:00-03:00
 categories: []
 draft: false
 ---
