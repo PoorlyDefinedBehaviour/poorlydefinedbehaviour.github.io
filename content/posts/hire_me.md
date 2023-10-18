@@ -24,7 +24,7 @@ Building **scalable** and **fault-tolerant** web services, interested in **distr
 - [Single decree paxos](https://github.com/PoorlyDefinedBehaviour/single-decree-paxos-rs)
 - [Bitcask](https://github.com/PoorlyDefinedBehaviour/bitcask)
 - [SWIM (gossip protocol)](https://github.com/PoorlyDefinedBehaviour/memberlist-rs)
-- [Hashed and hierarchical timer wheels (for implementing timers)](https://github.com/PoorlyDefinedBehaviour/hashed_and_hierarchical_timing_wheels)
+- [Hashed and hierarchical timing wheels (for implementing timers)](https://github.com/PoorlyDefinedBehaviour/hashed_and_hierarchical_timing_wheels)
 - [Raft in Rust](https://github.com/PoorlyDefinedBehaviour/raft-rs)
 - [Redis protocol](https://github.com/PoorlyDefinedBehaviour/rust_redis_protocol_specification)
 - [Bully leader election](https://github.com/PoorlyDefinedBehaviour/leader_election_bully)
