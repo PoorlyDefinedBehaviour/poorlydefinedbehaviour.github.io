@@ -82,7 +82,7 @@ Colombia. The company holds over **80% market share** of the food delivery secto
 **microservices** to enable the company's transition from a food delivery service to a platform
 capable of delivering goods as well.
 - Designed and developed both synchronous and asynchronous microservices, leveraging the
-strengths of Rust to ensure **high performance**, **reliability**, and **maintainability**.
+strengths of **Rust** to ensure **high performance**, **reliability**, and **maintainability**.
 - Developed microservices that processed **millions of messages from Kafka**, providing real-
 time event-driven processing and enabling efficient data flow within the platform.
 - Implemented **fault-tolerant** mechanisms such as timeouts, circuit breakers, and fallbacks,
