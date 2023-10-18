@@ -59,9 +59,9 @@ Building **scalable** and **fault-tolerant** web services, interested in **distr
 - Grafana Labs is the company behind [Grafana](https://github.com/grafana/grafana), [Loki](https://github.com/grafana/loki), [Mimir](https://github.com/grafana/mimir), and [Tempo](https://github.com/grafana/tempo), the leading open-
 source software for visualizing operational data.
 - Implemented a feature that allows Grafana engineers to deploy changes from their pull
-requests to the hosted Grafana cloud environment in under 10 minutes instead of hours.
+requests to the hosted Grafana cloud environment in under **10 minutes instead of hours**.
 - Worked on Grafana [private data source connect](https://grafana.com/docs/grafana-cloud/connect-externally-hosted/private-data-source-connect/) which is a way for Grafana cloud customers
-to establish a secure connection from their infrastructure to Grafana Cloud. Being able to
+to establish a **secure connection from their infrastructure to Grafana Cloud**. Being able to
 create a secure connection without accepting incoming connections is a key requirement for
 several enterprise customers.
 - Made major contributions to a thin routing layer responsible for routing every Grafana cloud
@@ -69,55 +69,55 @@ request between several cloud providers
 - Member of the Grafana as a Service vertical, responsible for handling the Grafana cloud
 offering which enables observability without the overhead of building, installing, maintaining,
 and scaling your observability stack.
-- Utilizing Kubernetes, Go, and MySQL to develop and enhance the Grafana cloud platform,
+- Utilizing **Kubernetes**, **Go**, and **MySQL** to develop and enhance the Grafana cloud platform,
 providing users with a scalable, reliable, and performant managed observability solution.
-- Utilizing Terraform to provision and deploy resources on multiple cloud providers, including
-Amazon Web Services, Google Cloud, and Azure, as Grafana Cloud is a multi-cloud solution.  
+- Utilizing **Terraform** to provision and deploy resources on multiple cloud providers, including
+**Amazon Web Services**, **Google Cloud**, and **Azure**, as Grafana Cloud is a **multi-cloud** solution.  
 
 **Software Engineer** | April 2022 – Jan 2023
 **iFood**, São Paulo  
 - iFood is a Brazilian online food ordering and food delivery platform, operating in Brazil and
-Colombia. The company holds over 80% market share of the food delivery sector in Brazil.
+Colombia. The company holds over **80% market share** of the food delivery sector in Brazil.
 - Joined a newly formed team at iFood with the objective of building the necessary
-microservices to enable the company's transition from a food delivery service to a platform
+**microservices** to enable the company's transition from a food delivery service to a platform
 capable of delivering goods as well.
 - Designed and developed both synchronous and asynchronous microservices, leveraging the
-strengths of Rust to ensure high performance, reliability, and maintainability.
-- Developed microservices that processed millions of messages from Kafka, providing real-
+strengths of Rust to ensure **high performance**, **reliability**, and **maintainability**.
+- Developed microservices that processed **millions of messages from Kafka**, providing real-
 time event-driven processing and enabling efficient data flow within the platform.
-- Implemented fault-tolerant mechanisms such as timeouts, circuit breakers, and fallbacks,
+- Implemented **fault-tolerant** mechanisms such as timeouts, circuit breakers, and fallbacks,
 ensuring the resilience and robustness of the microservices in the face of potential failures and
 high message loads.
-- Actively contributed to the team's continuous improvement efforts, sharing knowledge, best
-practices, and lessons learned regarding Rust and building scalable microservices.
+- Actively contributed to the team's continuous improvement efforts, **sharing knowledge**, best
+practices, and lessons learned regarding **Rust** and building scalable microservices.
 - Utilized Terraform to provision and manage resources on Amazon Web Services, enabling
 infrastructure automation and consistent infrastructure-as-code practices.
-- Leveraged Kubernetes for application deployment and orchestration, facilitating scalable and
+- Leveraged **Kubernetes** for application deployment and orchestration, facilitating scalable and
 efficient management of microservices in a containerized environment.  
 
 **Software Engineer** | May 2021 – April 2022 **Red Ventures**, São Paulo
 - Contributed to a high-impact team at Red Ventures, involved in developing a solution for one
-of the largest banks in Brazil, which generated a significant portion of the company's revenue.
-- Utilized Go, along with asynchronous messaging patterns and AWS SNS/SQS, to enable
+of the **largest banks in Brazil**, which generated a significant portion of the company's revenue.
+- Utilized **Go**, along with asynchronous messaging patterns and **AWS SNS/SQS**, to enable
 event-driven architectures, allowing for scalable and loosely coupled systems.
 - Actively participated in code reviews, ensuring adherence to coding best practices,
-maintaining code quality, and promoting collaboration among team members.  
+maintaining code quality, and **promoting collaboration** among team members.  
 
 **Software Engineer** | Feb 2020 - Apr 2021
 **DWV**, Itapema  
 - DWV is a company providing a popular app for realtors in Brazil that offers property
 information, revolutionizing the way real estate professionals access and view property
 information.
-- Joined DWV as the first Backend Engineer and quickly assumed the role of Technical Lead,
+- Joined DWV as the **first Backend Engineer** and quickly assumed the role of **Technical Lead**,
 providing technical direction and guidance to the engineering team.
-- Spearheaded the design and development of new applications, resulting in a 100% increase in
-paying customers within a year.
-- Led the backend team in implementing database modeling strategies using MySQL and
-MongoDB, ensuring efficient data organization and retrieval.
-- Architected and implemented critical backend features, such as Node.js REST APIs and
+- Spearheaded the design and development of new applications, resulting in a **100% increase in
+paying customers within a year**.
+- Led the backend team in implementing database modeling strategies using **MySQL** and
+**MongoDB**, ensuring efficient data organization and retrieval.
+- **Architected and implemented critical backend features**, such as Node.js REST APIs and
 asynchronous workflows using queues, significantly enhancing functionality and user
 experiences.
-- Played a key role in introducing new engineers to the project, providing mentorship, and
+- **Played a key role in introducing new engineers to the projec**t, providing mentorship, and
 facilitating their seamless integration into the team.
 - Established monitoring infrastructure using Sentry, enabling proactive error detection and
 rapid issue resolution.
