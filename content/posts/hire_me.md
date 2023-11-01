@@ -5,7 +5,8 @@ categories: ["meta"]
 draft: false
 ---
 
-Contact me at brunotj2015@hotmail.com  
+- Contact me at brunotj2015@hotmail.com  
+- I can be hired as a contractor
 
 [Github](https://github.com/poorlydefinedbehaviour)  
 
