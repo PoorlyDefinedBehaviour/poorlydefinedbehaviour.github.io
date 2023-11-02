@@ -23,7 +23,7 @@ Building **scalable** and **fault-tolerant** web services, interested in **distr
 
 - [Data structures and algorithms in more than 16 languages](https://github.com/PoorlyDefinedBehaviour/data-structures-and-algorithms)
 - [Single decree paxos](https://github.com/PoorlyDefinedBehaviour/single-decree-paxos-rs)
-- [Bitcask](https://github.com/PoorlyDefinedBehaviour/bitcask)
+- [Bitcask - A log-structured hash table for fast key/value data](https://github.com/PoorlyDefinedBehaviour/bitcask)
 - [SWIM (gossip protocol)](https://github.com/PoorlyDefinedBehaviour/memberlist-rs)
 - [Hashed and hierarchical timing wheels (for implementing timers)](https://github.com/PoorlyDefinedBehaviour/hashed_and_hierarchical_timing_wheels)
 - [Raft in Rust](https://github.com/PoorlyDefinedBehaviour/raft-rs)
