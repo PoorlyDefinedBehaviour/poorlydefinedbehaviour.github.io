@@ -11,7 +11,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 17 Oct 2023 20:00:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Dec 2023 00:00:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reading list November 2023</title>
+      <link>https://poorlydefinedbehaviour.github.io/posts/reading_list_november_2023/</link>
+      <pubDate>Fri, 01 Dec 2023 00:00:00 -0300</pubDate>
+      
+      <guid>https://poorlydefinedbehaviour.github.io/posts/reading_list_november_2023/</guid>
+      <description>The list of things I read or watched this month How To NOT Get Screwed As A Software Engineer - https://www.youtube.com/watch?v=fcfVjd_oV1I Failing Startups : Maybe I should get a job - https://www.indiehackers.com/post/failing-startups-maybe-i-should-get-a-job-653e1efd52 Cross shard transactions at 10 million requests per second - https://dropbox.tech/infrastructure/cross-shard-transactions-at-10-million-requests-per-second Let&amp;rsquo;s implement a basic hotel reservation system with 2PC using pessimistic and optimistic locks in Go - https://blog.stackademic.com/lets-implement-a-basic-hotel-reservation-system-with-2pc-using-pessimistic-and-optimistic-locks-in-581256d142e8 Postgres: PREPARE TRANSACTION - https://www.postgresql.org/docs/current/sql-prepare-transaction.html Building a Streaming Platform in Go for Postgres - https://blog.</description>
+    </item>
+    
     <item>
       <title>Hire me</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/hire_me/</link>
