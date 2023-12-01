@@ -1,6 +1,6 @@
 ---
 title: "Hire me"
-date: 2023-10-17T20:00:00-03:00
+date: 2023-12-02T20:00:00-03:00
 categories: ["meta"]
 draft: false
 ---
