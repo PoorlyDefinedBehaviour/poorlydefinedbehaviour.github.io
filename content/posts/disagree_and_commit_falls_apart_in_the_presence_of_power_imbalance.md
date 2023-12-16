@@ -1,6 +1,6 @@
 ---
 title: "Disagree and commit falls apart in the presence of power imbalance"
-date: 2022-05-23T20:39:07-03:00
+date: 2023-12-16T00:00:00-03:00
 categories: ["opinion"]
 draft: false
 ---
