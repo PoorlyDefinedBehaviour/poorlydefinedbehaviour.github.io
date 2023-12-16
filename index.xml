@@ -11,8 +11,16 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 02 Dec 2023 20:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Sat, 16 Dec 2023 00:00:00 -0300</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Disagree and commit falls apart in the presence of power imbalance</title>
+      <link>https://poorlydefinedbehaviour.github.io/posts/disagree_and_commit_falls_apart_in_the_presence_of_power_imbalance/</link>
+      <pubDate>Sat, 16 Dec 2023 00:00:00 -0300</pubDate>
+      <guid>https://poorlydefinedbehaviour.github.io/posts/disagree_and_commit_falls_apart_in_the_presence_of_power_imbalance/</guid>
+      <description>Disagree and commit is a management principle which states that individuals are allowed to disagree while a decision is being made, but that once a decision has been made, everybody must commit to it1.
+Sounds good in theory. I can see it working If the individuals involved are at the same level in the hierarchy or the individual disagreeing and committing has more power than the individual proposing an idea.</description>
+    </item>
     <item>
       <title>Hire me</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/hire_me/</link>
@@ -174,14 +182,6 @@ What is a consensus algorithm Consensus algorithms allow a collection of machine
       <guid>https://poorlydefinedbehaviour.github.io/posts/bloom_filter/</guid>
       <description>What&amp;rsquo;s a Bloom filter A bloom filter is a data-structure that can be used to check if a set contains an element. It uses way less memory than a conventional set data-structure by sacrificing accuracy.
 Example Say we are building a log-structured merge-tree, we can use a bloom filter to find out if the LSM-tree contains a particular key in O(1) time in most cases, the downside is that sometimes the bloom filter would say that the LSM-tree contains a key, but it actually does not and we would go searching for the value that&amp;rsquo;s mapped to the key and never actually find it.</description>
-    </item>
-    <item>
-      <title>Disagree and commit falls apart in the presence of power imbalance</title>
-      <link>https://poorlydefinedbehaviour.github.io/posts/disagree_and_commit_falls_apart_in_the_presence_of_power_imbalance/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://poorlydefinedbehaviour.github.io/posts/disagree_and_commit_falls_apart_in_the_presence_of_power_imbalance/</guid>
-      <description>Disagree and commit is a management principle which states that individuals are allowed to disagree while a decision is being made, but that once a decision has been made, everybody must commit to it1.
-Sounds good in theory. I can see it working If the individuals involved are at the same level in the hierarchy or the individual disagreeing and committing has more power than the individual proposing an idea.</description>
     </item>
   </channel>
 </rss>
