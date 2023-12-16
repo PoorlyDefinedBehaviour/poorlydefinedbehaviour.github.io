@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tutorial on </title>
     <link>https://poorlydefinedbehaviour.github.io/categories/tutorial/</link>
@@ -11,15 +11,14 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 22 Jul 2023 12:00:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 22 Jul 2023 12:00:00 -0300</lastBuildDate>
+    <atom:link href="https://poorlydefinedbehaviour.github.io/categories/tutorial/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Sending logs and traces to Grafana cloud from your Rust application</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/rust_sending_logs_and_traces_to_grafana_cloud/</link>
       <pubDate>Sat, 22 Jul 2023 12:00:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/posts/rust_sending_logs_and_traces_to_grafana_cloud/</guid>
       <description>Sending logs and traces from a Rust app to Grafana cloud Run the Grafana agent Put the Grafana agent config in grafana-agent/agent/agent.yaml. server: log_level: debug logs: configs: - name: default positions: filename: /tmp/positions.yaml scrape_configs: - job_name: varlogs static_configs: - targets: [localhost] labels: job: varlogs app: rust-grafana-metrics-logs-traces __path__: /var/log/app/*log clients: - url: &amp;lt;grafana-cloud-loki-url&amp;gt; traces: configs: - name: default receivers: otlp: protocols: grpc: remote_write: - endpoint: tempo-us-central1.grafana.net:443 insecure: false # only add this if TLS is not required basic_auth: username: &amp;lt;grafana-cloud-tempo-username&amp;gt; password: &amp;lt;grafana-cloud-tempo-password&amp;gt; batch: timeout: 5s send_batch_size: 100 Run the Grafana agent docker run \ -v $PWD/grafana-agent/data:/etc/agent/data \ -v $PWD/grafana-agent/agent.</description>
     </item>
-    
   </channel>
 </rss>

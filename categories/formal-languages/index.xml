@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>formal-languages on </title>
     <link>https://poorlydefinedbehaviour.github.io/categories/formal-languages/</link>
@@ -11,16 +11,15 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 08 Aug 2023 00:00:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/formal-languages/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Aug 2023 00:00:00 -0300</lastBuildDate>
+    <atom:link href="https://poorlydefinedbehaviour.github.io/categories/formal-languages/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Notes on formal languages: alphabets, strings and languages</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/formal_languages_alphabet_strings_and_languages/</link>
       <pubDate>Tue, 08 Aug 2023 00:00:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/posts/formal_languages_alphabet_strings_and_languages/</guid>
       <description>An alphabet is any set of finite symbols such as a and b. For example, the alphabet Σ = {a, b} is an alphabet that contains the strings that can be built by combining a and b and the alphabet Σ = {0, 1} is the an alphabet that contains the strings that can be built by combining 0 and 1.
 Symbols such as a and b put together to form something like bbaa are called strings.</description>
     </item>
-    
   </channel>
 </rss>

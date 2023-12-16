@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>reading list on </title>
     <link>https://poorlydefinedbehaviour.github.io/categories/reading-list/</link>
@@ -11,42 +11,35 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 01 Dec 2023 00:00:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/reading-list/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Dec 2023 00:00:00 -0300</lastBuildDate>
+    <atom:link href="https://poorlydefinedbehaviour.github.io/categories/reading-list/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Reading list November 2023</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/reading_list_november_2023/</link>
       <pubDate>Fri, 01 Dec 2023 00:00:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/posts/reading_list_november_2023/</guid>
       <description>The list of things I read or watched this month How To NOT Get Screwed As A Software Engineer - https://www.youtube.com/watch?v=fcfVjd_oV1I Failing Startups : Maybe I should get a job - https://www.indiehackers.com/post/failing-startups-maybe-i-should-get-a-job-653e1efd52 Cross shard transactions at 10 million requests per second - https://dropbox.tech/infrastructure/cross-shard-transactions-at-10-million-requests-per-second Let&amp;rsquo;s implement a basic hotel reservation system with 2PC using pessimistic and optimistic locks in Go - https://blog.stackademic.com/lets-implement-a-basic-hotel-reservation-system-with-2pc-using-pessimistic-and-optimistic-locks-in-581256d142e8 Postgres: PREPARE TRANSACTION - https://www.postgresql.org/docs/current/sql-prepare-transaction.html Building a Streaming Platform in Go for Postgres - https://blog.</description>
     </item>
-    
     <item>
       <title>Reading list September 2023</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/reading_list_september_2023/</link>
       <pubDate>Sun, 01 Oct 2023 00:00:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/posts/reading_list_september_2023/</guid>
       <description>The list of things I read or watched this month Farewell EC2-Classic, it’s been swell - https://www.allthingsdistributed.com/2023/09/farewell-ec2-classic.html Building a Firecracker-Powered Course Platform To Learn Docker and Kubernetes - https://iximiuz.com/en/posts/iximiuz-labs-story/ The Power Of Struct Embedding And Interfaces In Golang - https://www.youtube.com/watch?v=fXZJu_JuH0A Beginners Should Think Differently When Writing Golang - https://www.youtube.com/watch?v=PyDMqgOkiR8 How to Get Transactions Between (Almost) Any Data Stores - https://petereliaskraft.net/blog/epoxy How to do Distributed Transactions the RIGHT way? Microservices - https://www.</description>
     </item>
-    
     <item>
       <title>Reading list August 2023</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/reading_list_august_2023/</link>
       <pubDate>Fri, 01 Sep 2023 00:00:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/posts/reading_list_august_2023/</guid>
       <description>The list of things I read or watched this month Aplicação do Open Closed Principle: Exemplo prático com metaprogramação mais polimorfismo - https://www.youtube.com/watch?v=-gOR0WXZmYg Firecracker: Lightweight Virtualization for Serverless Applications - https://www.usenix.org/system/files/nsdi20-paper-agache.pdf SEC02-BP02 Use temporary credentials - https://docs.aws.amazon.com/wellarchitected/latest/framework/sec_identities_unique.html 5 Tips for Building Resilient Architecture - https://www.youtube.com/watch?v=gm6Y4vPlOLg Containers at the edge: it’s not what you think, or maybe it is - https://blog.cloudflare.com/containers-on-the-edge/ What is a Point of Presence (PoP) in networking? - https://rahi.</description>
     </item>
-    
     <item>
       <title>Reading list July 2023</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/reading_list_jul_31_2023/</link>
       <pubDate>Mon, 31 Jul 2023 00:00:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/posts/reading_list_jul_31_2023/</guid>
       <description>The list of things I read or watched this month The right way to define a C function with no arguments - https://www.youtube.com/watch?v=VsRs0H4hXEE TREE-STRUCTURED CONCURRENCY — 2023-07-01 - https://blog.yoshuawuyts.com/tree-structured-concurrency/ Myths Programmers Believe about CPU Caches - https://software.rajivprab.com/2018/04/29/myths-programmers-believe-about-cpu-caches/ Eventual vs Strong Consistency in Distributed Databases - https://hackernoon.com/eventual-vs-strong-consistency-in-distributed-databases-282fdad37cf7 Accounting For Developers, Part I - https://www.moderntreasury.com/journal/accounting-for-developers-part-i Accounting For Developers, Part II - https://www.moderntreasury.com/journal/accounting-for-developers-part-ii Accounting for Developers Part III: Building a Lending Marketplace - https://www.</description>
     </item>
-    
   </channel>
 </rss>

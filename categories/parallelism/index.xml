@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>parallelism on </title>
     <link>https://poorlydefinedbehaviour.github.io/categories/parallelism/</link>
@@ -11,26 +11,23 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 19 Mar 2023 20:54:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/parallelism/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 19 Mar 2023 20:54:00 -0300</lastBuildDate>
+    <atom:link href="https://poorlydefinedbehaviour.github.io/categories/parallelism/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Avoid overloading your systems: Request coalescing</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/request_coalescing/</link>
       <pubDate>Sun, 19 Mar 2023 20:54:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/posts/request_coalescing/</guid>
       <description>The problem You are developing an application backed by a database, something happens and then several of your users try to access the same content. Several requests are sent to your backend at almost the same time and your backend hits the database once for each request to fetch the same data.
 Fetching the data only once If N requests asking for the same data arrive at the backend at around the same time, the backend could hit the database to fetch the data when the first request arrives and force the other requests to await until the data is fetched.</description>
     </item>
-    
     <item>
       <title>Do Go programs with common data races compile in Rust?</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/rust_compile_time_safety_1/</link>
       <pubDate>Mon, 23 May 2022 20:39:07 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/posts/rust_compile_time_safety_1/</guid>
       <description>Uber has adopted Go as its primary programming language for developing microservices and has a post on its blog called Data Race Patterns in Go where they talk about data races found in their Go codebase.
 I was reading it and thought to myself that many of the problems presented in the post would not even compile in Rust. Can Rust help us avoid writing code with common data races?</description>
     </item>
-    
   </channel>
 </rss>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on </title>
     <link>https://poorlydefinedbehaviour.github.io/categories/</link>
@@ -11,213 +11,182 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 01 Dec 2023 00:00:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Dec 2023 20:00:00 -0300</lastBuildDate>
+    <atom:link href="https://poorlydefinedbehaviour.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>meta</title>
+      <link>https://poorlydefinedbehaviour.github.io/categories/meta/</link>
+      <pubDate>Sat, 02 Dec 2023 20:00:00 -0300</pubDate>
+      <guid>https://poorlydefinedbehaviour.github.io/categories/meta/</guid>
+      <description></description>
+    </item>
     <item>
       <title>reading list</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/reading-list/</link>
       <pubDate>Fri, 01 Dec 2023 00:00:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/reading-list/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>algorithms</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/algorithms/</link>
       <pubDate>Fri, 06 Oct 2023 20:00:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/algorithms/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>distributed systems</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/distributed-systems/</link>
       <pubDate>Fri, 06 Oct 2023 20:00:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/distributed-systems/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>formal-languages</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/formal-languages/</link>
       <pubDate>Tue, 08 Aug 2023 00:00:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/formal-languages/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>today-i-learned</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/today-i-learned/</link>
       <pubDate>Tue, 08 Aug 2023 00:00:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/today-i-learned/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>automation</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/automation/</link>
       <pubDate>Sat, 05 Aug 2023 00:00:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/automation/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>ci</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/ci/</link>
       <pubDate>Sat, 05 Aug 2023 00:00:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/ci/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>containers</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/containers/</link>
       <pubDate>Sat, 05 Aug 2023 00:00:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/containers/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>dagger</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/dagger/</link>
       <pubDate>Sat, 05 Aug 2023 00:00:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/dagger/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>docker</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/docker/</link>
       <pubDate>Sat, 05 Aug 2023 00:00:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/docker/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>rust</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/rust/</link>
       <pubDate>Sat, 05 Aug 2023 00:00:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/rust/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>observability</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/observability/</link>
       <pubDate>Sat, 22 Jul 2023 12:00:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/observability/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>tutorial</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/tutorial/</link>
       <pubDate>Sat, 22 Jul 2023 12:00:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/tutorial/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>networking</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/networking/</link>
       <pubDate>Tue, 28 Mar 2023 20:30:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/networking/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>concurrency</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/concurrency/</link>
       <pubDate>Sat, 25 Mar 2023 20:35:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/concurrency/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>databases</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/databases/</link>
       <pubDate>Sat, 25 Mar 2023 20:35:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/databases/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>parallelism</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/parallelism/</link>
       <pubDate>Sun, 19 Mar 2023 20:54:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/parallelism/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>languages</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/languages/</link>
       <pubDate>Mon, 23 May 2022 20:39:07 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/languages/</guid>
       <description></description>
     </item>
-    
+    <item>
+      <title>opinion</title>
+      <link>https://poorlydefinedbehaviour.github.io/categories/opinion/</link>
+      <pubDate>Mon, 23 May 2022 20:39:07 -0300</pubDate>
+      <guid>https://poorlydefinedbehaviour.github.io/categories/opinion/</guid>
+      <description></description>
+    </item>
     <item>
       <title>data-structures</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/data-structures/</link>
       <pubDate>Sat, 30 Apr 2022 16:46:09 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/data-structures/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>rate-limiting</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/rate-limiting/</link>
       <pubDate>Sun, 20 Mar 2022 22:21:07 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/rate-limiting/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>consensus</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/consensus/</link>
       <pubDate>Fri, 04 Mar 2022 17:48:19 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/consensus/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>papers</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/papers/</link>
       <pubDate>Fri, 04 Mar 2022 17:48:19 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/papers/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>probabilistic</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/probabilistic/</link>
       <pubDate>Thu, 03 Mar 2022 20:56:31 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/categories/probabilistic/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>algorithms on </title>
     <link>https://poorlydefinedbehaviour.github.io/categories/algorithms/</link>
@@ -11,52 +11,44 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 06 Oct 2023 20:00:00 -0300</lastBuildDate><atom:link href="https://poorlydefinedbehaviour.github.io/categories/algorithms/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Oct 2023 20:00:00 -0300</lastBuildDate>
+    <atom:link href="https://poorlydefinedbehaviour.github.io/categories/algorithms/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Consistent hashing</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/consistent_hashing/</link>
       <pubDate>Fri, 06 Oct 2023 20:00:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/posts/consistent_hashing/</guid>
       <description>As the World Wide Web became more popular all of sudden a server could receive way more traffic than it could handle causing the server to service requests slowly or to not be able to serve them at all1. An intuitive solution to this problem is to cache2 the content served by the servers and allow the clients to fetch content from the caches instead of going to the original server.</description>
     </item>
-    
     <item>
       <title>Avoid overloading your systems: Request coalescing</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/request_coalescing/</link>
       <pubDate>Sun, 19 Mar 2023 20:54:00 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/posts/request_coalescing/</guid>
       <description>The problem You are developing an application backed by a database, something happens and then several of your users try to access the same content. Several requests are sent to your backend at almost the same time and your backend hits the database once for each request to fetch the same data.
 Fetching the data only once If N requests asking for the same data arrive at the backend at around the same time, the backend could hit the database to fetch the data when the first request arrives and force the other requests to await until the data is fetched.</description>
     </item>
-    
     <item>
       <title>Logs</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/logs/</link>
       <pubDate>Sat, 30 Apr 2022 16:46:09 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/posts/logs/</guid>
       <description>What is a log A log is just a immutable sequence of records wih strong ordering semantics that can be used to provide durability, replication and to model consensus. It is usually a 0 indexed file that new entries are appended to because expensive disk seeks can usually be avoided when appending to a file1.
 Not to be confused with the type of logs most people are used to: application logs that are meant to be read by humans although application logs are a degenerative case of the log we are talking about2.</description>
     </item>
-    
     <item>
       <title>Token bucket</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/token_bucket/</link>
       <pubDate>Sun, 20 Mar 2022 22:21:07 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/posts/token_bucket/</guid>
       <description>Intro Token bucket is an algorithm that can be used to rate limit requests made or received by a service.
 How it works The algorithm is called token bucket because of the way it works: imagine we have a bucket with x tokens where each accepted request consumes one token from the bucket and a token is added back to the bucket at an interval.
 A bucket with 1 token that is refilled each second means the service accepts one request per second.</description>
     </item>
-    
     <item>
       <title>Notes taken from the Raft paper</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/raft_notes/</link>
       <pubDate>Fri, 04 Mar 2022 17:48:19 -0300</pubDate>
-      
       <guid>https://poorlydefinedbehaviour.github.io/posts/raft_notes/</guid>
       <description>Replicated And Fault Tolerant Raft is a consensus algorithm for managing a replicated log.
 The authors claim Raft to be more understandable than Paxos because Raft separates the key elements of consensus
@@ -64,6 +56,5 @@ Leader election Log replication Safety and enforces a stronger degree of coheren
 Raft also includes a new mechanism for changing cluster membership.
 What is a consensus algorithm Consensus algorithms allow a collection of machines to work as a coherent group that can survive the failures of some of its members.</description>
     </item>
-    
   </channel>
 </rss>
