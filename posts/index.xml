@@ -11,8 +11,22 @@
     </image>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 16 Dec 2023 00:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jan 2024 00:00:00 -0300</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reading list 2023</title>
+      <link>https://poorlydefinedbehaviour.github.io/posts/reading_list_2023/</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 -0300</pubDate>
+      <guid>https://poorlydefinedbehaviour.github.io/posts/reading_list_2023/</guid>
+      <description>The list of things I read or watched in 2023 January Operator pattern - https://kubernetes.io/docs/concepts/extend-kubernetes/operator/ Controllers - https://kubernetes.io/docs/concepts/architecture/controller/ Introducing Operators: Putting Operational Knowledge into Software - https://web.archive.org/web/20170129131616/https://coreos.com/blog/introducing-operators.html Best practices for building Kubernetes Operators and stateful apps - https://cloud.google.com/blog/products/containers-kubernetes/best-practices-for-building-kubernetes-operators-and-stateful-apps CNCF Operator WHITE PAPER - https://www.cncf.io/wp-content/uploads/2021/07/CNCF_Operator_WhitePaper.pdf Why do we need a Database Connection Pool? -every programmer must know - https://medium.com/javarevisited/why-do-we-need-a-database-connection-pool-every-programmer-must-know-9f90e7c8e5af Difference in String pool between Java 6 and 7? Answer - https://javarevisited.blogspot.com/2016/07/difference-in-string-pool-between-java6-java7.html A deep dive into Kubernetes controllers - https://docs.</description>
+    </item>
+    <item>
+      <title>Reading list December 2023</title>
+      <link>https://poorlydefinedbehaviour.github.io/posts/reading_list_december_2023/</link>
+      <pubDate>Sun, 31 Dec 2023 00:00:00 -0300</pubDate>
+      <guid>https://poorlydefinedbehaviour.github.io/posts/reading_list_december_2023/</guid>
+      <description>The list of things I read or watched this month Design a Metrics Aggregation System | Time Series Database Design | Prometheus - https://www.youtube.com/watch?v=SCmN2Sr7fqE&amp;amp;list=PL4kInuyvT-Aw_Bz7l33AwTHXDgD3s0nkv&amp;amp;index=3 How I add millions of rows to MySQL (for performance testing) - https://www.youtube.com/watch?v=ywp9Z0xZPzo The Story of Grafana | Episode 1: Democratize Metrics | Grafana Documentary - https://www.youtube.com/watch?v=k3RQVyeYdO8 How to (and how not to) design REST APIs - https://www.youtube.com/watch?v=60F8rzP5nQo How I read a research paper - https://muratbuffalo.blogspot.com/2013/07/how-i-read-research-paper.html Why is Jepsen Written in Clojure?</description>
+    </item>
     <item>
       <title>Disagree and commit falls apart in the presence of power imbalance</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/disagree_and_commit_falls_apart_in_the_presence_of_power_imbalance/</link>
