@@ -1,0 +1,128 @@
+---
+title: "Reading list December 2023"
+date: 2023-12-31T00:00:00-03:00
+categories: ["reading list"]
+draft: false
+---
+
+## The list of things I read or watched this month
+
+- Design a Metrics Aggregation System | Time Series Database Design | Prometheus - https://www.youtube.com/watch?v=SCmN2Sr7fqE&list=PL4kInuyvT-Aw_Bz7l33AwTHXDgD3s0nkv&index=3
+- How I add millions of rows to MySQL (for performance testing) - https://www.youtube.com/watch?v=ywp9Z0xZPzo
+- The Story of Grafana | Episode 1: Democratize Metrics | Grafana Documentary - https://www.youtube.com/watch?v=k3RQVyeYdO8
+- How to (and how not to) design REST APIs - https://www.youtube.com/watch?v=60F8rzP5nQo
+- How I read a research paper - https://muratbuffalo.blogspot.com/2013/07/how-i-read-research-paper.html
+- Why is Jepsen Written in Clojure? - https://aphyr.com/posts/367-why-is-jepsen-written-in-clojure
+- Benchmarking the fastest possible MySQL query - https://www.youtube.com/watch?v=KZoS1fEPx5Q
+- iMessage, explained - https://jjtech.dev/reverse-engineering/imessage-explained/
+- How Price’s Law Applies to Everything - https://nielsbohrmann.com/prices-law/
+- Traces to metrics: Ad hoc RED metrics in Grafana Tempo - https://www.youtube.com/watch?v=xOolCpm2F8c
+- Introduction to opam Switches - https://ocaml.org/docs/opam-switch-introduction#introduction-to-opam-switches
+- Introduction to the OCaml Toplevel - https://ocaml.org/docs/toplevel-introduction
+- Announcing Rust 1.74.1 - https://blog.rust-lang.org/2023/12/07/Rust-1.74.1.html
+- Advice from the CEO of Shopify, Tobias Lütke - https://www.youtube.com/watch?v=prHmUW4JIms
+- Redeveloping TCP from the ground up - https://hannes.robur.coop/Posts/TCP-ns
+- Design HashSet - Leetcode 705 - https://www.youtube.com/watch?v=6eAKScpknHQ
+- TiDB Internal (II) – Computing - https://www.pingcap.com/blog/tidb-internal-computing/
+- Ocaml docs: Modules - https://ocaml.org/docs/modules#abstract-types
+- The unfair way I got good at Leetcode - https://www.youtube.com/watch?v=GPIuPRqDGG8
+- Reducing tail latencies with automatic cooperative task yielding - https://tokio.rs/blog/2020-04-preemption
+- How Akka Works: 'Exactly Once' Message Delivery - https://www.lightbend.com/blog/how-akka-works-exactly-once-message-delivery
+- Which 🐘PostgreSQL problems are solved with 🚀YugabyteDB - https://dev.to/yugabyte/which-postgresql-problems-are-solved-with-yugabytedb-2gm
+- Life of a HTTP request, as seen by my toy web server - https://tia.mat.br/posts/2014/10/06/life_of_a_http_request.html
+- On some subtleties of Paxos - https://www.the-paper-trail.org/post/2012-11-03-on-some-subtleties-of-paxos/
+- Consensus Protocols: A Paxos Implementation - https://www.the-paper-trail.org/post/2009-02-09-consensus-protocols-a-paxos-implementation/
+- Consensus, Two Phase and Three Phase Commits - https://medium.com/@balrajasubbiah/consensus-two-phase-and-three-phase-commits-4e35c1a435ac
+- Is Scalable OLTP in the Cloud a Solved Problem? (CIDR 2023) - https://muratbuffalo.blogspot.com/2023/01/is-scalable-oltp-in-cloud-solved.html
+- Jeff Dean: Designs, Lessons and Advice from Building Large Distributed Systems - https://www.cs.cornell.edu/projects/ladis2009/talks/dean-keynote-ladis2009.pdf
+- Modern hinted handoff - https://www.datastax.com/blog/modern-hinted-handoff
+- Amazon Aurora Under the Hood: Quorum Reads and Mutating State - https://aws.amazon.com/blogs/database/amazon-aurora-under-the-hood-quorum-reads-and-mutating-state/
+- HAT, not CAP: Introducing Highly Available Transactions - www.bailis.org/blog/hat-not-cap-introducing-highly-available-transactions/
+- Back to Basics: service boundaries, autonomous components, and coupling - https://milestone.topics.it/2023/05/17/back-to-basics-boundaries.html
+- 😱 Status quo stories: Alan thinks he needs async locks - https://rust-lang.github.io/wg-async/vision/submitted_stories/status_quo/alan_thinks_he_needs_async_locks.html
+- Let's #TalkConcurrency Panel Discussion with Sir Tony Hoare, Joe Armstrong, and Carl Hewitt - https://www.youtube.com/watch?v=37wFVVVZlVU
+- Students' Guide to Raft - https://thesquareplanet.com/blog/students-guide-to-raft/
+- Instructors' Guide to Raft - https://thesquareplanet.com/blog/instructors-guide-to-raft/
+- How Much Equity to Give Your Cofounder - Michael Seibel - https://www.youtube.com/watch?v=9NhEBVPlJs4
+- Abandoning Async - rgrinberg.com/posts/abandoning-async/
+- Getting Started with Lwt threads - https://mirage.io/docs/tutorial-lwt
+- Lwt manual - https://ocsigen.org/lwt/latest/manual/manual
+- TCP Server and Client in OCaml - https://medium.com/@aryangodara_19887/tcp-server-and-client-in-ocaml-13ebefd54f60
+- Non-Send Futures When? - https://matklad.github.io/2023/12/10/nsfw.html
+- The Big Problem With "Serverless" - https://www.youtube.com/watch?v=10kVndpDKvA
+- The effect of Random UUID on database performance - https://www.youtube.com/watch?v=OAOQ7U0XAi0
+- How does fork work with open files? - https://www.youtube.com/watch?v=SThwp5ijh6o
+- Why Riak - https://web.archive.org/web/20181021220147/http://docs.basho.com/riak/1.4.8/theory/why-riak/
+- Introduction - https://pgrandinetti.github.io/compilers/page/introduction/
+- Can I Get a Job After I Study Compilers? - https://pgrandinetti.github.io/compilers/page/can-i-get-a-job-in-compilers/
+- Why There Are So Many Programming Languages? - https://pgrandinetti.github.io/compilers/page/why-so-many-programming-languages/
+- The Story of Grafana | Episode 2: Community | Grafana Documentary - https://www.youtube.com/watch?v=lbBQk_QPnEs
+- RAND is too slow (in MySQL) - https://www.youtube.com/watch?v=wTcpZWPHl6w
+- Design de API's Resilientes: Explorando Técnicas de Idempotência - https://www.youtube.com/watch?v=bnRZTi3C_JM
+- The Real Hidden Cost of a Request - https://www.youtube.com/watch?v=MN2jIUonuQQ
+- IT in Three: What is RAID? - https://www.youtube.com/watch?v=Aa0RTgxJJy8
+- How databases store data on disk? - https://www.youtube.com/watch?v=haz2h7_xFDk
+- Divide and Conquer: The Art of Breaking Down Problems | Recursion Series - https://www.youtube.com/watch?v=ib4BHvr5-Ao
+- Why create Index blocks writes - https://www.youtube.com/watch?v=ykVumkmkbik
+- How Databases Store and Retrieve Data - https://siemens.blog/posts/how-databases-store-and-retrieve-data/
+- The unreasonable generality of feed-forward neural networks (a tribute) - https://www.youtube.com/watch?v=EXbgUXt8fFU
+- Simple introduction to monads in OCaml - https://www.cryptologie.net/article/578/simple-introduction-to-monads-in-ocaml/
+- OCaml has some new shiny syntax - https://jobjo.github.io/2019/04/24/ocaml-has-some-new-shiny-syntax.html
+- A Tutorial to OCaml -ppx Language Extensions - https://victor.darvariu.me/jekyll/update/2018/06/19/ppx-tutorial.html
+- Let syntax, and why you should use it - https://blog.janestreet.com/let-syntax-and-why-you-should-use-it/
+- Mitchell reflects as he departs HashiCorp - https://www.hashicorp.com/blog/mitchell-reflects-as-he-departs-hashicorp
+- What Are the Differences Between Programming Languages - https://pgrandinetti.github.io/compilers/page/what-are-the-differences-in-programming-languages/
+- Jeff Bezos: Amazon and Blue Origin | Lex Fridman Podcast #405 - https://www.youtube.com/watch?v=DcWqzZ3I2cY
+- Leaving Sourcegraph - https://registerspill.thorstenball.com/p/leaving-sourcegraph
+- Let's build a distributed Postgres proof of concept - https://notes.eatonphil.com/distributed-postgres.html
+- FoundationDB: CAP Theorem - https://apple.github.io/foundationdb/cap-theorem.html
+- FoundationDB: Fault Tolerance - https://apple.github.io/foundationdb/fault-tolerance.html
+- Key Startup Metrics | Startup School - https://www.youtube.com/watch?v=_mKeVGSqQac
+- Design a Blob Storage | Facebook F4 | Warm Storage - https://www.youtube.com/watch?v=zx9pz1IklUE&list=PL4kInuyvT-Aw_Bz7l33AwTHXDgD3s0nkv&index=13
+- Two new MySQL expressions - https://www.youtube.com/watch?v=NZqFiBDQG1s
+- Partial Return Address Overwrite - Exploit Dev 10 - https://www.youtube.com/watch?v=fqsSAqbNFfo
+- Design Metrics Aggregation System | LSM Tree Storage | Scaling - https://www.youtube.com/watch?v=7qfVRn4lFXY
+- Memory layout and mechanics of arrays and slices | Golang | intermediate level - https://www.youtube.com/watch?v=RVTfPy_NELc
+- A Close Look at a Spinlock - https://blog.regehr.org/archives/2173
+- Database Fundamentals - https://tontinton.com/posts/database-fundementals/
+- Learn In Public - https://www.swyx.io/learn-in-public
+- "Simple Made Easy" (12-minute redux) by Rich Hickey (2011) - https://www.youtube.com/watch?v=F87PtAoJNtg
+- the hidden structure you've been using all along - https://www.youtube.com/watch?v=CRTR5ljBjPM
+- Diving into Kafka Internals with David Jacot - https://www.youtube.com/watch?v=d89W_GzWnRw
+- Ocaml docs: Mutability, loops, and imperative programming - https://ocaml.org/docs/mutability-loops-and-imperative
+- Introducing Solid Queue - https://dev.37signals.com/introducing-solid-queue/
+- Eio -- Effects-Based Parallel IO for OCaml - https://github.com/ocaml-multicore/eio
+- Replication: Introducing leaderless replication - https://distributed-computing-musings.com/2022/01/replication-introducing-leaderless-replication/
+- How to Hook Steam Overlay Tutorial - 64-bit IMGUI Hook - https://www.youtube.com/watch?v=z7zUMieOO98
+- WHAT IS HOOKING? - https://www.youtube.com/watch?v=KY2Y7Zn3HW0
+- How to Be Great? Just Be Good, Repeatably - https://blog.stephsmith.io/how-to-be-great/
+- Locking In On Concurrency Control - https://www.youtube.com/watch?v=PyxadX8yrsI
+- How are memories stored in neural networks? | The Hopfield Network #SoME2 - https://www.youtube.com/watch?v=piF6D6CQxUw
+- The Log: What every software engineer should know about real-time data's unifying abstraction - https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying
+- malloc sucks so i wrote my own heap in C - https://www.youtube.com/watch?v=CulF4YQt6zA
+- Rich Hickey: Deconstructing the Database - https://www.youtube.com/watch?v=Cym4TZwTCNU
+- The Design of Datomic - Rich Hickey - https://www.youtube.com/watch?v=Pz_NvY1kw6I
+- Does P = NP? | Complexity Theory Explained Visually - https://www.youtube.com/watch?v=rK3xcRYLWeg
+- Datomic: Immutable database for new web architecture (S03E08) - https://www.youtube.com/watch?v=VlNeWWcIQI4
+- What I Wish Someone Had Told Me - https://blog.samaltman.com/what-i-wish-someone-had-told-me
+- The dark side of inlining and monomorphization - https://nickb.dev/blog/the-dark-side-of-inlining-and-monomorphization/
+- How do Video Game Graphics Work? - https://www.youtube.com/watch?v=C8YtdC8mxTU
+- How do I Set, Clear, and Toggle a Single Bit? - https://www.youtube.com/watch?v=F9742wnBWRc
+- Datomic overview - https://docs.datomic.com/pro/overview/introduction.html
+- Internals of Interfaces in Golang | Intermediate level - https://www.youtube.com/watch?v=x87Cs9vU4Fk
+- Dear Functional Bros - https://www.youtube.com/watch?v=nuML9SmdbJ4
+- Memory Allocation - https://samwho.dev/memory-allocation/
+- The secret lives of data: Raft - https://thesecretlivesofdata.com/raft/
+- How does B-tree make your queries fast? - https://blog.allegro.tech/2023/11/how-does-btree-make-your-queries-fast.html
+- Cursed C++ Casts - https://www.youtube.com/watch?v=SmlLdd1Q2V8
+- A simple, arena-backed, generic dynamic array for C - https://nullprogram.com/blog/2023/10/05/
+- Essential Matrix Algebra for Neural Networks, Clearly Explained - https://www.youtube.com/watch?v=ZTt9gsGcdDo
+- Alex Petrov: Algorithms Behind Modern Storage Systems - https://queue.acm.org/detail.cfm?id=3220266
+- Life Beyond Distributed Transactions - https://queue.acm.org/detail.cfm?id=3025012
+- Performance Engineering on Hard Mode with Andrew Hunter - https://signals-threads.simplecast.com/episodes/performance-engineering-on-hard-mode-with-andrew-hunter-fxhCMIkB
+- Kubernetes Tutorial: Container vs. Pod vs. Deployment vs. StatefulSet & More - https://www.youtube.com/watch?v=4MEgCP7h8UU
+- Kubernetes Tutorial: Container vs. Pod vs. Deployment vs. StatefulSet & More - https://www.youtube.com/watch?v=4MEgCP7h8UU
+- Announcing Rust 1.75.0 - https://blog.rust-lang.org/2023/12/28/Rust-1.75.0.html
+- A Machine Learning Primer: How to Build an ML Model - https://www.youtube.com/watch?v=Vx2DpMgplEM
+- The value of canonicity - https://building.nubank.com.br/the-value-of-canonicity/
+- An introduction to the basic principles of Functional Programming - https://www.iamtk.co/an-introduction-to-the-basic-principles-of-functional-programming
