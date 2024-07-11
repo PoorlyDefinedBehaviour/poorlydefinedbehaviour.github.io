@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>observability on </title>
+    <title>Observability on </title>
     <link>https://poorlydefinedbehaviour.github.io/categories/observability/</link>
-    <description>Recent content in observability on </description>
+    <description>Recent content in Observability on </description>
     <image>
       <title></title>
       <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo -- 0.128.2</generator>
     <language>en</language>
     <lastBuildDate>Sat, 22 Jul 2023 12:00:00 -0300</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/categories/observability/index.xml" rel="self" type="application/rss+xml" />
