@@ -189,3 +189,83 @@ end algorithm; *)
 | counter = 5 | LeaveCriticalSection | EnterCriticalSection | And thread 2 enters the critical section while thread 1 is still there |
 
 > Thread 1 is in the LeaveCriticalSection state but it has not executed the step yet.
+
+[Confused counter](https://deadlockempire.github.io/#4-confusedCounter)
+
+Thread A
+```c#
+business_logic();
+first++;
+second++;
+if (second == 2 && first != 2) {
+  Debug.Assert(false);
+}
+```
+
+Thread B
+```c#
+business_logic();
+first++;
+second++;
+```
+
+```tlaplus
+---- MODULE spec ----
+EXTENDS TLC, Integers
+
+(*--algorithm spec
+variables
+    first = 0,
+    second = 0,
+    assertion_failed = FALSE;
+
+define
+    AssertionNeverFails == assertion_failed = FALSE
+end define;
+
+process ThreadA = "a"
+variables
+    tmp = 0;
+begin
+LoadFirst:
+    tmp := first;
+StoreFirst:
+    first := tmp + 1;
+LoadSecond:
+    tmp := second;
+StoreSecond:
+    second := tmp + 1;
+CriticalSection:
+    if second = 2 /\ first # 2 then
+        assertion_failed := TRUE;
+    end if;
+end process;
+
+process ThreadB = "b"
+variables
+    tmp = 0;
+begin
+LoadFirst:
+    tmp := first;
+StoreFirst:
+    first := tmp + 1;
+LoadSecond:
+    tmp := second;
+StoreSecond:
+    second := tmp + 1;
+end process;
+end algorithm; *)
+```
+
+
+| State | Thread 1 | Thread 2 | Description |
+|---|---|---|---|
+| first = 0, second = 0 | LoadFirst | LoadFirst | Both threads load `first` into `thread1.tmp`|
+| first = 0, second = 0, thread1.tmp = 0, thread2.tmp = 0 | StoreFirst | StoreFirst | Thread 1 updates `first` by setting it to `thread1.tmp + 1` |
+| first = 1, second = 0, thread1.tmp = 0, thread2.tmp = 0 | LoadSecond | StoreFirst | Thread 1 loads `second` into `thread1.tmp`. Note that Thread 2 is still in the `StoreFirst` state since it has not executed yet |
+| first = 1, second = 0, thread1.tmp = 0, thread2.tmp = 0 | StoreSecond | StoreFirst | Thread 1 updates `second` by setting it to `thread1.tmp + 1` |
+| first = 1, second = 1, thread1.tmp = 0, thread2.tmp = 0 | CriticalSection | StoreFirst | Thread 1 moves to the `CriticalSection` state but does not execute yet |
+| first = 1, second = 1, thread1.tmp = 0, thread2.tmp = 0 | CriticalSection | StoreFirst | Thread `2` updates `first` by setting it to `thread2.tmp + 1`. Note that `thread2.tmp` is still `0` since the variable was set in a previous state before Thread 2 got paused |
+| first = 1, second = 1, thread1.tmp = 0, thread2.tmp = 0 | CriticalSection | LoadSecond | Thread 2 loads `second` into `thread2.tmp` |
+| first = 1, second = 1, thread1.tmp = 0, thread2.tmp = 1 | CriticalSection | StoreSecond | Thread 2 updates `second` by setting it to `thread2.tmp + 1`. Note that `thread2.tmp` is `1` |
+| first = 1, second = 1, thread1.tmp = 0, thread2.tmp = 1 | CriticalSection | Done | Thread 1 resumes executions and the condition in the if the statement succeeds |
