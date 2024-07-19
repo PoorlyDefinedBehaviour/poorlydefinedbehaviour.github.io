@@ -257,7 +257,6 @@ end process;
 end algorithm; *)
 ```
 
-
 | State | Thread 1 | Thread 2 | Description |
 |---|---|---|---|
 | first = 0, second = 0 | LoadFirst | LoadFirst | Both threads load `first` into `thread1.tmp`|
@@ -269,3 +268,95 @@ end algorithm; *)
 | first = 1, second = 1, thread1.tmp = 0, thread2.tmp = 0 | CriticalSection | LoadSecond | Thread 2 loads `second` into `thread2.tmp` |
 | first = 1, second = 1, thread1.tmp = 0, thread2.tmp = 1 | CriticalSection | StoreSecond | Thread 2 updates `second` by setting it to `thread2.tmp + 1`. Note that `thread2.tmp` is `1` |
 | first = 1, second = 1, thread1.tmp = 0, thread2.tmp = 1 | CriticalSection | Done | Thread 1 resumes executions and the condition in the if the statement succeeds |
+
+[Insuffient lock](https://deadlockempire.github.io/#L1-lock)
+
+Two threads use a mutex to protect `i`. The mutex works as expected, the problem is that exists an execution order where thread 1 hits the assertion.
+
+```c#
+// Thread 1
+while (true) {
+  Monitor.Enter(mutex);
+  i = i + 2;
+  critical_section();
+  if (i == 5) {
+    Debug.Assert(false);
+  }
+  Monitor.Exit(mutex);
+}
+
+// Thread 2
+while (true) {
+  Monitor.Enter(mutex);
+  i = i - 1;
+  critical_section();
+  Monitor.Exit(mutex);
+}
+```
+
+```tlaplus
+---- MODULE spec ----
+EXTENDS TLC, Integers
+
+(*--algorithm spec
+variables
+    lock = FALSE,
+    assertion_failed = FALSE,
+    i = 0;
+
+define
+    AssertionNeverFails == assertion_failed = FALSE
+end define;
+
+process ThreadA = "a"
+begin
+Loop:
+while TRUE do
+AcquireLock:
+    await lock = FALSE;
+    lock  := TRUE;
+Modify:
+    i := i + 2;
+If:
+  if i = 5 then
+    assertion_failed := TRUE;
+  end if;
+ReleaseLock:
+    lock := FALSE;  
+end while;
+end process;
+
+process ThreadB = "b"
+begin
+Loop:
+while TRUE do    
+AcquireLock:
+    await lock = FALSE;
+    lock := TRUE;
+Modify:
+    i := i - 1;
+ReleaseLock:
+    lock := FALSE;
+end while;
+end process;
+end algorithm; *)
+====
+```
+
+| State | Thread 1 | Thread 2 | Description |
+| --- | --- |--- |--- |
+|i = 0| Loop | Loop | Threads start |
+|i = 0| AcquireLock | AcquireLock | Thread 1 acquires the lock repeatedly until `i` reaches `4`. Thread 2 is stuck trying to acquire the lock |
+|i = 0| Modify | AcquireLock |  |
+|i = 2| If | AcquireLock |  |
+|i = 2| ReleaseLock | AcquireLock |  |
+|i = 2| AcquireLock | AcquireLock |  |
+|i = 2| Modify | AcquireLock |  |
+|i = 2| If | AcquireLock |  |
+|i = 4| ReleaseLock | AcquireLock |  |
+|i = 4| ReleaseLock | Modify | Thread 2 finally acquires the lock |
+|i = 3| ReleaseLock | If |  |
+|i = 3| ReleaseLock | ReleaseLock |  |
+|i = 3| AcquireLock | AcquireLock |  |
+|i = 3| Modify | AcquireLock | Thread 1 acquires the lock again |
+|i = 5| If | AcquireLock | Thread | `i` is equal to `5` this time, thread 1 hits the assertion |
