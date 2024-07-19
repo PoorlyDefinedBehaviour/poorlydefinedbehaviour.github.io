@@ -360,3 +360,68 @@ end algorithm; *)
 |i = 3| AcquireLock | AcquireLock |  |
 |i = 3| Modify | AcquireLock | Thread 1 acquires the lock again |
 |i = 5| If | AcquireLock | Thread | `i` is equal to `5` this time, thread 1 hits the assertion |
+
+[Deadlock](https://deadlockempire.github.io/#L2-deadlock)
+
+Note that the order in which each thread tries to acquire the locks is different.
+
+```c#
+// Thread 1
+Monitor.Enter(mutex);
+Monitor.Enter(mutex2);
+critical_section();
+Monitor.Exit(mutex);
+Monitor.Exit(mutex2);
+
+// Thread 2
+Monitor.Enter(mutex2);
+Monitor.Enter(mutex);
+critical_section();
+Monitor.Exit(mutex2);
+Monitor.Exit(mutex);
+```
+
+```tlaplus
+---- MODULE spec ----
+EXTENDS TLC
+
+(*--algorithm spec
+variables
+    mutex1 = FALSE,
+    mutex2 = FALSE;
+
+process ThreadA = "a"
+begin
+AcquireLock1:
+    await mutex1 = FALSE;
+    mutex1 := TRUE;
+AcquireLock2:
+    await mutex2 = FALSE;
+    mutex2 := TRUE;
+ReleaseLocks:
+    mutex1 := FALSE;
+    mutex2 := FALSE;
+end process;
+
+process ThreadB = "b"
+begin
+AcquireLock1:
+    await mutex2 = FALSE;
+    mutex2 := TRUE;
+AcquireLock2:
+    await mutex1 = FALSE;
+    mutex1 := TRUE;
+ReleaseLocks:
+    mutex2 := FALSE;
+    mutex1 := FALSE;
+end process;
+end algorithm; *)
+====
+```
+
+| State | Thread 1 | Thread 2 | Description |
+| --- | --- |--- |--- |
+| mutex1 = FALSE, mutex2 = FALSE | AcquireLock1 | AcquireLock1 | Both threads start acquiring the locks |
+| mutex1 = TRUE, mutex2 = FALSE | AcquireLock2 | AcquireLock1 | Thread 1 acquires the first lock and tries to acquire the second |
+| mutex1 = TRUE, mutex2 = TRUE | AcquireLock2 | AcquireLock2 | Thread 2 acquires the second lock before thread 1 is able to acquire it  |
+| mutex1 = TRUE, mutex2 = TRUE | Deadlock | Deadlock | No thread can progress because one thread holds the lock the other thread needs |
