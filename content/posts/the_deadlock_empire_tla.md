@@ -577,3 +577,85 @@ end algorithm; *)
 | flag = true, mutex = <<"a", 1>>, mutex2 = <<"b", 1>>, mutex3 = <<"a", 1>> | EnterMutex2 | EnterMutex2 | `flag` is `TRUE`, so thread `b` triers to acquire `mutex2` |
 | flag = true, mutex = <<"a", 1>>, mutex2 = <<"b", 1>>, mutex3 = <<"a", 1>> | EnterMutex2 | EnterMutex | Thread `b` acquires `mutex`2  and tries to acquire `mutex` while thread `a` tries to acquire `mutex2. |
 | ... | Deadlock | Deadlock | |
+
+[Manual Reset Event](https://deadlockempire.github.io/#H1-ManualResetEvent)
+
+```c#
+// Thread 1
+while (true) {
+  sync.Wait();
+  if (counter % 2 == 1) {
+    Debug.Assert(false);
+  }
+}
+
+// Thread 2
+while (true) {
+  sync.Reset();
+  counter++;
+  counter++;
+  sync.Set();
+}
+```
+
+```pluscal
+---- MODULE spec ----
+EXTENDS TLC, Integers
+
+(*--algorithm spec
+variables 
+    signal = FALSE,
+    counter = 0;
+
+process a = "a"
+variables
+    tmp = 0;
+begin
+Loop:
+while TRUE do
+    WaitSignal: await signal;
+    LoadCounter: tmp := counter;
+    CheckCounter: 
+    if tmp % 2 = 1 then
+        assert FALSE;
+    end if;
+end while;
+end process;
+
+process b = "b"
+variables
+    tmp = 0;
+begin
+Loop:
+while TRUE do
+    ResetSignal: signal := FALSE;
+
+    LoadCounter1: tmp := counter;
+    IncCounter1: counter := tmp + 1;
+
+    LoadCounter2: tmp := counter;
+    IncCounter2: counter := tmp + 1;
+
+    SetSignal: signal := TRUE;
+end while;
+end process;
+end algorithm; *)
+```
+
+| State | Thread 1 | Thread 2 | Description |
+| --- | --- |--- |--- |
+| signal = false, counter = 0 | Loop | Loop | Both threads start running |
+| signal = false, counter = 0 | WaitSignal | Loop | Thread `a` blocks waiting for the signal |
+| signal = false, counter = 0 | WaitSignal | Loop | Thread `b` resets the signal, it does not unblock threads that are waiting |
+| signal = false, counter = 0, b.tmp = 0 | WaitSignal | LoadCounter1 | Thread `b` loads `counter` |
+| signal = false, counter = 0, b.tmp = 0 | WaitSignal | IncCounter1 | Thread `b` increments `counter` by setting it to `tmp + 1` |
+| signal = false, counter = 1, b.tmp = 0 | WaitSignal | LoadCounter2 | Thread `b` loads `counter` again |
+| signal = false, counter = 1, b.tmp = 1 | WaitSignal | IncCounter2 | Thread `b` increments `counter` by setting it to `tmp + 1` |
+| signal = false, counter = 2, b.tmp = 1 | WaitSignal | SetSignal | Thread `b` signals the waiting thread |
+| signal = true, counter = 2, b.tmp = 1 | WaitSignal | Loop | Thread `b` goes back to the beginning of the loop |
+| signal = true, counter = 2, a.tmp = 0, b.tmp = 1 | LoadCounter | Loop | Thread `a` loads `counter` |
+| signal = true, counter = 2, a.tmp = 0, b.tmp = 1 | LoadCounter | ResetSignal | Thread `b` resets the signal |
+| signal = false, counter = 2, a.tmp = 0, b.tmp = 1 | LoadCounter | LoadCounter1 | Thread `b` loads `counter` |
+| signal = false, counter = 2, a.tmp = 0, b.tmp = 2 | LoadCounter | IncCounter1 | Thread `b` increments `counter` by setting it to `tmp + 1` |
+| signal = false, counter = 3, a.tmp = 0, b.tmp = 2 | LoadCounter | LoadCounter2 | Thread `b` loads `counter` |
+| signal = false, counter = 3, a.tmp = 3, b.tmp = 2 | CheckCounter | LoadCounter2 | Thread `a` resumes and checks if `counter` is odd and finds that it is |
