@@ -27,10 +27,10 @@ EXTENDS TLC, Integers, FiniteSets
 variables 
     a = 0,
     threads = 1..2,
-    entered_critical_section = {};
+    Enterd_critical_section = {};
 
 define
-    OnlyOneThreadEntersCriticalSection == Cardinality(entered_critical_section) <= 1
+    OnlyOneThreadEntersCriticalSection == Cardinality(Enterd_critical_section) <= 1
 end define;
 
 process Thread \in threads
@@ -43,7 +43,7 @@ Store:
     a := tmp + 1;
 CriticalSectionCheck:
     if a = 1 then
-        entered_critical_section := entered_critical_section \union {self};
+        Enterd_critical_section := Enterd_critical_section \union {self};
     end if; 
 end process;
 
@@ -425,3 +425,155 @@ end algorithm; *)
 | mutex1 = TRUE, mutex2 = FALSE | AcquireLock2 | AcquireLock1 | Thread 1 acquires the first lock and tries to acquire the second |
 | mutex1 = TRUE, mutex2 = TRUE | AcquireLock2 | AcquireLock2 | Thread 2 acquires the second lock before thread 1 is able to acquire it  |
 | mutex1 = TRUE, mutex2 = TRUE | Deadlock | Deadlock | No thread can progress because one thread holds the lock the other thread needs |
+
+[A More Complex Thread](https://deadlockempire.github.io/#L3-complexer)
+
+```c#
+// Thread 1
+while (true) {
+  if (Monitor.TryEnter(mutex)) {
+    Monitor.Enter(mutex3);
+    Monitor.Enter(mutex);
+    critical_section();
+    Monitor.Exit(mutex);
+    Monitor.Enter(mutex2);
+    flag = false;
+    Monitor.Exit(mutex2);
+    Monitor.Exit(mutex3);
+  } else {
+    Monitor.Enter(mutex2);
+    flag = true;
+    Monitor.Exit(mutex2);
+  }
+}
+
+// Thread 2
+while (true) {
+  if (flag) {
+    Monitor.Enter(mutex2);
+    Monitor.Enter(mutex);
+    flag = false;
+    critical_section();
+    Monitor.Exit(mutex);
+    Monitor.Enter(mutex2);
+  } else {
+    Monitor.Enter(mutex);
+    flag = false;
+    Monitor.Exit(mutex);
+  }
+}
+```
+
+```tlaplus
+---- MODULE spec ----
+EXTENDS TLC, Sequences, FiniteSets, Integers
+
+NULL == <<"-1", -1>>
+
+(*--algorithm spec
+variables
+    mutex = NULL,
+    mutex2 = NULL,
+    mutex3 = NULL,
+    flag = FALSE; 
+macro enter(mutex, thread) begin
+    await mutex = NULL \/ mutex[1] = thread;
+    if mutex = NULL then
+        mutex := <<thread, 1>>;
+    else 
+        mutex := <<thread, mutex[2] + 1>>;
+    end if;
+end macro;
+
+macro exit(mutex, thread) begin
+    assert mutex[1] = thread;
+    assert mutex[2] > 0;
+
+    if mutex[2] = 1 then
+        mutex := NULL;
+    else
+        mutex := <<mutex[1], mutex[2] - 1>>;
+    end if;
+end macro;
+
+macro try_enter(mutex, thread) begin
+    if mutex = NULL then
+        mutex := <<thread, 1>>;
+        try_enter_result := TRUE;
+    elsif mutex[1] = thread then 
+        mutex := <<thread, mutex[2] + 1>>;
+        try_enter_result := TRUE;
+    else 
+        try_enter_result := FALSE;
+    end if;
+end macro;
+
+process thread_a = "a"
+variables
+    try_enter_result = FALSE;
+begin
+Loop:
+while TRUE do
+TryEnterMutex: try_enter(mutex, "a");
+CheckEnterMutex:
+    if try_enter_result then
+        EnterMutex3: enter(mutex3, "a");
+        EnterMutex: enter(mutex, "a");
+        ExitMutex: exit(mutex, "a");
+        EnterMutex2: enter(mutex2, "a");
+    else 
+        Else_EnterMutex2: enter(mutex2, "a");
+        SetFlag: flag := TRUE;
+        ExitMutex2: exit(mutex2, "a");
+    end if;
+end while;
+end process;
+
+process thread_b = "b"
+begin
+Loop:
+while TRUE do
+    CheckFlag:
+    if flag then
+        EnterMutex2:enter(mutex2, "b");
+        EnterMutex: enter(mutex, "b");
+        SetFlag:flag := FALSE;
+        ExitMutex: exit(mutex, "b");
+        ExitMutex2: enter(mutex2, "b");
+    else 
+        Else_EnterMutex: enter(mutex, "b"); 
+        Else_SetFlag: flag := FALSE;
+        Else_ExitMutex: exit(mutex, "b");
+    end if;
+end while;
+end process;
+end algorithm; *)
+====
+```
+
+> Variables that didn't change on transition to a new state were omitted.
+
+| State | Thread 1 | Thread 2 | Description |
+| --- | --- |--- |--- |
+| flag = false, mutex = NULL, mutex2 = NULL, mutex3 = NULL | Loop | Loop | Both threads start running |
+| ... | TryEnterMutex | Loop | Thread `a` moves to the `TryEnterMutex` state but has not executed yet |
+| ... | TryEnterMutex | CheckFlag | Thread `b` moves to the `CheckFlag` state |
+| ... | TryEnterMutex | Else_EnterMutex | Thread `b` checks that `flag` is `FALSE` and moves to the `else` branch |
+| flag = false, mutex = <<"b", 1>>, mutex2 = NULL, mutex3 = NULL | TryEnterMutex | Else_SetFlag | After acquiring `mutex`, thread `b` sets `flag` to `FALSE` | 
+| ... | CheckEnterMutex | Else_SetFlag | Thread `a` resumes execution and checks if `flag` is `TRUE` | 
+| flag = false, mutex = <<"b", 1>>, mutex2 = <<"a", 1>>, mutex3 = NULL | Else_EnterMutex2 | Else_SetFlag | Thread `a` finds out that `flag` is `FALSE` and moves to the `else` branch | 
+| ... | SetFlag | Else_SetFlag | Thread `a` `will` set `flag` to `TRUE`| 
+| ... | SetFlag | Else_ExitMutex | Thread `b` resumes execution and releases `mutex` before thread `a` sets `flag` to `TRUE` | 
+| flag = true, mutex = <<"b", 1>>, mutex2 = NULL, mutex3 = NULL | ExitMutex2 | Else_ExitMutex | Thread `a` sets `flag` to `TRUE` | 
+| flag = true, mutex = NULL, mutex2 = NULL, mutex3 = NULL | Loop | Else_ExitMutex  | Thread `a` releases `mutex2` | 
+| ... | TryEnterMutex | Else_ExitMutex  | Thread `a` tries to acquire `mutex` | 
+| ... | TryEnterMutex | Loop | Thread `b` resumes execution | 
+| ... | CheckEnterMutex | Loop | Thread `a` checks if `mutex` has been acquired | 
+| flag = true, mutex = <<"a", 1>>, mutex2 = NULL, mutex3 = <<"a", 1>> | EnterMutex3 | Loop | `mutex3` was already acquired by thread `a` | 
+| flag = true, mutex = <<"a", 2>>, mutex2 = NULL, mutex3 = <<"a", 1>>| EnterMutex | Loop | Thread `a` acquires `mutex` again| 
+| flag = true, mutex = <<"a", 1>>, mutex2 = NULL, mutex3 = <<"a", 1>> | ExitMutex | Loop | Thread `a` releases `mutex` | 
+| ... | EnterMutex2 | Loop | Thread `a` will try to acquire `mutex2`| 
+| ... | EnterMutex2 | CheckFlag | Thread `b` resumes execution and checks if `flag` is `TRUE` | 
+| flag = true, mutex = <<"a", 1>>, mutex2 = <<"b", 1>>, mutex3 = <<"a", 1>> | EnterMutex2 | EnterMutex2 | `flag` is `TRUE`, so thread `b` triers to acquire `mutex2` |
+| flag = true, mutex = <<"a", 1>>, mutex2 = <<"b", 1>>, mutex3 = <<"a", 1>> | EnterMutex2 | EnterMutex | Thread `b` acquires `mutex`2  and tries to acquire `mutex` while thread `a` tries to acquire `mutex2. |
+| ... | Deadlock | Deadlock | |
