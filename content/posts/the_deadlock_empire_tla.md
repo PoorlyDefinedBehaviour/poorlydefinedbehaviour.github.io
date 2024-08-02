@@ -762,3 +762,212 @@ end algorithm; *)
 | signal = 2, progress = 70,  a.tmp = 20, b.tmp = 20 | WaitSignal | LoadProgress 4| Thread `b` will load `progress` |
 | signal = 2, progress = 70,  a.tmp = 20, b.tmp = 20 | WaitSignal | LoadProgress 4| Thread `b` will check that `progress >= 80` |
 | signal = 2, progress = 70,  a.tmp = 20, b.tmp = 20 | DeadLock | DeadLock | Thread `a` is waiting for `signal` to reach `0` and thread `b` has already completed execution |
+
+[Countdown Event Revisited](https://deadlockempire.github.io/#H3-CountdownEvent)
+
+In this case, since two threads are updating `progress` without synchronizing, lost updates cause `event.Signal()` to be called more than the allowed number of times (3).
+
+```c#
+// Thread a
+while (true) {
+  progress = progress + 20;
+  event.Signal();
+  event.Wait();
+  if (progress == 100) {
+    Environment.Exit(0);
+  }
+}
+
+// Thread b
+while (true) {
+  progress = progress + 30;
+  event.Signal();
+  progress = progress + 50;
+  event.Signal();
+  event.Wait();
+  if (progress == 100) {
+    Environment.Exit(0);
+  }
+}
+```
+
+```tlaplus
+---- MODULE spec ----
+EXTENDS TLC, Integers
+
+(*--algorithm spec
+variables
+    signal = 3,
+    progress = 0;
+
+define
+    SignalNeverGoesBelowZero == signal >= 0
+end define;
+
+macro signal_signal() begin
+    signal := signal - 1;
+end macro;
+
+macro signal_wait() begin
+    await signal = 0;
+end macro;
+
+process a = "a"
+variables 
+    exit = FALSE,
+    tmp = 0;
+begin
+Loop:
+while ~exit do
+LoadProgres1: tmp := progress;
+SetProgress: progress := tmp + 20;
+
+Signal: signal_signal();
+
+WaitSignal: signal_wait();
+
+LoadProgress2: tmp := progress;
+CheckProgress: if tmp = 100 then
+    exit := TRUE;
+end if;
+end while;
+end process;
+
+process b = "b"
+variables 
+    exit = FALSE,
+    tmp = 0;
+begin
+Loop:
+while ~exit do
+LoadProgress1: tmp := progress;
+SetProgress1: progress := tmp + 30;
+
+Signal1: signal_signal();
+
+LoadProgress2: tmp := progress;
+SetProgress2: progress := tmp + 50;
+
+Signal2: signal_signal();
+
+WaitSignal: signal_wait();
+
+LoadProgress3: tmp := progress;
+CheckProgress1: if tmp = 100 then
+    exit := TRUE;
+end if;
+end while;
+end process;
+end algorithm; *)
+====
+```
+
+[The Barrier](https://deadlockempire.github.io/#H3-CountdownEvent)
+
+In this case, `fireball_charge` will be `0` when thread `a` executes the if statement depending on the order of calls to `barrier.SignalAndWait`.
+
+```c#
+// Thread a
+int fireballCharge=0;
+System.Threading.Barrier barrier; // [phase 0, waiting for 2 threads]
+
+while (true) {
+  Interlocked.Increment(ref fireballCharge);
+  barrier.SignalAndWait();
+  if (fireballCharge < 2) {
+    Debug.Assert(false);
+  }
+  fireball();
+}
+
+// Thread b
+while (true) {
+  Interlocked.Increment(ref fireballCharge);
+  barrier.SignalAndWait();
+}
+
+// Thread c
+while (true) {
+  Interlocked.Increment(ref fireballCharge);
+  barrier.SignalAndWait();
+  barrier.SignalAndWait();
+  fireballCharge = 0;
+}
+```
+
+```pluscal
+---- MODULE spec ----
+EXTENDS TLC, Integers, Sequences
+
+(*--algorithm spec
+variables 
+    fireball_charge = 2,
+    barrier = 2,
+    barrier_blocked = {};
+
+procedure barrier_signal_and_wait(thread) begin 
+    BarrierSignal:
+        if barrier - 1 = 0 then
+            \* Unblock threads waiting for the barrier.
+            barrier_blocked := {};
+            \* Reset the barrier.
+            barrier := 2;
+        else
+            barrier := barrier - 1;
+            barrier_blocked := barrier_blocked \union {thread};
+        end if;
+    
+    BarrierAwait: 
+        await thread \notin barrier_blocked;
+
+    return;
+end procedure;
+
+
+process a = "a"
+begin
+A_Loop:
+while TRUE do
+    A_IncrementFireball: fireball_charge := fireball_charge + 1;
+    A_BarrierSignalAndWait: call barrier_signal_and_wait("a");
+    A_CheckFireball: if fireball_charge < 2 then
+        print("CheckFireball: fireball_charge < 2");
+        assert FALSE;
+    end if;
+end while;
+end process;
+
+process b = "b"
+begin
+B_Loop:
+while TRUE do
+    B_IncrementFireball: fireball_charge := fireball_charge + 1;
+    B_BarrierSignalAndWait: call barrier_signal_and_wait("b");
+end while;
+end process;
+
+process c = "c"
+begin
+C_Loop:
+while TRUE do
+    C_IncrementFireball: fireball_charge := fireball_charge + 1;
+    C_BarrierSignalAndWait1: call barrier_signal_and_wait("c");
+    C_BarrierSignalAndWait2: call barrier_signal_and_wait("c");
+    C_ResetFireball: fireball_charge := 0;
+end while;
+end process;
+end algorithm; *)
+====
+```
+
+| Action |
+| --- |
+A increments fireball_charge
+B increments fireball_charge 
+C increments fireball_charge
+A signals and blocks
+C signals and blocks, unblocking A and C
+B signals and blocks
+C signals and blocks, unblocking B and C
+C resets fireball_charge to 0.
+A checks fireball_charge, fireball_charge is 0.
