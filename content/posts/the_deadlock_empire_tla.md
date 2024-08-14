@@ -971,3 +971,94 @@ B signals and blocks
 C signals and blocks, unblocking B and C
 C resets fireball_charge to 0.
 A checks fireball_charge, fireball_charge is 0.
+
+[Semaphores](https://deadlockempire.github.io/#S1-simple)
+
+```c#
+// Thread a
+while (true) {
+  semaphore.Wait();
+  critical_section();
+  semaphore.Release();
+}
+
+// Thread b
+while (true) {
+  if (semaphore.Wait(500)) {
+    critical_section();
+    semaphore.Release();
+  } else {
+    semaphore.Release();
+  }
+}
+```
+
+```tlaplus
+---- MODULE spec ----
+EXTENDS TLC, Integers
+
+(*--algorithm spec
+variables
+    sema = 1;
+    threads_in_critical_section = 0;
+
+define
+    CriticalSection == threads_in_critical_section <= 1
+end define;
+
+macro semaphore_wait(block) begin
+    if block then
+        await sema = 1;
+        sema := 0;
+        sema_acquired := TRUE;
+    elsif sema = 0 then 
+        sema_acquired := TRUE;
+    end if;
+end macro;
+
+macro semaphore_release() begin
+    skip
+end macro;
+
+process a = "a"
+variables
+    sema_acquired = FALSE;
+begin
+Loop:
+while TRUE do
+    ResetSemaAcquired: sema_acquired := FALSE;
+    SemaphoreWait: semaphore_wait(TRUE);
+    CriticalSection_1: threads_in_critical_section := threads_in_critical_section + 1;
+    CriticalSection_2: threads_in_critical_section := threads_in_critical_section - 1;
+    SemaphoreRelease: semaphore_release();
+end while;
+end process;
+
+process b = "b"
+variables
+    sema_acquired = FALSE;
+begin
+Loop:
+while TRUE do
+    ResetSemaAcquired: sema_acquired := FALSE;
+    SemaphoreWait: semaphore_wait(FALSE);
+    if sema_acquired then
+        SemaphoreRelease_1: semaphore_release();
+        CriticalSection_1: threads_in_critical_section := threads_in_critical_section + 1;
+        CriticalSection_2: threads_in_critical_section := threads_in_critical_section - 1;
+    else
+        SemaphoreRelease_2: semaphore_release();
+    end if;
+end while;
+end process;
+end algorithm; *)
+```
+
+| Action |
+| --- |
+Thread `a` waits to acquire the semaphore.
+Thread `b` tries to acquire the semaphore with a `500ms` timeout, fails and releases the semaphore in the `else` branch.
+Thread `a` acquires the semaphore and enters the critical section.
+Thread `b` tries to acquire the semaphore with a `500ms` timeout, fails and releases the semaphore in the `else` branch again.
+Thread `b` tries to acquire the semaphore with a `500ms` timeout, succeds and enters the critical section.
+Both threads are in the critical section at the same time.
