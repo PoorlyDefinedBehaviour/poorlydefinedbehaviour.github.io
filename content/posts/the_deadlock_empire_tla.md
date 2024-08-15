@@ -1,5 +1,5 @@
 ---
-title: "The deadlock empire: TLA+ solutions"
+title: "Model checking the deadlock empire"
 date: 2024-07-11T00:00:00-00:00
 categories: ["formal methods", "distributed systems"]
 draft: true
@@ -24,7 +24,7 @@ EXTENDS TLC, Integers, FiniteSets
 
 (*--algorithm spec
 
-variables 
+variables
     a = 0,
     threads = 1..2,
     Enterd_critical_section = {};
@@ -34,7 +34,7 @@ define
 end define;
 
 process Thread \in threads
-variables 
+variables
     tmp = 0;
 begin
 Load:
@@ -44,22 +44,22 @@ Store:
 CriticalSectionCheck:
     if a = 1 then
         Enterd_critical_section := Enterd_critical_section \union {self};
-    end if; 
+    end if;
 end process;
 
 end algorithm; *)
 ====
 ```
 
-| State | Thread a | Thread b | Description |
---- | --- | --- | --- |
-| a = 0 | Init | Init | Both threads are at the initial state |
-| a = 0, thread1.tmp = 0 | Load | Init | Thread a stores the value of `a` in a temporary variable |
-| a = 0, thread1.tmp = 0, thread2.tmp = 0 | Load | Load | Thread b stores the value of `a` in a temporary variable |
-| a = thread1.tmp + 1, thread1.tmp = 0, thread2.tmp = 0 | Store | Load | Thread a sets `a` to `0 + 1` using the temporary variable |
-| a = thread2.tmp + 1, thread1.tmp = 0, thread2.tmp = 0 | Store | Store | Thread b sets `a` to `0 + 1` using the temporary variable |
-| a = 1 | CriticalSectionCheck | Store | Thread a enters the critical section since `a` is equal to `1` |
-| a = 1 | CriticalSectionCheck | CriticalSectionCheck | Thread b enters the critical section since `a` is equal to `1` at the same time as thread 1 | 
+| State                                                 | Thread a             | Thread b             | Description                                                                                 |
+| ----------------------------------------------------- | -------------------- | -------------------- | ------------------------------------------------------------------------------------------- |
+| a = 0                                                 | Init                 | Init                 | Both threads are at the initial state                                                       |
+| a = 0, thread1.tmp = 0                                | Load                 | Init                 | Thread a stores the value of `a` in a temporary variable                                    |
+| a = 0, thread1.tmp = 0, thread2.tmp = 0               | Load                 | Load                 | Thread b stores the value of `a` in a temporary variable                                    |
+| a = thread1.tmp + 1, thread1.tmp = 0, thread2.tmp = 0 | Store                | Load                 | Thread a sets `a` to `0 + 1` using the temporary variable                                   |
+| a = thread2.tmp + 1, thread1.tmp = 0, thread2.tmp = 0 | Store                | Store                | Thread b sets `a` to `0 + 1` using the temporary variable                                   |
+| a = 1                                                 | CriticalSectionCheck | Store                | Thread a enters the critical section since `a` is equal to `1`                              |
+| a = 1                                                 | CriticalSectionCheck | CriticalSectionCheck | Thread b enters the critical section since `a` is equal to `1` at the same time as thread 1 |
 
 [Boolean Flags Are Enough For Everyone](https://deadlockempire.github.io/#2-flags)
 
@@ -81,7 +81,7 @@ while (true) {
 EXTENDS TLC, Integers, FiniteSets
 
 (*--algorithm spec
-variables 
+variables
     threads = 1..2,
     flag = FALSE,
     threads_in_criticial_section = {};
@@ -110,14 +110,14 @@ end algorithm; *)
 ====
 ```
 
-| State | Thread a    | Thread b | Description |
-| ------| ----------- | ---------| ------------|
-| flag = false | Init | Init | Both threads are at the initial state |
-| flag = false | SpinLock | Init | Thread a enters the spinlock |
-| flag = false | SpinLock | SpinLock | Thread b enters the spinlock |
-| flag = true | SpinLock | SetFlag | Thread b sees that `flag` is `false` so it leaves the spinlock and sets `flag` to `true` |
-| flag = true | SetFlag | SetFlag | Thread a was in the spinlock and read the value of `flag` before thread 2 set it to `true`. Thread a leaves the spinlock and sets `flag` to `true` |
-| flag = true | CriticalSection1 | CriticalSection1 | Both threads enter the critical section at the same time |
+| State        | Thread a         | Thread b         | Description                                                                                                                                        |
+| ------------ | ---------------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| flag = false | Init             | Init             | Both threads are at the initial state                                                                                                              |
+| flag = false | SpinLock         | Init             | Thread a enters the spinlock                                                                                                                       |
+| flag = false | SpinLock         | SpinLock         | Thread b enters the spinlock                                                                                                                       |
+| flag = true  | SpinLock         | SetFlag          | Thread b sees that `flag` is `false` so it leaves the spinlock and sets `flag` to `true`                                                           |
+| flag = true  | SetFlag          | SetFlag          | Thread a was in the spinlock and read the value of `flag` before thread 2 set it to `true`. Thread a leaves the spinlock and sets `flag` to `true` |
+| flag = true  | CriticalSection1 | CriticalSection1 | Both threads enter the critical section at the same time                                                                                           |
 
 [Simple counter](https://deadlockempire.github.io/#3-simpleCounter)
 
@@ -168,31 +168,32 @@ end algorithm; *)
 ====
 ```
 
-| State | Thread a | Thread b | Description |
-|---|---|---|---|
-| counter = 0 | Loop | Loop | Thread a updates the counter until it reaches 3 while thread 2 is in the Loop state |
-| counter = 0 | Load | Loop | |
-| counter = 1 | Store | Loop | |
-| counter = 1 | Loop | Loop | |
-| counter = 1 | Load | Loop | |
-| counter = 2 | Store | Loop | |
-| counter = 2 | Loop | Loop | |
-| counter = 2 | Load | Loop | |
-| counter = 3 | Store | Loop | |
-| counter = 3 | EnterCriticalSection | Loop | Counter reached 3, so thread 1 enters the critical section |
-| counter = 3 | LeaveCriticalSection | Loop | While thread 1 is in the critical section, thread 2 updates the counter to 5 |
-| counter = 3 | LeaveCriticalSection | Load | |
-| counter = 4 | LeaveCriticalSection | Store | |
-| counter = 4 | LeaveCriticalSection | Loop | |
-| counter = 4 | LeaveCriticalSection | Load | |
-| counter = 5 | LeaveCriticalSection | Store | |
-| counter = 5 | LeaveCriticalSection | EnterCriticalSection | And thread 2 enters the critical section while thread 1 is still there |
+| State       | Thread a             | Thread b             | Description                                                                         |
+| ----------- | -------------------- | -------------------- | ----------------------------------------------------------------------------------- |
+| counter = 0 | Loop                 | Loop                 | Thread a updates the counter until it reaches 3 while thread 2 is in the Loop state |
+| counter = 0 | Load                 | Loop                 |                                                                                     |
+| counter = 1 | Store                | Loop                 |                                                                                     |
+| counter = 1 | Loop                 | Loop                 |                                                                                     |
+| counter = 1 | Load                 | Loop                 |                                                                                     |
+| counter = 2 | Store                | Loop                 |                                                                                     |
+| counter = 2 | Loop                 | Loop                 |                                                                                     |
+| counter = 2 | Load                 | Loop                 |                                                                                     |
+| counter = 3 | Store                | Loop                 |                                                                                     |
+| counter = 3 | EnterCriticalSection | Loop                 | Counter reached 3, so thread 1 enters the critical section                          |
+| counter = 3 | LeaveCriticalSection | Loop                 | While thread 1 is in the critical section, thread 2 updates the counter to 5        |
+| counter = 3 | LeaveCriticalSection | Load                 |                                                                                     |
+| counter = 4 | LeaveCriticalSection | Store                |                                                                                     |
+| counter = 4 | LeaveCriticalSection | Loop                 |                                                                                     |
+| counter = 4 | LeaveCriticalSection | Load                 |                                                                                     |
+| counter = 5 | LeaveCriticalSection | Store                |                                                                                     |
+| counter = 5 | LeaveCriticalSection | EnterCriticalSection | And thread 2 enters the critical section while thread 1 is still there              |
 
 > Thread a is in the LeaveCriticalSection state but it has not executed the step yet.
 
 [Confused counter](https://deadlockempire.github.io/#4-confusedCounter)
 
 Thread A
+
 ```c#
 business_logic();
 first++;
@@ -203,6 +204,7 @@ if (second == 2 && first != 2) {
 ```
 
 Thread B
+
 ```c#
 business_logic();
 first++;
@@ -257,17 +259,17 @@ end process;
 end algorithm; *)
 ```
 
-| State | Thread a | Thread b | Description |
-|---|---|---|---|
-| first = 0, second = 0 | LoadFirst | LoadFirst | Both threads load `first` into `thread1.tmp`|
-| first = 0, second = 0, thread1.tmp = 0, thread2.tmp = 0 | StoreFirst | StoreFirst | Thread a updates `first` by setting it to `thread1.tmp + 1` |
-| first = 1, second = 0, thread1.tmp = 0, thread2.tmp = 0 | LoadSecond | StoreFirst | Thread a loads `second` into `thread1.tmp`. Note that Thread b is still in the `StoreFirst` state since it has not executed yet |
-| first = 1, second = 0, thread1.tmp = 0, thread2.tmp = 0 | StoreSecond | StoreFirst | Thread a updates `second` by setting it to `thread1.tmp + 1` |
-| first = 1, second = 1, thread1.tmp = 0, thread2.tmp = 0 | CriticalSection | StoreFirst | Thread a moves to the `CriticalSection` state but does not execute yet |
-| first = 1, second = 1, thread1.tmp = 0, thread2.tmp = 0 | CriticalSection | StoreFirst | Thread `2` updates `first` by setting it to `thread2.tmp + 1`. Note that `thread2.tmp` is still `0` since the variable was set in a previous state before Thread b got paused |
-| first = 1, second = 1, thread1.tmp = 0, thread2.tmp = 0 | CriticalSection | LoadSecond | Thread b loads `second` into `thread2.tmp` |
-| first = 1, second = 1, thread1.tmp = 0, thread2.tmp = 1 | CriticalSection | StoreSecond | Thread b updates `second` by setting it to `thread2.tmp + 1`. Note that `thread2.tmp` is `1` |
-| first = 1, second = 1, thread1.tmp = 0, thread2.tmp = 1 | CriticalSection | Done | Thread a resumes executions and the condition in the if the statement succeeds |
+| State                                                   | Thread a        | Thread b    | Description                                                                                                                                                                   |
+| ------------------------------------------------------- | --------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| first = 0, second = 0                                   | LoadFirst       | LoadFirst   | Both threads load `first` into `thread1.tmp`                                                                                                                                  |
+| first = 0, second = 0, thread1.tmp = 0, thread2.tmp = 0 | StoreFirst      | StoreFirst  | Thread a updates `first` by setting it to `thread1.tmp + 1`                                                                                                                   |
+| first = 1, second = 0, thread1.tmp = 0, thread2.tmp = 0 | LoadSecond      | StoreFirst  | Thread a loads `second` into `thread1.tmp`. Note that Thread b is still in the `StoreFirst` state since it has not executed yet                                               |
+| first = 1, second = 0, thread1.tmp = 0, thread2.tmp = 0 | StoreSecond     | StoreFirst  | Thread a updates `second` by setting it to `thread1.tmp + 1`                                                                                                                  |
+| first = 1, second = 1, thread1.tmp = 0, thread2.tmp = 0 | CriticalSection | StoreFirst  | Thread a moves to the `CriticalSection` state but does not execute yet                                                                                                        |
+| first = 1, second = 1, thread1.tmp = 0, thread2.tmp = 0 | CriticalSection | StoreFirst  | Thread `2` updates `first` by setting it to `thread2.tmp + 1`. Note that `thread2.tmp` is still `0` since the variable was set in a previous state before Thread b got paused |
+| first = 1, second = 1, thread1.tmp = 0, thread2.tmp = 0 | CriticalSection | LoadSecond  | Thread b loads `second` into `thread2.tmp`                                                                                                                                    |
+| first = 1, second = 1, thread1.tmp = 0, thread2.tmp = 1 | CriticalSection | StoreSecond | Thread b updates `second` by setting it to `thread2.tmp + 1`. Note that `thread2.tmp` is `1`                                                                                  |
+| first = 1, second = 1, thread1.tmp = 0, thread2.tmp = 1 | CriticalSection | Done        | Thread a resumes executions and the condition in the if the statement succeeds                                                                                                |
 
 [Insuffient lock](https://deadlockempire.github.io/#L1-lock)
 
@@ -322,14 +324,14 @@ If:
     assertion_failed := TRUE;
   end if;
 ReleaseLock:
-    lock := FALSE;  
+    lock := FALSE;
 end while;
 end process;
 
 process ThreadB = "b"
 begin
 Loop:
-while TRUE do    
+while TRUE do
 AcquireLock:
     await lock = FALSE;
     lock := TRUE;
@@ -343,23 +345,23 @@ end algorithm; *)
 ====
 ```
 
-| State | Thread a | Thread b | Description |
-| --- | --- |--- |--- |
-|i = 0| Loop | Loop | Threads start |
-|i = 0| AcquireLock | AcquireLock | Thread a acquires the lock repeatedly until `i` reaches `4`. Thread b is stuck trying to acquire the lock |
-|i = 0| Modify | AcquireLock |  |
-|i = 2| If | AcquireLock |  |
-|i = 2| ReleaseLock | AcquireLock |  |
-|i = 2| AcquireLock | AcquireLock |  |
-|i = 2| Modify | AcquireLock |  |
-|i = 2| If | AcquireLock |  |
-|i = 4| ReleaseLock | AcquireLock |  |
-|i = 4| ReleaseLock | Modify | Thread b finally acquires the lock |
-|i = 3| ReleaseLock | If |  |
-|i = 3| ReleaseLock | ReleaseLock |  |
-|i = 3| AcquireLock | AcquireLock |  |
-|i = 3| Modify | AcquireLock | Thread a acquires the lock again |
-|i = 5| If | AcquireLock | Thread | `i` is equal to `5` this time, thread 1 hits the assertion |
+| State | Thread a    | Thread b    | Description                                                                                               |
+| ----- | ----------- | ----------- | --------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| i = 0 | Loop        | Loop        | Threads start                                                                                             |
+| i = 0 | AcquireLock | AcquireLock | Thread a acquires the lock repeatedly until `i` reaches `4`. Thread b is stuck trying to acquire the lock |
+| i = 0 | Modify      | AcquireLock |                                                                                                           |
+| i = 2 | If          | AcquireLock |                                                                                                           |
+| i = 2 | ReleaseLock | AcquireLock |                                                                                                           |
+| i = 2 | AcquireLock | AcquireLock |                                                                                                           |
+| i = 2 | Modify      | AcquireLock |                                                                                                           |
+| i = 2 | If          | AcquireLock |                                                                                                           |
+| i = 4 | ReleaseLock | AcquireLock |                                                                                                           |
+| i = 4 | ReleaseLock | Modify      | Thread b finally acquires the lock                                                                        |
+| i = 3 | ReleaseLock | If          |                                                                                                           |
+| i = 3 | ReleaseLock | ReleaseLock |                                                                                                           |
+| i = 3 | AcquireLock | AcquireLock |                                                                                                           |
+| i = 3 | Modify      | AcquireLock | Thread a acquires the lock again                                                                          |
+| i = 5 | If          | AcquireLock | Thread                                                                                                    | `i` is equal to `5` this time, thread 1 hits the assertion |
 
 [Deadlock](https://deadlockempire.github.io/#L2-deadlock)
 
@@ -419,12 +421,12 @@ end algorithm; *)
 ====
 ```
 
-| State | Thread a | Thread b | Description |
-| --- | --- |--- |--- |
-| mutex1 = FALSE, mutex2 = FALSE | AcquireLock1 | AcquireLock1 | Both threads start acquiring the locks |
-| mutex1 = TRUE, mutex2 = FALSE | AcquireLock2 | AcquireLock1 | Thread a acquires the first lock and tries to acquire the second |
-| mutex1 = TRUE, mutex2 = TRUE | AcquireLock2 | AcquireLock2 | Thread b acquires the second lock before thread 1 is able to acquire it  |
-| mutex1 = TRUE, mutex2 = TRUE | Deadlock | Deadlock | No thread can progress because one thread holds the lock the other thread needs |
+| State                          | Thread a     | Thread b     | Description                                                                     |
+| ------------------------------ | ------------ | ------------ | ------------------------------------------------------------------------------- |
+| mutex1 = FALSE, mutex2 = FALSE | AcquireLock1 | AcquireLock1 | Both threads start acquiring the locks                                          |
+| mutex1 = TRUE, mutex2 = FALSE  | AcquireLock2 | AcquireLock1 | Thread a acquires the first lock and tries to acquire the second                |
+| mutex1 = TRUE, mutex2 = TRUE   | AcquireLock2 | AcquireLock2 | Thread b acquires the second lock before thread 1 is able to acquire it         |
+| mutex1 = TRUE, mutex2 = TRUE   | Deadlock     | Deadlock     | No thread can progress because one thread holds the lock the other thread needs |
 
 [A More Complex Thread](https://deadlockempire.github.io/#L3-complexer)
 
@@ -475,12 +477,12 @@ variables
     mutex = NULL,
     mutex2 = NULL,
     mutex3 = NULL,
-    flag = FALSE; 
+    flag = FALSE;
 macro enter(mutex, thread) begin
     await mutex = NULL \/ mutex[1] = thread;
     if mutex = NULL then
         mutex := <<thread, 1>>;
-    else 
+    else
         mutex := <<thread, mutex[2] + 1>>;
     end if;
 end macro;
@@ -500,10 +502,10 @@ macro try_enter(mutex, thread) begin
     if mutex = NULL then
         mutex := <<thread, 1>>;
         try_enter_result := TRUE;
-    elsif mutex[1] = thread then 
+    elsif mutex[1] = thread then
         mutex := <<thread, mutex[2] + 1>>;
         try_enter_result := TRUE;
-    else 
+    else
         try_enter_result := FALSE;
     end if;
 end macro;
@@ -521,7 +523,7 @@ CheckEnterMutex:
         EnterMutex: enter(mutex, "a");
         ExitMutex: exit(mutex, "a");
         EnterMutex2: enter(mutex2, "a");
-    else 
+    else
         Else_EnterMutex2: enter(mutex2, "a");
         SetFlag: flag := TRUE;
         ExitMutex2: exit(mutex2, "a");
@@ -540,8 +542,8 @@ while TRUE do
         SetFlag:flag := FALSE;
         ExitMutex: exit(mutex, "b");
         ExitMutex2: enter(mutex2, "b");
-    else 
-        Else_EnterMutex: enter(mutex, "b"); 
+    else
+        Else_EnterMutex: enter(mutex, "b");
         Else_SetFlag: flag := FALSE;
         Else_ExitMutex: exit(mutex, "b");
     end if;
@@ -553,30 +555,30 @@ end algorithm; *)
 
 > Variables that didn't change on transition to a new state were omitted.
 
-| State | Thread a | Thread b | Description |
-| --- | --- |--- |--- |
-| flag = false, mutex = NULL, mutex2 = NULL, mutex3 = NULL | Loop | Loop | Both threads start running |
-| ... | TryEnterMutex | Loop | Thread `a` moves to the `TryEnterMutex` state but has not executed yet |
-| ... | TryEnterMutex | CheckFlag | Thread `b` moves to the `CheckFlag` state |
-| ... | TryEnterMutex | Else_EnterMutex | Thread `b` checks that `flag` is `FALSE` and moves to the `else` branch |
-| flag = false, mutex = <<"b", 1>>, mutex2 = NULL, mutex3 = NULL | TryEnterMutex | Else_SetFlag | After acquiring `mutex`, thread `b` sets `flag` to `FALSE` | 
-| ... | CheckEnterMutex | Else_SetFlag | Thread `a` resumes execution and checks if `flag` is `TRUE` | 
-| flag = false, mutex = <<"b", 1>>, mutex2 = <<"a", 1>>, mutex3 = NULL | Else_EnterMutex2 | Else_SetFlag | Thread `a` finds out that `flag` is `FALSE` and moves to the `else` branch | 
-| ... | SetFlag | Else_SetFlag | Thread `a` `will` set `flag` to `TRUE`| 
-| ... | SetFlag | Else_ExitMutex | Thread `b` resumes execution and releases `mutex` before thread `a` sets `flag` to `TRUE` | 
-| flag = true, mutex = <<"b", 1>>, mutex2 = NULL, mutex3 = NULL | ExitMutex2 | Else_ExitMutex | Thread `a` sets `flag` to `TRUE` | 
-| flag = true, mutex = NULL, mutex2 = NULL, mutex3 = NULL | Loop | Else_ExitMutex  | Thread `a` releases `mutex2` | 
-| ... | TryEnterMutex | Else_ExitMutex  | Thread `a` tries to acquire `mutex` | 
-| ... | TryEnterMutex | Loop | Thread `b` resumes execution | 
-| ... | CheckEnterMutex | Loop | Thread `a` checks if `mutex` has been acquired | 
-| flag = true, mutex = <<"a", 1>>, mutex2 = NULL, mutex3 = <<"a", 1>> | EnterMutex3 | Loop | `mutex3` was already acquired by thread `a` | 
-| flag = true, mutex = <<"a", 2>>, mutex2 = NULL, mutex3 = <<"a", 1>>| EnterMutex | Loop | Thread `a` acquires `mutex` again| 
-| flag = true, mutex = <<"a", 1>>, mutex2 = NULL, mutex3 = <<"a", 1>> | ExitMutex | Loop | Thread `a` releases `mutex` | 
-| ... | EnterMutex2 | Loop | Thread `a` will try to acquire `mutex2`| 
-| ... | EnterMutex2 | CheckFlag | Thread `b` resumes execution and checks if `flag` is `TRUE` | 
-| flag = true, mutex = <<"a", 1>>, mutex2 = <<"b", 1>>, mutex3 = <<"a", 1>> | EnterMutex2 | EnterMutex2 | `flag` is `TRUE`, so thread `b` triers to acquire `mutex2` |
-| flag = true, mutex = <<"a", 1>>, mutex2 = <<"b", 1>>, mutex3 = <<"a", 1>> | EnterMutex2 | EnterMutex | Thread `b` acquires `mutex`2  and tries to acquire `mutex` while thread `a` tries to acquire `mutex2. |
-| ... | Deadlock | Deadlock | |
+| State                                                                     | Thread a         | Thread b        | Description                                                                                          |
+| ------------------------------------------------------------------------- | ---------------- | --------------- | ---------------------------------------------------------------------------------------------------- |
+| flag = false, mutex = NULL, mutex2 = NULL, mutex3 = NULL                  | Loop             | Loop            | Both threads start running                                                                           |
+| ...                                                                       | TryEnterMutex    | Loop            | Thread `a` moves to the `TryEnterMutex` state but has not executed yet                               |
+| ...                                                                       | TryEnterMutex    | CheckFlag       | Thread `b` moves to the `CheckFlag` state                                                            |
+| ...                                                                       | TryEnterMutex    | Else_EnterMutex | Thread `b` checks that `flag` is `FALSE` and moves to the `else` branch                              |
+| flag = false, mutex = <<"b", 1>>, mutex2 = NULL, mutex3 = NULL            | TryEnterMutex    | Else_SetFlag    | After acquiring `mutex`, thread `b` sets `flag` to `FALSE`                                           |
+| ...                                                                       | CheckEnterMutex  | Else_SetFlag    | Thread `a` resumes execution and checks if `flag` is `TRUE`                                          |
+| flag = false, mutex = <<"b", 1>>, mutex2 = <<"a", 1>>, mutex3 = NULL      | Else_EnterMutex2 | Else_SetFlag    | Thread `a` finds out that `flag` is `FALSE` and moves to the `else` branch                           |
+| ...                                                                       | SetFlag          | Else_SetFlag    | Thread `a` `will` set `flag` to `TRUE`                                                               |
+| ...                                                                       | SetFlag          | Else_ExitMutex  | Thread `b` resumes execution and releases `mutex` before thread `a` sets `flag` to `TRUE`            |
+| flag = true, mutex = <<"b", 1>>, mutex2 = NULL, mutex3 = NULL             | ExitMutex2       | Else_ExitMutex  | Thread `a` sets `flag` to `TRUE`                                                                     |
+| flag = true, mutex = NULL, mutex2 = NULL, mutex3 = NULL                   | Loop             | Else_ExitMutex  | Thread `a` releases `mutex2`                                                                         |
+| ...                                                                       | TryEnterMutex    | Else_ExitMutex  | Thread `a` tries to acquire `mutex`                                                                  |
+| ...                                                                       | TryEnterMutex    | Loop            | Thread `b` resumes execution                                                                         |
+| ...                                                                       | CheckEnterMutex  | Loop            | Thread `a` checks if `mutex` has been acquired                                                       |
+| flag = true, mutex = <<"a", 1>>, mutex2 = NULL, mutex3 = <<"a", 1>>       | EnterMutex3      | Loop            | `mutex3` was already acquired by thread `a`                                                          |
+| flag = true, mutex = <<"a", 2>>, mutex2 = NULL, mutex3 = <<"a", 1>>       | EnterMutex       | Loop            | Thread `a` acquires `mutex` again                                                                    |
+| flag = true, mutex = <<"a", 1>>, mutex2 = NULL, mutex3 = <<"a", 1>>       | ExitMutex        | Loop            | Thread `a` releases `mutex`                                                                          |
+| ...                                                                       | EnterMutex2      | Loop            | Thread `a` will try to acquire `mutex2`                                                              |
+| ...                                                                       | EnterMutex2      | CheckFlag       | Thread `b` resumes execution and checks if `flag` is `TRUE`                                          |
+| flag = true, mutex = <<"a", 1>>, mutex2 = <<"b", 1>>, mutex3 = <<"a", 1>> | EnterMutex2      | EnterMutex2     | `flag` is `TRUE`, so thread `b` triers to acquire `mutex2`                                           |
+| flag = true, mutex = <<"a", 1>>, mutex2 = <<"b", 1>>, mutex3 = <<"a", 1>> | EnterMutex2      | EnterMutex      | Thread `b` acquires `mutex`2 and tries to acquire `mutex` while thread `a` tries to acquire `mutex2. |
+| ...                                                                       | Deadlock         | Deadlock        |                                                                                                      |
 
 [Manual Reset Event](https://deadlockempire.github.io/#H1-ManualResetEvent)
 
@@ -603,7 +605,7 @@ while (true) {
 EXTENDS TLC, Integers
 
 (*--algorithm spec
-variables 
+variables
     signal = FALSE,
     counter = 0;
 
@@ -615,7 +617,7 @@ Loop:
 while TRUE do
     WaitSignal: await signal;
     LoadCounter: tmp := counter;
-    CheckCounter: 
+    CheckCounter:
     if tmp % 2 = 1 then
         assert FALSE;
     end if;
@@ -642,23 +644,23 @@ end process;
 end algorithm; *)
 ```
 
-| State | Thread a | Thread b | Description |
-| --- | --- |--- |--- |
-| signal = false, counter = 0 | Loop | Loop | Both threads start running |
-| signal = false, counter = 0 | WaitSignal | Loop | Thread `a` blocks waiting for the signal |
-| signal = false, counter = 0 | WaitSignal | Loop | Thread `b` resets the signal, it does not unblock threads that are waiting |
-| signal = false, counter = 0, b.tmp = 0 | WaitSignal | LoadCounter1 | Thread `b` loads `counter` |
-| signal = false, counter = 0, b.tmp = 0 | WaitSignal | IncCounter1 | Thread `b` increments `counter` by setting it to `tmp + 1` |
-| signal = false, counter = 1, b.tmp = 0 | WaitSignal | LoadCounter2 | Thread `b` loads `counter` again |
-| signal = false, counter = 1, b.tmp = 1 | WaitSignal | IncCounter2 | Thread `b` increments `counter` by setting it to `tmp + 1` |
-| signal = false, counter = 2, b.tmp = 1 | WaitSignal | SetSignal | Thread `b` signals the waiting thread |
-| signal = true, counter = 2, b.tmp = 1 | WaitSignal | Loop | Thread `b` goes back to the beginning of the loop |
-| signal = true, counter = 2, a.tmp = 0, b.tmp = 1 | LoadCounter | Loop | Thread `a` loads `counter` |
-| signal = true, counter = 2, a.tmp = 0, b.tmp = 1 | LoadCounter | ResetSignal | Thread `b` resets the signal |
-| signal = false, counter = 2, a.tmp = 0, b.tmp = 1 | LoadCounter | LoadCounter1 | Thread `b` loads `counter` |
-| signal = false, counter = 2, a.tmp = 0, b.tmp = 2 | LoadCounter | IncCounter1 | Thread `b` increments `counter` by setting it to `tmp + 1` |
-| signal = false, counter = 3, a.tmp = 0, b.tmp = 2 | LoadCounter | LoadCounter2 | Thread `b` loads `counter` |
-| signal = false, counter = 3, a.tmp = 3, b.tmp = 2 | CheckCounter | LoadCounter2 | Thread `a` resumes and checks if `counter` is odd and finds that it is |
+| State                                             | Thread a     | Thread b     | Description                                                                |
+| ------------------------------------------------- | ------------ | ------------ | -------------------------------------------------------------------------- |
+| signal = false, counter = 0                       | Loop         | Loop         | Both threads start running                                                 |
+| signal = false, counter = 0                       | WaitSignal   | Loop         | Thread `a` blocks waiting for the signal                                   |
+| signal = false, counter = 0                       | WaitSignal   | Loop         | Thread `b` resets the signal, it does not unblock threads that are waiting |
+| signal = false, counter = 0, b.tmp = 0            | WaitSignal   | LoadCounter1 | Thread `b` loads `counter`                                                 |
+| signal = false, counter = 0, b.tmp = 0            | WaitSignal   | IncCounter1  | Thread `b` increments `counter` by setting it to `tmp + 1`                 |
+| signal = false, counter = 1, b.tmp = 0            | WaitSignal   | LoadCounter2 | Thread `b` loads `counter` again                                           |
+| signal = false, counter = 1, b.tmp = 1            | WaitSignal   | IncCounter2  | Thread `b` increments `counter` by setting it to `tmp + 1`                 |
+| signal = false, counter = 2, b.tmp = 1            | WaitSignal   | SetSignal    | Thread `b` signals the waiting thread                                      |
+| signal = true, counter = 2, b.tmp = 1             | WaitSignal   | Loop         | Thread `b` goes back to the beginning of the loop                          |
+| signal = true, counter = 2, a.tmp = 0, b.tmp = 1  | LoadCounter  | Loop         | Thread `a` loads `counter`                                                 |
+| signal = true, counter = 2, a.tmp = 0, b.tmp = 1  | LoadCounter  | ResetSignal  | Thread `b` resets the signal                                               |
+| signal = false, counter = 2, a.tmp = 0, b.tmp = 1 | LoadCounter  | LoadCounter1 | Thread `b` loads `counter`                                                 |
+| signal = false, counter = 2, a.tmp = 0, b.tmp = 2 | LoadCounter  | IncCounter1  | Thread `b` increments `counter` by setting it to `tmp + 1`                 |
+| signal = false, counter = 3, a.tmp = 0, b.tmp = 2 | LoadCounter  | LoadCounter2 | Thread `b` loads `counter`                                                 |
+| signal = false, counter = 3, a.tmp = 3, b.tmp = 2 | CheckCounter | LoadCounter2 | Thread `a` resumes and checks if `counter` is odd and finds that it is     |
 
 [Countdown Event](https://deadlockempire.github.io/#H2-CountdownEvent)
 
@@ -704,7 +706,7 @@ macro signal_wait() begin
 end macro;
 
 process a = "a"
-variables 
+variables
     tmp = 0;
 begin
 LoadProgres1: tmp := progress;
@@ -720,7 +722,7 @@ WaitSignal: signal_wait();
 end process;
 
 process b = "b"
-variables 
+variables
     tmp = 0;
 begin
 LoadProgress1: tmp := progress;
@@ -747,21 +749,21 @@ end algorithm; *)
 ====
 ```
 
-| State | Thread a | Thread b | Description |
-| --- | --- |--- |--- |
-| signal = 3, progress = 0, a.tmp = 0 | LoadProgress1 | LoadProgress1 | Both threads start running |
-| signal = 3, progress = 0, a.tmp = 0 | SetProgress | LoadProgress1 | Thread `a` is waiting to set `progress`to `tmp + 20` |
-| signal = 3, progress = 0, a.tmp = 0, b.tmp = 0 | SetProgress | SetProgress1 | Thread `b` will set `progress`to `tmp + 30` |
-| signal = 3, progress = 30,  a.tmp = 0, b.tmp = 0 | SetProgress | LoadProgress2 | Thread `b` will load `progress` again |
-| signal = 3, progress = 20,  a.tmp = 0, b.tmp = 0 | LoadProgress2 | LoadProgress2 | Thread `a` resumes execution and sets `progress` to `tmp + 20` before loading `progress` again |
-| signal = 3, progress = 20,  a.tmp = 20, b.tmp = 0 | CheckProgress | LoadProgress2 | Thread `a` will check that `progress >= 20` |
-| signal = 2, progress = 20,  a.tmp = 20, b.tmp = 0 | WaitSignal | LoadProgress2 | Thread `a` will wait for signal to reache `0` |
-| signal = 2, progress = 20,  a.tmp = 20, b.tmp = 20 | WaitSignal | CheckProgress1 | Thread `b` will check that `progress >= 30` after loading it into `tmp` |
-| signal = 2, progress = 20,  a.tmp = 20, b.tmp = 20 | WaitSignal | LoadProgress3 | Thread `b` will load `progress` into `tmp` |
-| signal = 2, progress = 20,  a.tmp = 20, b.tmp = 20 | WaitSignal | SetProgress2  | Thread `b` will set `progress` to `tmp + 50` |
-| signal = 2, progress = 70,  a.tmp = 20, b.tmp = 20 | WaitSignal | LoadProgress 4| Thread `b` will load `progress` |
-| signal = 2, progress = 70,  a.tmp = 20, b.tmp = 20 | WaitSignal | LoadProgress 4| Thread `b` will check that `progress >= 80` |
-| signal = 2, progress = 70,  a.tmp = 20, b.tmp = 20 | DeadLock | DeadLock | Thread `a` is waiting for `signal` to reach `0` and thread `b` has already completed execution |
+| State                                             | Thread a      | Thread b       | Description                                                                                    |
+| ------------------------------------------------- | ------------- | -------------- | ---------------------------------------------------------------------------------------------- |
+| signal = 3, progress = 0, a.tmp = 0               | LoadProgress1 | LoadProgress1  | Both threads start running                                                                     |
+| signal = 3, progress = 0, a.tmp = 0               | SetProgress   | LoadProgress1  | Thread `a` is waiting to set `progress`to `tmp + 20`                                           |
+| signal = 3, progress = 0, a.tmp = 0, b.tmp = 0    | SetProgress   | SetProgress1   | Thread `b` will set `progress`to `tmp + 30`                                                    |
+| signal = 3, progress = 30, a.tmp = 0, b.tmp = 0   | SetProgress   | LoadProgress2  | Thread `b` will load `progress` again                                                          |
+| signal = 3, progress = 20, a.tmp = 0, b.tmp = 0   | LoadProgress2 | LoadProgress2  | Thread `a` resumes execution and sets `progress` to `tmp + 20` before loading `progress` again |
+| signal = 3, progress = 20, a.tmp = 20, b.tmp = 0  | CheckProgress | LoadProgress2  | Thread `a` will check that `progress >= 20`                                                    |
+| signal = 2, progress = 20, a.tmp = 20, b.tmp = 0  | WaitSignal    | LoadProgress2  | Thread `a` will wait for signal to reache `0`                                                  |
+| signal = 2, progress = 20, a.tmp = 20, b.tmp = 20 | WaitSignal    | CheckProgress1 | Thread `b` will check that `progress >= 30` after loading it into `tmp`                        |
+| signal = 2, progress = 20, a.tmp = 20, b.tmp = 20 | WaitSignal    | LoadProgress3  | Thread `b` will load `progress` into `tmp`                                                     |
+| signal = 2, progress = 20, a.tmp = 20, b.tmp = 20 | WaitSignal    | SetProgress2   | Thread `b` will set `progress` to `tmp + 50`                                                   |
+| signal = 2, progress = 70, a.tmp = 20, b.tmp = 20 | WaitSignal    | LoadProgress 4 | Thread `b` will load `progress`                                                                |
+| signal = 2, progress = 70, a.tmp = 20, b.tmp = 20 | WaitSignal    | LoadProgress 4 | Thread `b` will check that `progress >= 80`                                                    |
+| signal = 2, progress = 70, a.tmp = 20, b.tmp = 20 | DeadLock      | DeadLock       | Thread `a` is waiting for `signal` to reach `0` and thread `b` has already completed execution |
 
 [Countdown Event Revisited](https://deadlockempire.github.io/#H3-CountdownEvent)
 
@@ -813,7 +815,7 @@ macro signal_wait() begin
 end macro;
 
 process a = "a"
-variables 
+variables
     exit = FALSE,
     tmp = 0;
 begin
@@ -834,7 +836,7 @@ end while;
 end process;
 
 process b = "b"
-variables 
+variables
     exit = FALSE,
     tmp = 0;
 begin
@@ -900,12 +902,12 @@ while (true) {
 EXTENDS TLC, Integers, Sequences
 
 (*--algorithm spec
-variables 
+variables
     fireball_charge = 2,
     barrier = 2,
     barrier_blocked = {};
 
-procedure barrier_signal_and_wait(thread) begin 
+procedure barrier_signal_and_wait(thread) begin
     BarrierSignal:
         if barrier - 1 = 0 then
             \* Unblock threads waiting for the barrier.
@@ -916,8 +918,8 @@ procedure barrier_signal_and_wait(thread) begin
             barrier := barrier - 1;
             barrier_blocked := barrier_blocked \union {thread};
         end if;
-    
-    BarrierAwait: 
+
+    BarrierAwait:
         await thread \notin barrier_blocked;
 
     return;
@@ -961,9 +963,10 @@ end algorithm; *)
 ```
 
 | Action |
-| --- |
+| ------ |
+
 A increments fireball_charge
-B increments fireball_charge 
+B increments fireball_charge
 C increments fireball_charge
 A signals and blocks
 C signals and blocks, unblocking A and C
@@ -1011,7 +1014,7 @@ macro semaphore_wait(block) begin
         await sema = 1;
         sema := 0;
         sema_acquired := TRUE;
-    elsif sema = 0 then 
+    elsif sema = 0 then
         sema_acquired := TRUE;
     end if;
 end macro;
@@ -1056,7 +1059,8 @@ end algorithm; *)
 ```
 
 | Action |
-| --- |
+| ------ |
+
 Thread `a` waits to acquire the semaphore.
 Thread `b` tries to acquire the semaphore with a `500ms` timeout, fails and releases the semaphore in the `else` branch.
 Thread `a` acquires the semaphore and enters the critical section.
@@ -1097,7 +1101,7 @@ macro semaphore_wait(block) begin
         await sema = 1;
         sema := 0;
         sema_acquired := TRUE;
-    elsif sema = 1 then 
+    elsif sema = 1 then
         sema := 0;
         sema_acquired := TRUE;
     end if;
@@ -1123,12 +1127,12 @@ begin
 Loop:
 while TRUE do
     ResetSemaAcquired: sema_acquired := FALSE;
-    SemaphoreWait: 
+    SemaphoreWait:
         semaphore_wait(FALSE);
         if sema_acquired then
             Dequeue: dequeue();
         end if;
-    
+
 end while;
 end process;
 
@@ -1145,8 +1149,9 @@ end algorithm; *)
 ```
 
 | Action |
-| --- |
-Thread `a` tries to acquire the semaphore with a `500ms` timeout, fails and goes back  to the start of the loop.
+| ------ |
+
+Thread `a` tries to acquire the semaphore with a `500ms` timeout, fails and goes back to the start of the loop.
 Thread `b` releases the semaphore.
 Thread `a` acquires the semaphore before thread `b` adds an item to the queue.
 Thread `a` tries to dequeue from an empty queue.
