@@ -257,6 +257,7 @@ StoreSecond:
     second := tmp + 1;
 end process;
 end algorithm; *)
+====
 ```
 
 | State                                                   | Thread a        | Thread b    | Description                                                                                                                                                                   |
@@ -642,6 +643,7 @@ while TRUE do
 end while;
 end process;
 end algorithm; *)
+====
 ```
 
 | State                                             | Thread a     | Thread b     | Description                                                                |
@@ -1150,8 +1152,72 @@ end algorithm; *)
 
 | Action |
 | ------ |
-
 Thread `a` tries to acquire the semaphore with a `500ms` timeout, fails and goes back to the start of the loop.
 Thread `b` releases the semaphore.
 Thread `a` acquires the semaphore before thread `b` adds an item to the queue.
 Thread `a` tries to dequeue from an empty queue.
+
+[Producer-Consumer (variant)](https://deadlockempire.github.io/#S3-producerConsumer)
+
+```c#
+// Thread a
+while (true) {
+  queue.Enqueue(new Golem());
+}
+
+// Thread b
+while (true) {
+  if (queue.Count > 0) {
+    queue.Dequeue();
+  }
+}
+```
+
+```tlaplus
+
+---- MODULE spec ----
+EXTENDS TLC, Sequences, Integers
+
+(*--algorithm spec
+variables
+    queue = <<>>,
+    is_queue_inconsistent = FALSE;
+
+procedure enqueue() begin 
+    AddItem: queue := Append(queue, "v");
+    EnterInconsistentState: is_queue_inconsistent := TRUE;
+    LeaveInconsistentState: is_queue_inconsistent := FALSE;
+end procedure;
+
+procedure dequeue() begin 
+Dequeue:
+    assert is_queue_inconsistent = FALSE;
+    queue := Tail(queue);
+end procedure;
+
+process a = "a"
+begin
+Loop:
+while TRUE do
+    call enqueue();
+end while;
+end process;
+
+process b = "b"
+begin
+Loop:
+while TRUE do
+    CheckQueueLen: 
+    if Len(queue) > 0 then
+        call dequeue();
+    end if;
+end while;
+end process;
+end algorithm; *)
+====
+```
+
+| Action |
+| ------ |
+Thread `a` starts the operation to add an item to queue and the queue enters an incosistent state while being modified
+Thread `b` finds out that the queue is not empty and tries to dequeue an item while the queue is still being modified by thread `a`
