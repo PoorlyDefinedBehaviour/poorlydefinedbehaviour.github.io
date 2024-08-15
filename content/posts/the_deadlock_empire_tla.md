@@ -1346,3 +1346,134 @@ Thread `a` acquires the mutex first, sees that the queue is empty and waits for 
 Thread `c` acquires the mutex, adds an item to the queue, signals the condition variable and releases the mutex.
 Thread `b` acquires the mutex before thread `a` gets to run, dequeues an item from the queue and releases the mutex.
 Thread `a` wakes up with the mutex acquired and tries to dequeue an item but finds out that queue is empty.
+
+[Dragonfire](https://deadlockempire.github.io/#D1-Dragonfire)
+
+```c#
+// Thread a
+while (true) {
+  Monitor.Enter(firebreathing);
+  incinerate_enemies();
+  if (fireball.Wait(500)) {
+    // Swoosh!
+    blast_enemies();
+    // Uh... that was tiring.
+    // I'd better rest while I'm vulnerable...
+    if (fireball.Wait(500)) {
+      if (fireball.Wait(500)) {
+        critical_section();
+      }
+    }
+    // Safe now...
+  }
+  c = c - 1;
+  c = c + 1;
+  Monitor.Exit(firebreathing);
+}
+
+// Thread b
+// This is stupid.
+// The other head gets all the cool toys,
+// ...and I get stuck recharging.
+while (true) {
+  if (c < 2) {
+    // Let's do some damage!
+    fireball.Release();
+    c++;
+  } else {
+    // I hate being in here.
+    critical_section();
+  }
+}
+```
+
+```tlaplus
+---- MODULE spec ----
+EXTENDS TLC, Integers
+
+(*--algorithm spec
+variables
+    mutex = "",
+    critical_section = 0,
+    c = 0,
+    fireballs = 0;
+
+define
+    CriticalSection == critical_section <= 1
+end define;
+
+macro mutex_enter(thread) begin
+    await mutex = "";
+    mutex := thread;
+end macro;
+
+macro mutex_exit(thread) begin
+    assert mutex = thread;
+    mutex := "";
+end macro;
+
+macro fireball_wait() begin
+    if fireballs > 0 then
+        fireballs := fireballs - 1;
+        ok := TRUE;
+    else
+        ok := FALSE;
+    end if;
+end macro;
+
+process a = "a"
+variables
+    tmp = 0,
+    ok = FALSE;
+begin
+Loop:
+while TRUE do
+    AcquireMutex: mutex_enter("a");
+    \* incinerate_enemies();
+    CheckFireball_1:
+    fireball_wait();
+    if ok then
+        \* blast_enemies();
+        CheckFireball_2:
+        fireball_wait();
+        if ok then
+            CheckFireball_3:
+            fireball_wait();
+            if ok then
+                EnterCriticalSection: critical_section := critical_section + 1;
+                LeaveCriticalSection: critical_section := critical_section - 1;
+            end if;
+        end if;
+    end if;
+
+    LoadC_1:  tmp := c;
+    DecrementC: c := tmp - 1;
+
+    LoadC_2: tmp := c;
+    IncrementC: c := tmp + 1;
+
+    ReleaseMutex: mutex_exit("a");
+end while;
+end process;
+
+process b = "b"
+variables
+    tmp = 0;
+begin
+Loop:
+while TRUE do
+    if c < 2 then
+        FireballRelease: fireballs := fireballs + 1;
+        LoadC: tmp := c;
+        IncrementC: c := tmp + 1;
+    else
+        EnterCriticalSection: critical_section := critical_section + 1;
+        LeaveCriticalSection: critical_section := critical_section - 1;
+    end if;
+end while;
+end process;
+end algorithm; *)
+====
+```
+
+Provided without comment.
