@@ -1221,3 +1221,128 @@ end algorithm; *)
 | ------ |
 Thread `a` starts the operation to add an item to queue and the queue enters an incosistent state while being modified
 Thread `b` finds out that the queue is not empty and tries to dequeue an item while the queue is still being modified by thread `a`
+
+[Condition Variables](https://deadlockempire.github.io/#CV1-simple)
+
+```c#
+// Thread a
+while (true) {
+  Monitor.Enter(mutex);
+  if (queue.Count == 0) {
+    Monitor.Wait(mutex);
+      release the lock, then sleep
+      wait until woken up
+      Monitor.Enter(mutex);
+  }
+  queue.Dequeue();
+  Monitor.Exit(mutex);
+}
+
+// Thread b
+while (true) {
+  Monitor.Enter(mutex);
+  if (queue.Count == 0) {
+    Monitor.Wait(mutex);
+  }
+  queue.Dequeue();
+  Monitor.Exit(mutex);
+}
+
+// Thread c
+while (true) {
+  Monitor.Enter(mutex);
+  queue.Enqueue(42);
+  Monitor.PulseAll(mutex);
+  Monitor.Exit(mutex);
+}
+```
+
+```tlaplus
+---- MODULE spec ----
+EXTENDS TLC, Sequences, Integers
+
+(*--algorithm spec
+variables
+    queue = <<>>,
+    condition_variable = [a |-> FALSE, b |-> FALSE],
+    mutex = "";
+
+macro mutex_enter(thread) begin
+    await mutex = "";
+    mutex := thread;
+end macro;
+
+macro mutex_exit(thread) begin
+    assert mutex = thread;
+    mutex := "";
+end macro;
+
+macro mutex_pulse_all(thread) begin
+    assert mutex = thread;
+    condition_variable := [x \in DOMAIN condition_variable |-> TRUE];
+end macro;
+
+macro dequeue() begin
+    assert Len(queue) > 0;
+    queue := Tail(queue);
+end macro;
+
+procedure mutex_wait(thread) begin
+    ReleaseMutex:
+        assert mutex = thread;
+        mutex := "";
+    AwaitForConditionVariable: 
+        await condition_variable[thread] = TRUE;
+        condition_variable[thread] := FALSE;
+    AcquireMutex: 
+        mutex_enter(thread);
+        return;
+end procedure;
+
+process a = "a"
+begin
+Loop:
+while TRUE do
+    AcquireMutex: mutex_enter("a");
+    CheckQueueLen: 
+        if Len(queue) = 0 then
+            call mutex_wait("a");
+        end if;
+    Dequeue: dequeue();
+    ReleaseMutex: mutex_exit("a");
+end while;
+end process;
+
+process b = "b"
+begin
+Loop:
+while TRUE do
+    AcquireMutex: mutex_enter("b");
+    CheckQueueLen: 
+        if Len(queue) = 0 then
+            call mutex_wait("b");
+        end if;
+    Dequeue: dequeue();
+    ReleaseMutex: mutex_exit("b");
+end while;
+end process;
+
+process c = "c"
+begin
+Loop:
+while TRUE do
+    AcquireMutex: mutex_enter("c");
+    Enqueue: queue := Append(queue, 42);
+    MutexPulseAll: mutex_pulse_all("c");
+    ReleaseMutex: mutex_exit("c");
+end while;
+end process;
+end algorithm; *)
+```
+
+| Action |
+| ------ |
+Thread `a` acquires the mutex first, sees that the queue is empty and waits for the condition variable signal before proceeding.
+Thread `c` acquires the mutex, adds an item to the queue, signals the condition variable and releases the mutex.
+Thread `b` acquires the mutex before thread `a` gets to run, dequeues an item from the queue and releases the mutex.
+Thread `a` wakes up with the mutex acquired and tries to dequeue an item but finds out that queue is empty.
