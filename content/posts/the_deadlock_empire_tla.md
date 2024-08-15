@@ -1052,6 +1052,7 @@ while TRUE do
 end while;
 end process;
 end algorithm; *)
+====
 ```
 
 | Action |
@@ -1062,3 +1063,90 @@ Thread `a` acquires the semaphore and enters the critical section.
 Thread `b` tries to acquire the semaphore with a `500ms` timeout, fails and releases the semaphore in the `else` branch again.
 Thread `b` tries to acquire the semaphore with a `500ms` timeout, succeds and enters the critical section.
 Both threads are in the critical section at the same time.
+
+[Producer-consumer](https://deadlockempire.github.io/#S2-producerConsumer)
+
+```c#
+// Thread a
+while (true) {
+  if (semaphore.Wait(500)) {
+    queue.Dequeue();
+  } else {
+    // Nothing in the queue.
+  }
+}
+
+// Thread b
+while (true) {
+  semaphore.Release();
+  queue.Enqueue(new Dragon());
+}
+```
+
+```tlaplus
+---- MODULE spec ----
+EXTENDS TLC, Sequences, Integers
+
+(*--algorithm spec
+variables
+    sema = 0,
+    queue = <<>>;
+
+macro semaphore_wait(block) begin
+    if block then
+        await sema = 1;
+        sema := 0;
+        sema_acquired := TRUE;
+    elsif sema = 1 then 
+        sema := 0;
+        sema_acquired := TRUE;
+    end if;
+end macro;
+
+macro semaphore_release() begin
+    sema := 1;
+end macro;
+
+macro dequeue() begin
+    assert Len(queue) > 0;
+    queue := Tail(queue);
+end macro;
+
+macro enqueue() begin
+    queue := Append(queue, "v");
+end macro;
+
+process a = "a"
+variables
+    sema_acquired = FALSE;
+begin
+Loop:
+while TRUE do
+    ResetSemaAcquired: sema_acquired := FALSE;
+    SemaphoreWait: 
+        semaphore_wait(FALSE);
+        if sema_acquired then
+            Dequeue: dequeue();
+        end if;
+    
+end while;
+end process;
+
+process b = "b"
+begin
+Loop:
+while TRUE do
+    ReleaseSema: semaphore_release();
+    Enqueue: enqueue();
+end while;
+end process;
+end algorithm; *)
+====
+```
+
+| Action |
+| --- |
+Thread `a` tries to acquire the semaphore with a `500ms` timeout, fails and goes back  to the start of the loop.
+Thread `b` releases the semaphore.
+Thread `a` acquires the semaphore before thread `b` adds an item to the queue.
+Thread `a` tries to dequeue from an empty queue.
