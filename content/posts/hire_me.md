@@ -2,7 +2,7 @@
 title: "Hire me"
 date: 2023-12-02T20:00:00-03:00
 categories: ["meta"]
-draft: false
+draft: true
 ---
 
 - Contact me at brunotj2015@hotmail.com  
