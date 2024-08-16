@@ -3,13 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://poorlydefinedbehaviour.github.io/</loc>
-    <lastmod>2024-07-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://poorlydefinedbehaviour.github.io/posts/</loc>
-    <lastmod>2024-07-11T00:00:00+00:00</lastmod>
+    <lastmod>2024-08-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://poorlydefinedbehaviour.github.io/categories/</loc>
-    <lastmod>2024-01-01T00:00:00-03:00</lastmod>
+    <lastmod>2024-08-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://poorlydefinedbehaviour.github.io/categories/distributed-systems/</loc>
+    <lastmod>2024-08-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://poorlydefinedbehaviour.github.io/categories/formal-methods/</loc>
+    <lastmod>2024-08-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://poorlydefinedbehaviour.github.io/posts/the_deadlock_empire_tla/</loc>
+    <lastmod>2024-08-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://poorlydefinedbehaviour.github.io/posts/</loc>
+    <lastmod>2024-08-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://poorlydefinedbehaviour.github.io/categories/reading-list/</loc>
     <lastmod>2024-01-01T00:00:00-03:00</lastmod>
@@ -39,9 +48,6 @@
     <lastmod>2023-10-06T20:00:00-03:00</lastmod>
   </url><url>
     <loc>https://poorlydefinedbehaviour.github.io/posts/consistent_hashing/</loc>
-    <lastmod>2023-10-06T20:00:00-03:00</lastmod>
-  </url><url>
-    <loc>https://poorlydefinedbehaviour.github.io/categories/distributed-systems/</loc>
     <lastmod>2023-10-06T20:00:00-03:00</lastmod>
   </url><url>
     <loc>https://poorlydefinedbehaviour.github.io/posts/reading_list_september_2023/</loc>
