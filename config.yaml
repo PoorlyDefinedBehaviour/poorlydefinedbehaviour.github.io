@@ -70,7 +70,7 @@ params:
   homeInfoParams:
     Title: "What's this? \U0001F44B"
     Content: >
-      Shitposting, things i learned and show-offs.
+      Shitposting, things I learned and show-offs.
 
   socialIcons:
     - name: github
