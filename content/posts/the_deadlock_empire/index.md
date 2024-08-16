@@ -196,20 +196,16 @@ end algorithm; *)
 
 [Confused counter](https://deadlockempire.github.io/#4-confusedCounter)
 
-Thread A
-
 ```c#
+// Thread a
 business_logic();
 first++;
 second++;
 if (second == 2 && first != 2) {
   Debug.Assert(false);
 }
-```
 
-Thread B
-
-```c#
+// Thread b
 business_logic();
 first++;
 second++;
