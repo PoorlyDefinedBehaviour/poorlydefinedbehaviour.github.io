@@ -15,9 +15,9 @@
     <atom:link href="https://poorlydefinedbehaviour.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Model checking The Deadlock Empire</title>
-      <link>https://poorlydefinedbehaviour.github.io/posts/the_deadlock_empire_tla/</link>
+      <link>https://poorlydefinedbehaviour.github.io/posts/the_deadlock_empire/</link>
       <pubDate>Thu, 15 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://poorlydefinedbehaviour.github.io/posts/the_deadlock_empire_tla/</guid>
+      <guid>https://poorlydefinedbehaviour.github.io/posts/the_deadlock_empire/</guid>
       <description>This post contains TLA+ solutions for The Deadlock Empire which is a collection of challenges where you play the role of a scheduler that can context switch at any time and the objective is to break the multithreaded programs.
 Non atomic instructions
 There&amp;rsquo;s two threads executing the following code:
