@@ -1,9 +1,11 @@
 ---
-title: "Model checking the deadlock empire"
+title: "Model checking The Deadlock Empire"
 date: 2024-08-15T00:00:00-00:00
 categories: ["formal methods", "distributed systems"]
 draft: false
 ---
+
+This post contains TLA+ solutions for [The Deadlock Empire](https://deadlockempire.github.io/) which is a collection of challenges where you play the role of a scheduler that can context switch at any time and the objective is to break the multithreaded programs.
 
 [Non atomic instructions](https://deadlockempire.github.io/#T2-Expansion)
 
