@@ -1,8 +1,8 @@
 ---
 title: "Model checking the deadlock empire"
-date: 2024-07-11T00:00:00-00:00
+date: 2024-08-15T00:00:00-00:00
 categories: ["formal methods", "distributed systems"]
-draft: true
+draft: false
 ---
 
 [Non atomic instructions](https://deadlockempire.github.io/#T2-Expansion)
@@ -1338,6 +1338,7 @@ while TRUE do
 end while;
 end process;
 end algorithm; *)
+====
 ```
 
 | Action |
@@ -1470,6 +1471,268 @@ while TRUE do
         EnterCriticalSection: critical_section := critical_section + 1;
         LeaveCriticalSection: critical_section := critical_section - 1;
     end if;
+end while;
+end process;
+end algorithm; *)
+====
+```
+
+[Triple danger](https://deadlockempire.github.io/#D2-Sorcerer)
+
+```c#
+// Thread a
+while (true) {
+  Monitor.Enter(conduit);
+  // I summon mana for you, dragon!
+  // Incinerate the enemies!
+  energyBursts.Enqueue(new EnergyBurst());
+  Monitor.Exit(conduit);
+}
+
+// Thread b
+while (true) {
+  if (energyBursts.Count > 0) {
+    Monitor.Enter(conduit);
+    energyBursts.Dequeue();
+    lightning_bolts(terrifying: true);
+    Monitor.Exit(conduit);
+  }
+}
+
+// Thread c
+while (true) {
+  if (energyBursts.Count > 0) {
+    Monitor.Enter(conduit);
+    energyBursts.Dequeue();
+    fireball(mighty: true);
+    Monitor.Exit(conduit);
+  }
+}
+```
+
+Provided without comment.
+
+```tlaplus
+---- MODULE spec ----
+EXTENDS TLC, Sequences, Integers
+
+(*--algorithm spec
+variables
+    mutex = "",
+    queue = <<>>;
+
+macro mutex_enter(thread) begin
+    await mutex = "";
+    mutex := thread;
+end macro;
+
+macro mutex_exit(thread) begin
+    assert mutex = thread;
+    mutex := "";
+end macro;
+
+macro enqueue() begin
+    queue := Append(queue, "v");
+end macro;
+
+macro dequeue() begin
+    assert Len(queue) > 0;
+    queue := Tail(queue);
+end macro;
+
+process a = "a"
+begin
+Loop:
+while TRUE do
+    AcquireMutex: mutex_enter("a");
+    Enqueue: enqueue();
+    ReleaseMutex: mutex_exit("a");
+end while;
+end process;
+
+process b = "b"
+begin
+Loop:
+while TRUE do
+    if Len(queue) > 0 then
+        AcquireMutex: mutex_enter("b");
+        Dequeue: dequeue();
+        ReleaseMutex: mutex_exit("b");
+    end if;
+end while;
+end process;
+
+process c = "c"
+begin
+Loop:
+while TRUE do
+    if Len(queue) > 0 then
+        AcquireMutex: mutex_enter("c");
+        Dequeue: dequeue();
+        ReleaseMutex: mutex_exit("c");
+    end if;
+end while;
+end process;
+end algorithm; *)
+====
+```
+
+Provided without comment.
+
+[Boss fight](https://deadlockempire.github.io/#D4-Boss)
+
+```c#
+// Thread a
+while (true) {
+  darkness++;
+  evil++;
+  if (darkness != 2 && evil != 2) {
+    if (fortress.Wait(500)) {
+      fortress.Wait();
+      Monitor.Enter(sanctum);
+      Monitor.Wait(sanctum);
+      critical_section();
+      Monitor.Exit(sanctum);
+    }
+  }
+}
+
+// Thread b
+while (true) {
+  darkness++;
+  evil++;
+  if (darkness != 2 && evil == 2) {
+    Monitor.Enter(sanctum);
+    Monitor.Pulse(sanctum);
+    Monitor.Exit(sanctum);
+    critical_section();
+  }
+  fortress.Release();
+  darkness = 0;
+  evil = 0;
+}
+```
+
+```tlaplus
+---- MODULE spec ----
+EXTENDS TLC, Integers, Sequences
+
+(*--algorithm spec
+variables 
+    mutex = "",
+    mutex_pulse_received = FALSE,
+    darkness = 0,
+    evil = 0,
+    fortress = 0,
+    threads_in_critical_section = 0;
+
+define
+    MutualExclusion == threads_in_critical_section <= 1
+end define;
+
+macro mutex_enter(thread) begin
+    await mutex = "";
+    mutex := thread;
+end macro;
+
+macro mutex_exit(thread) begin
+    assert mutex = thread;
+    mutex := "";
+end macro;
+
+macro mutex_pulse(thread) begin
+    assert mutex = thread;
+    mutex_pulse_received := TRUE;
+end macro;
+
+macro fortress_wait(block) begin
+    if block then
+        await fortress > 0;
+    end if;
+
+    if fortress = 0 then
+        ok := FALSE;
+    else
+        fortress := fortress - 1;
+        ok := TRUE;
+    end if;
+end macro;
+
+procedure mutex_wait(thread) begin
+    MutexWait_ReleaseMutex:
+        assert mutex = thread;
+        mutex := "";
+    MutexWait_WaitForPulse:
+        await mutex_pulse_received = TRUE;
+        mutex_pulse_received := FALSE;
+    MutexWait_AcquireMutex:
+        mutex_enter(thread);
+    return;
+end procedure;
+
+procedure inc_darkness() 
+    variables
+        tmp = 0;
+begin 
+    Inc_Load: tmp := darkness;
+    Inc_Add: darkness := tmp + 1;
+    return;
+end procedure;
+
+procedure inc_evil() 
+    variables
+        tmp = 0;
+begin 
+    Inc_Load: tmp := evil;
+    Inc_Add: evil := tmp + 1;
+    return;
+end procedure;
+
+procedure critical_section() begin 
+    CriticalSection_Enter: threads_in_critical_section := threads_in_critical_section + 1;
+    CriticalSection_Leave: threads_in_critical_section := threads_in_critical_section - 1;
+    return;
+end procedure;
+
+process a = "a"
+variables 
+    ok = FALSE;
+begin
+Loop:
+while TRUE do
+    IncDarkness: call inc_darkness();
+    IncEvil: call inc_evil();
+    Check:
+    if darkness # 2 /\ evil # 2 then
+        FortressWait_1: fortress_wait(FALSE);
+        if ok then 
+            FortressWait_2: fortress_wait(TRUE);
+            DecFortress: fortress :=  fortress - 1;
+            AcquireMutex: mutex_enter("a");
+            MutexWait: call mutex_wait("a");
+            CriticalSection: call critical_section();
+            ReleaseMutex: mutex_exit("a");
+        end if;
+    end if;
+end while;
+end process;
+
+process b = "b"
+begin
+Loop:
+while TRUE do
+    IncDarkness: call inc_darkness();
+    IncEvil: call inc_evil();
+    Check:
+    if darkness # 2 /\ evil = 2 then
+        AcquireMutex: mutex_enter("b");
+        MutexPulse: mutex_pulse("b");
+        MutexExit: mutex_exit("b");
+        CriticalSection: call critical_section();
+    end if;
+    FortressRelease: fortress := fortress + 1;
+    ResetDarkness: darkness := 0;
+    ResetEvil: evil := 0;
 end while;
 end process;
 end algorithm; *)
