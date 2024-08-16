@@ -5,6 +5,8 @@ categories: ["formal methods", "distributed systems"]
 draft: false
 ---
 
+![](images/banner.jpeg)
+
 This post contains TLA+ solutions for [The Deadlock Empire](https://deadlockempire.github.io/) which is a collection of challenges where you play the role of a scheduler that can context switch at any time and the objective is to break the multithreaded programs.
 
 [Non atomic instructions](https://deadlockempire.github.io/#T2-Expansion)
