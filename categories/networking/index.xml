@@ -9,7 +9,7 @@
       <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
-    <generator>Hugo -- 0.132.1</generator>
+    <generator>Hugo -- 0.135.0</generator>
     <language>en</language>
     <lastBuildDate>Tue, 28 Mar 2023 20:30:00 -0300</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/categories/networking/index.xml" rel="self" type="application/rss+xml" />
@@ -18,7 +18,9 @@
       <link>https://poorlydefinedbehaviour.github.io/posts/fair_loss_links_and_two_generals/</link>
       <pubDate>Tue, 28 Mar 2023 20:30:00 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/fair_loss_links_and_two_generals/</guid>
-      <description>It feels like most people are not used to thinking about how things can fail, programming as if things always work as expected is the default modus operandi of most engineers i have talked to. Some examples that come to mind: http requests without handling responses that don&amp;rsquo;t have status 200, no timeouts, no retries, publishing a message to kafka and them updating a database, having a web client orchestrate a transaction across several systems without thinking: what if the user closes the browser tab?</description>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/spongebob_ol_reliable.jpg&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;It feels like most people are not used to thinking about how things can fail, programming as if things always work as expected is the default modus operandi of most engineers i have talked to. Some examples that come to mind: http requests without handling responses that don&amp;rsquo;t have status 200, no timeouts, no retries, publishing a message to kafka and them updating a database, having a web client orchestrate a transaction across several systems without thinking: what if the user closes the browser tab?&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -9,7 +9,7 @@
       <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
-    <generator>Hugo -- 0.132.1</generator>
+    <generator>Hugo -- 0.135.0</generator>
     <language>en</language>
     <lastBuildDate>Fri, 04 Mar 2022 17:48:19 -0300</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/categories/consensus/index.xml" rel="self" type="application/rss+xml" />
@@ -18,11 +18,21 @@
       <link>https://poorlydefinedbehaviour.github.io/posts/raft_notes/</link>
       <pubDate>Fri, 04 Mar 2022 17:48:19 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/raft_notes/</guid>
-      <description>Replicated And Fault Tolerant Raft is a consensus algorithm for managing a replicated log.
-The authors claim Raft to be more understandable than Paxos because Raft separates the key elements of consensus
-Leader election Log replication Safety and enforces a stronger degree of coherency to reduce the number of states that must be considered.
-Raft also includes a new mechanism for changing cluster membership.
-What is a consensus algorithm Consensus algorithms allow a collection of machines to work as a coherent group that can survive the failures of some of its members.</description>
+      <description>&lt;h1 id=&#34;replicated-and-fault-tolerant&#34;&gt;&lt;strong&gt;R&lt;/strong&gt;eplicated &lt;strong&gt;A&lt;/strong&gt;nd &lt;strong&gt;F&lt;/strong&gt;ault &lt;strong&gt;T&lt;/strong&gt;olerant&lt;/h1&gt;
+&lt;p&gt;Raft is a consensus algorithm for managing a replicated log.&lt;/p&gt;
+&lt;p&gt;The authors claim Raft to be more understandable than Paxos
+because Raft separates the key elements of consensus&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Leader election&lt;/li&gt;
+&lt;li&gt;Log replication&lt;/li&gt;
+&lt;li&gt;Safety&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;and enforces a stronger degree of coherency to reduce the number of states
+that must be considered.&lt;/p&gt;
+&lt;p&gt;Raft also includes a new mechanism for changing cluster membership.&lt;/p&gt;
+&lt;h2 id=&#34;what-is-a-consensus-algorithm&#34;&gt;What is a consensus algorithm&lt;/h2&gt;
+&lt;p&gt;Consensus algorithms allow a collection of machines to work as a coherent group
+that can survive the failures of some of its members.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

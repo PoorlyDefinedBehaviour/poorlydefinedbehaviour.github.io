@@ -9,7 +9,7 @@
       <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
-    <generator>Hugo -- 0.132.1</generator>
+    <generator>Hugo -- 0.135.0</generator>
     <language>en</language>
     <lastBuildDate>Thu, 03 Mar 2022 20:56:31 -0300</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/categories/probabilistic/index.xml" rel="self" type="application/rss+xml" />
@@ -18,8 +18,10 @@
       <link>https://poorlydefinedbehaviour.github.io/posts/bloom_filter/</link>
       <pubDate>Thu, 03 Mar 2022 20:56:31 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/bloom_filter/</guid>
-      <description>What&amp;rsquo;s a Bloom filter A bloom filter is a data-structure that can be used to check if a set contains an element. It uses way less memory than a conventional set data-structure by sacrificing accuracy.
-Example Say we are building a log-structured merge-tree, we can use a bloom filter to find out if the LSM-tree contains a particular key in O(1) time in most cases, the downside is that sometimes the bloom filter would say that the LSM-tree contains a key, but it actually does not and we would go searching for the value that&amp;rsquo;s mapped to the key and never actually find it.</description>
+      <description>&lt;h1 id=&#34;whats-a-bloom-filter&#34;&gt;What&amp;rsquo;s a Bloom filter&lt;/h1&gt;
+&lt;p&gt;A bloom filter is a data-structure that can be used to check if a set contains an element. It uses way less memory than a &lt;a href=&#34;https://en.wikipedia.org/wiki/Set_(abstract_data_type)#Implementations&#34;&gt;conventional set data-structure&lt;/a&gt; by sacrificing accuracy.&lt;/p&gt;
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+&lt;p&gt;Say we are building a &lt;a href=&#34;https://www.cs.umb.edu/~poneil/lsmtree.pdf&#34;&gt;log-structured merge-tree&lt;/a&gt;, we can use a bloom filter to find out if the LSM-tree contains a particular key in O(1) time in most cases, the downside is that sometimes the bloom filter would say that the LSM-tree contains a key, but it actually does not and we would go searching for the value that&amp;rsquo;s mapped to the key and never actually find it.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

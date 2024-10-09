@@ -9,7 +9,7 @@
       <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
-    <generator>Hugo -- 0.132.1</generator>
+    <generator>Hugo -- 0.135.0</generator>
     <language>en</language>
     <lastBuildDate>Thu, 15 Aug 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/categories/formal-methods/index.xml" rel="self" type="application/rss+xml" />
@@ -18,10 +18,16 @@
       <link>https://poorlydefinedbehaviour.github.io/posts/the_deadlock_empire/</link>
       <pubDate>Thu, 15 Aug 2024 00:00:00 +0000</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/the_deadlock_empire/</guid>
-      <description>This post contains TLA+ solutions for The Deadlock Empire which is a collection of challenges where the objective is to break multithreaded programs by playing the role of a scheduler that can context switch at any time.
-Non atomic instructions
-There&amp;rsquo;s two threads executing the following code:
-a = a + 1; if (a == 1) { critical_section(); } Since the a increment is not atomic, conceptually, it is like setting a temporary variable to the value of a&amp;ndash; tmp = a and then setting a to the temporary variable value incremented by 1 &amp;ndash; a = tmp + 1.</description>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/banner.jpeg&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;This post contains &lt;a href=&#34;https://learntla.com/&#34;&gt;TLA+&lt;/a&gt; solutions for &lt;a href=&#34;https://deadlockempire.github.io/&#34;&gt;The Deadlock Empire&lt;/a&gt; which is a collection of challenges where the objective is to break multithreaded programs by playing the role of a scheduler that can context switch at any time.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://deadlockempire.github.io/#T2-Expansion&#34;&gt;Non atomic instructions&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s two threads executing the following code:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c#&#34; data-lang=&#34;c#&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a = a + &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (a == &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  critical_section();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Since the &lt;code&gt;a&lt;/code&gt; increment is not atomic, conceptually, it is like setting a temporary variable to the value of &lt;code&gt;a&lt;/code&gt;&amp;ndash; &lt;code&gt;tmp = a&lt;/code&gt; and then setting &lt;code&gt;a&lt;/code&gt; to the temporary variable value incremented by 1 &amp;ndash; &lt;code&gt;a = tmp + 1&lt;/code&gt;.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

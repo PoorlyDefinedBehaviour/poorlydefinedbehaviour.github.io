@@ -9,7 +9,7 @@
       <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
-    <generator>Hugo -- 0.132.1</generator>
+    <generator>Hugo -- 0.135.0</generator>
     <language>en</language>
     <lastBuildDate>Sun, 20 Mar 2022 22:21:07 -0300</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/categories/rate-limiting/index.xml" rel="self" type="application/rss+xml" />
@@ -18,9 +18,11 @@
       <link>https://poorlydefinedbehaviour.github.io/posts/token_bucket/</link>
       <pubDate>Sun, 20 Mar 2022 22:21:07 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/token_bucket/</guid>
-      <description>Intro Token bucket is an algorithm that can be used to rate limit requests made or received by a service.
-How it works The algorithm is called token bucket because of the way it works: imagine we have a bucket with x tokens where each accepted request consumes one token from the bucket and a token is added back to the bucket at an interval.
-A bucket with 1 token that is refilled each second means the service accepts one request per second.</description>
+      <description>&lt;h1 id=&#34;intro&#34;&gt;Intro&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://en.wikipedia.org/wiki/Token_bucket&#34;&gt;Token bucket&lt;/a&gt; is an algorithm that can be used to rate limit requests made or received by a service.&lt;/p&gt;
+&lt;h1 id=&#34;how-it-works&#34;&gt;How it works&lt;/h1&gt;
+&lt;p&gt;The algorithm is called token bucket because of the way it works: imagine we have a bucket with &lt;code&gt;x&lt;/code&gt; tokens where each accepted request consumes one token from the bucket and a token is added back to the bucket at an interval.&lt;/p&gt;
+&lt;p&gt;A bucket with &lt;code&gt;1&lt;/code&gt; token that is refilled each second means the service accepts one request per second.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

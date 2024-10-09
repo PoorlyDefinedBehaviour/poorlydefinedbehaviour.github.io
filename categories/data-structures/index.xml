@@ -9,7 +9,7 @@
       <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
-    <generator>Hugo -- 0.132.1</generator>
+    <generator>Hugo -- 0.135.0</generator>
     <language>en</language>
     <lastBuildDate>Sat, 30 Apr 2022 16:46:09 -0300</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/categories/data-structures/index.xml" rel="self" type="application/rss+xml" />
@@ -18,16 +18,23 @@
       <link>https://poorlydefinedbehaviour.github.io/posts/logs/</link>
       <pubDate>Sat, 30 Apr 2022 16:46:09 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/logs/</guid>
-      <description>What is a log A log is just a immutable sequence of records wih strong ordering semantics that can be used to provide durability, replication and to model consensus. It is usually a 0 indexed file that new entries are appended to because expensive disk seeks can usually be avoided when appending to a file1.
-Not to be confused with the type of logs most people are used to: application logs that are meant to be read by humans although application logs are a degenerative case of the log we are talking about2.</description>
+      <description>&lt;h1 id=&#34;what-is-a-log&#34;&gt;What is a log&lt;/h1&gt;
+&lt;p&gt;A log is just a immutable sequence of records wih strong ordering semantics that can be used to provide durability, replication and to model consensus. It is usually a 0 indexed file that new entries are appended to because expensive disk seeks can usually be avoided when appending to a file&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p align=&#34;center&#34;&gt;
+&lt;img src=&#34;https://user-images.githubusercontent.com/17282221/168452116-a751154f-ec58-4a65-91f5-a90269529963.png&#34; /&gt;
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Not to be confused with the type of logs most people are used to: application logs that are meant to be read by humans although application logs are a degenerative case of the log we are talking about&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Bloom filter</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/bloom_filter/</link>
       <pubDate>Thu, 03 Mar 2022 20:56:31 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/bloom_filter/</guid>
-      <description>What&amp;rsquo;s a Bloom filter A bloom filter is a data-structure that can be used to check if a set contains an element. It uses way less memory than a conventional set data-structure by sacrificing accuracy.
-Example Say we are building a log-structured merge-tree, we can use a bloom filter to find out if the LSM-tree contains a particular key in O(1) time in most cases, the downside is that sometimes the bloom filter would say that the LSM-tree contains a key, but it actually does not and we would go searching for the value that&amp;rsquo;s mapped to the key and never actually find it.</description>
+      <description>&lt;h1 id=&#34;whats-a-bloom-filter&#34;&gt;What&amp;rsquo;s a Bloom filter&lt;/h1&gt;
+&lt;p&gt;A bloom filter is a data-structure that can be used to check if a set contains an element. It uses way less memory than a &lt;a href=&#34;https://en.wikipedia.org/wiki/Set_(abstract_data_type)#Implementations&#34;&gt;conventional set data-structure&lt;/a&gt; by sacrificing accuracy.&lt;/p&gt;
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+&lt;p&gt;Say we are building a &lt;a href=&#34;https://www.cs.umb.edu/~poneil/lsmtree.pdf&#34;&gt;log-structured merge-tree&lt;/a&gt;, we can use a bloom filter to find out if the LSM-tree contains a particular key in O(1) time in most cases, the downside is that sometimes the bloom filter would say that the LSM-tree contains a key, but it actually does not and we would go searching for the value that&amp;rsquo;s mapped to the key and never actually find it.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

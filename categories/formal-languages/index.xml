@@ -9,7 +9,7 @@
       <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
-    <generator>Hugo -- 0.132.1</generator>
+    <generator>Hugo -- 0.135.0</generator>
     <language>en</language>
     <lastBuildDate>Tue, 08 Aug 2023 00:00:00 -0300</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/categories/formal-languages/index.xml" rel="self" type="application/rss+xml" />
@@ -18,8 +18,8 @@
       <link>https://poorlydefinedbehaviour.github.io/posts/formal_languages_alphabet_strings_and_languages/</link>
       <pubDate>Tue, 08 Aug 2023 00:00:00 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/formal_languages_alphabet_strings_and_languages/</guid>
-      <description>An alphabet is any set of finite symbols such as a and b. For example, the alphabet Σ = {a, b} is an alphabet that contains the strings that can be built by combining a and b and the alphabet Σ = {0, 1} is the an alphabet that contains the strings that can be built by combining 0 and 1.
-Symbols such as a and b put together to form something like bbaa are called strings.</description>
+      <description>&lt;p&gt;An &lt;code&gt;alphabet&lt;/code&gt; is any set of finite symbols such as &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt;. For example, the alphabet &lt;code&gt;Σ = {a, b}&lt;/code&gt; is an alphabet that contains the &lt;code&gt;strings&lt;/code&gt; that can be built by combining &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; and the alphabet &lt;code&gt;Σ = {0, 1}&lt;/code&gt; is the an alphabet that contains the strings that can be built by combining &lt;code&gt;0&lt;/code&gt; and &lt;code&gt;1&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Symbols such as &lt;code&gt;a&lt;/code&gt; and &lt;code&gt;b&lt;/code&gt; put together to form something like &lt;code&gt;bbaa&lt;/code&gt; are called &lt;code&gt;strings&lt;/code&gt;.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

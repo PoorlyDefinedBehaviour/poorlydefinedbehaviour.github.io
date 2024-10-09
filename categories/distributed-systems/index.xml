@@ -9,7 +9,7 @@
       <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
-    <generator>Hugo -- 0.132.1</generator>
+    <generator>Hugo -- 0.135.0</generator>
     <language>en</language>
     <lastBuildDate>Thu, 15 Aug 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/categories/distributed-systems/index.xml" rel="self" type="application/rss+xml" />
@@ -18,43 +18,66 @@
       <link>https://poorlydefinedbehaviour.github.io/posts/the_deadlock_empire/</link>
       <pubDate>Thu, 15 Aug 2024 00:00:00 +0000</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/the_deadlock_empire/</guid>
-      <description>This post contains TLA+ solutions for The Deadlock Empire which is a collection of challenges where the objective is to break multithreaded programs by playing the role of a scheduler that can context switch at any time.
-Non atomic instructions
-There&amp;rsquo;s two threads executing the following code:
-a = a + 1; if (a == 1) { critical_section(); } Since the a increment is not atomic, conceptually, it is like setting a temporary variable to the value of a&amp;ndash; tmp = a and then setting a to the temporary variable value incremented by 1 &amp;ndash; a = tmp + 1.</description>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/banner.jpeg&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;This post contains &lt;a href=&#34;https://learntla.com/&#34;&gt;TLA+&lt;/a&gt; solutions for &lt;a href=&#34;https://deadlockempire.github.io/&#34;&gt;The Deadlock Empire&lt;/a&gt; which is a collection of challenges where the objective is to break multithreaded programs by playing the role of a scheduler that can context switch at any time.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://deadlockempire.github.io/#T2-Expansion&#34;&gt;Non atomic instructions&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s two threads executing the following code:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-c#&#34; data-lang=&#34;c#&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a = a + &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (a == &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  critical_section();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Since the &lt;code&gt;a&lt;/code&gt; increment is not atomic, conceptually, it is like setting a temporary variable to the value of &lt;code&gt;a&lt;/code&gt;&amp;ndash; &lt;code&gt;tmp = a&lt;/code&gt; and then setting &lt;code&gt;a&lt;/code&gt; to the temporary variable value incremented by 1 &amp;ndash; &lt;code&gt;a = tmp + 1&lt;/code&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Consistent hashing</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/consistent_hashing/</link>
       <pubDate>Fri, 06 Oct 2023 20:00:00 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/consistent_hashing/</guid>
-      <description>As the World Wide Web became more popular all of sudden a server could receive way more traffic than it could handle causing the server to service requests slowly or to not be able to serve them at all1. An intuitive solution to this problem is to cache2 the content served by the servers and allow the clients to fetch content from the caches instead of going to the original server.</description>
+      <description>&lt;p&gt;As the &lt;a href=&#34;https://en.wikipedia.org/wiki/World_Wide_Web&#34;&gt;World Wide Web&lt;/a&gt; became more popular all of sudden a server could receive way more traffic than it could handle causing the server to service requests slowly or to not be able to serve them at all&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;. An intuitive solution to this problem is to cache&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt; the content served by the servers and allow the clients to fetch content from the caches instead of going to the original server. Several clients communicate with the same cache servers which means that if client &lt;code&gt;1&lt;/code&gt; fetches the contents for the page &lt;code&gt;example.com&lt;/code&gt;, client &lt;code&gt;2&lt;/code&gt; can fetch the same contents from the cache instead of going to the oirignal server if it decides to visit &lt;code&gt;example.com&lt;/code&gt; as well.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Thinking about failure, fair-loss links and two generals</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/fair_loss_links_and_two_generals/</link>
       <pubDate>Tue, 28 Mar 2023 20:30:00 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/fair_loss_links_and_two_generals/</guid>
-      <description>It feels like most people are not used to thinking about how things can fail, programming as if things always work as expected is the default modus operandi of most engineers i have talked to. Some examples that come to mind: http requests without handling responses that don&amp;rsquo;t have status 200, no timeouts, no retries, publishing a message to kafka and them updating a database, having a web client orchestrate a transaction across several systems without thinking: what if the user closes the browser tab?</description>
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/spongebob_ol_reliable.jpg&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;It feels like most people are not used to thinking about how things can fail, programming as if things always work as expected is the default modus operandi of most engineers i have talked to. Some examples that come to mind: http requests without handling responses that don&amp;rsquo;t have status 200, no timeouts, no retries, publishing a message to kafka and them updating a database, having a web client orchestrate a transaction across several systems without thinking: what if the user closes the browser tab?&lt;/p&gt;</description>
     </item>
     <item>
       <title>Logs</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/logs/</link>
       <pubDate>Sat, 30 Apr 2022 16:46:09 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/logs/</guid>
-      <description>What is a log A log is just a immutable sequence of records wih strong ordering semantics that can be used to provide durability, replication and to model consensus. It is usually a 0 indexed file that new entries are appended to because expensive disk seeks can usually be avoided when appending to a file1.
-Not to be confused with the type of logs most people are used to: application logs that are meant to be read by humans although application logs are a degenerative case of the log we are talking about2.</description>
+      <description>&lt;h1 id=&#34;what-is-a-log&#34;&gt;What is a log&lt;/h1&gt;
+&lt;p&gt;A log is just a immutable sequence of records wih strong ordering semantics that can be used to provide durability, replication and to model consensus. It is usually a 0 indexed file that new entries are appended to because expensive disk seeks can usually be avoided when appending to a file&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p align=&#34;center&#34;&gt;
+&lt;img src=&#34;https://user-images.githubusercontent.com/17282221/168452116-a751154f-ec58-4a65-91f5-a90269529963.png&#34; /&gt;
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Not to be confused with the type of logs most people are used to: application logs that are meant to be read by humans although application logs are a degenerative case of the log we are talking about&lt;sup id=&#34;fnref:2&#34;&gt;&lt;a href=&#34;#fn:2&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Notes taken from the Raft paper</title>
       <link>https://poorlydefinedbehaviour.github.io/posts/raft_notes/</link>
       <pubDate>Fri, 04 Mar 2022 17:48:19 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/raft_notes/</guid>
-      <description>Replicated And Fault Tolerant Raft is a consensus algorithm for managing a replicated log.
-The authors claim Raft to be more understandable than Paxos because Raft separates the key elements of consensus
-Leader election Log replication Safety and enforces a stronger degree of coherency to reduce the number of states that must be considered.
-Raft also includes a new mechanism for changing cluster membership.
-What is a consensus algorithm Consensus algorithms allow a collection of machines to work as a coherent group that can survive the failures of some of its members.</description>
+      <description>&lt;h1 id=&#34;replicated-and-fault-tolerant&#34;&gt;&lt;strong&gt;R&lt;/strong&gt;eplicated &lt;strong&gt;A&lt;/strong&gt;nd &lt;strong&gt;F&lt;/strong&gt;ault &lt;strong&gt;T&lt;/strong&gt;olerant&lt;/h1&gt;
+&lt;p&gt;Raft is a consensus algorithm for managing a replicated log.&lt;/p&gt;
+&lt;p&gt;The authors claim Raft to be more understandable than Paxos
+because Raft separates the key elements of consensus&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Leader election&lt;/li&gt;
+&lt;li&gt;Log replication&lt;/li&gt;
+&lt;li&gt;Safety&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;and enforces a stronger degree of coherency to reduce the number of states
+that must be considered.&lt;/p&gt;
+&lt;p&gt;Raft also includes a new mechanism for changing cluster membership.&lt;/p&gt;
+&lt;h2 id=&#34;what-is-a-consensus-algorithm&#34;&gt;What is a consensus algorithm&lt;/h2&gt;
+&lt;p&gt;Consensus algorithms allow a collection of machines to work as a coherent group
+that can survive the failures of some of its members.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
