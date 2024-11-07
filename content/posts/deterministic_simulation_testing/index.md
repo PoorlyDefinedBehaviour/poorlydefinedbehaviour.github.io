@@ -244,7 +244,7 @@ mod tests {
 }
 ```
 
-And create a simulator that will generate actions, handle message delivery and failure injection. The simulator generates the `max_actions` actions where each action is generated based on the current state of the system, this is done to improve the number of interesting input sequences. It is not that useful to crash a replica that's already in the crashed state.
+And create a simulator that will generate actions, handle message delivery and failure injection. The simulator generates `max_actions` actions where each action is generated based on the current state of the system, this is done to improve the number of interesting input sequences. It is not that useful to crash a replica that's already in the crashed state.
 
 ```rust
 struct ActionSimulator {
