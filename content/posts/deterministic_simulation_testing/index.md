@@ -84,7 +84,7 @@ mod tests {
 *Property*: After sorting, every `nums[i]` is less than or equal to `nums[i + 1]`.
 
 **More sophisticated actions**  
-Imagine a max heap with a different implementation from the std library was being written. The std heap could be used as a model to check that our heap behaves correctly from the user point of view.
+Imagine a max heap with a different implementation from the std library was being written. The std heap could be used as a model to check that our heap behaves correctly from the user' point of view.
 
 ```rust
 #[cfg(test)]
