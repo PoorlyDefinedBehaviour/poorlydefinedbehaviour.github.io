@@ -379,6 +379,8 @@ impl Oracle {
 }
 ```
 
-The basic oracle keeps track of accepted proposals, after a proposal has been accepted by a majority of replicas, it asserts that no other value is even chosen.
+The basic oracle keeps track of accepted proposals, after a proposal has been accepted by a majority of replicas, it asserts that no other value is even chosen.  
+
+In this case, the system state is seen from the perspective of an outside observer that only has access to the messages sent from the replicas but there's nothing stopping assertions from being added to the internal modules of having the oracle inspect the internal state of the system under test.
 
 [Paxos]: https://lamport.azurewebsites.net/pubs/paxos-simple.pdf  
