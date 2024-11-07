@@ -246,6 +246,8 @@ impl Replica {
 }
 ```
 
+![](images/paxos_flow_1.png)
+
 **The simulation**  
 
 Let's start by replacing the message bus with a fake one. The fake bus holds messages in a in-memory queue instead of sending them through the network.
