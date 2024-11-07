@@ -56,6 +56,33 @@ mod tests {
 
 Ideally, one or more properties would be defined and checked against the output but starting simple like this works well in a lot of cases.
 
+```rust
+fn sort(nums: &mut Vec<i32>) {
+    ...
+}
+
+#[cfg(test)]
+mod tests {
+    use quickcheck::quickcheck;
+    use super::*;
+    quickcheck! {
+      #[test]
+      fn test_sort(nums: Vec<i32>) -> bool {
+        let mut nums = nums;
+        sort(&mut nums);
+        if !nums.is_empty() {
+          for i in 0..nums.len()-1 {
+            assert!(nums[i] <= nums[i+1]);
+          }
+        }
+        true
+      }
+    }
+}
+```
+
+*Property*: After sorting, every `nums[i]` is less than or equal to `nums[i + 1]`.
+
 **More sophisticated actions**  
 Imagine a max heap with a different implementation from the std library was being written. The std heap could be used as a model to check that our heap behaves correctly from the user point of view.
 
