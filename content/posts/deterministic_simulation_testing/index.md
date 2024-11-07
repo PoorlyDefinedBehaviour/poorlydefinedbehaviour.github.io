@@ -248,14 +248,12 @@ impl Replica {
 
 **The simulation**  
 
-Let's start by replacing the message bus with a fake one. The fake bus holds the messages in a in-memory queue instead of sending them through the network.
+Let's start by replacing the message bus with a fake one. The fake bus holds messages in a in-memory queue instead of sending them through the network.
 ```rust
 struct SimMessageBus {
     queue: RefCell<MessageQueue>,
 }
 ```
-
-Messages sent using this message bus are added to the queue instead of being sent to the target replica.  
 
 Let's start by generating a seed that will be used by the prng to generate inputs to the system. The seed can be passed as input to generate the same sequence of inputs after a test failure happens.
 
@@ -277,7 +275,7 @@ mod tests {
 }
 ```
 
-And create a simulator that will generate actions, handle message delivery and failure injection. The simulator generates `max_actions` actions where each action is generated based on the current state of the system, this is done to improve the number of interesting input sequences. It is not that useful to crash a replica that's already in the crashed state.
+The simulator uses the seeded prng to generate actions, which include actions such as delivering a message, crashing a replica, generating a user request and more. The simulator generates `max_actions` actions where each action is generated based on the current state of the system, this is done to improve the number of interesting input sequences. It is not that useful to crash a replica that's already in the crashed state.
 
 ```rust
 struct ActionSimulator {
@@ -330,7 +328,7 @@ impl ActionSimulator {
 }
 ```
 
-Then instantiate the replicas and start the simulator. The simulation will run 10_000 times where each run will generate 1000 actions (e.g. `CrashReplica`, `DeliverMessage`)
+Then instantiate the replicas and start the simulator. The simulation will run `10000` times where each run will generate `1000` actions (e.g. `CrashReplica`, `DeliverMessage`)
 
 ```rust
 #[cfg(test)]
@@ -414,6 +412,6 @@ impl Oracle {
 
 The basic oracle keeps track of accepted proposals, after a proposal has been accepted by a majority of replicas, it asserts that no other value is even chosen.  
 
-In this case, the system state is seen from the perspective of an outside observer that only has access to the messages sent from the replicas but there's nothing stopping assertions from being added to the internal modules of having the oracle inspect the internal state of the system under test.
+In this case, the system state is seen from the perspective of an outside observer that only has access to the messages sent from the replicas but there's nothing stopping assertions from being added to the internal modules or having the oracle inspect the internal state of the system under test.
 
 [Paxos]: https://lamport.azurewebsites.net/pubs/paxos-simple.pdf  
