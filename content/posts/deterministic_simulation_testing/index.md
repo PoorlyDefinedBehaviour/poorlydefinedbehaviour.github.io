@@ -247,7 +247,6 @@ mod tests {
 And create a simulator that will generate actions, handle message delivery and failure injection.
 
 ```rust
-#[derive(Debug)]
 struct ActionSimulator {
     config: ActionSimulatorConfig,
     rng: Rc<RefCell<StdRng>>,
