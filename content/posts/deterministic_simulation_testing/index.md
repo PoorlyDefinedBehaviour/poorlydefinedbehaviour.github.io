@@ -361,7 +361,9 @@ mod tests {
 }
 ```
 
-In a sense, the number of times the simulation runs can be understood as the max number of paths in the we would like to visit from a input tree  and `max_actions` can be thought of as the depth of path.
+In a sense, the number of times the simulation runs can be understood as the max number of paths we would like to visit from a input tree  and `max_actions` can be thought of as the depth of every path in the tree.
+
+![](images/input_tree_1.png)
 
 **Verifying the system state is valid**  
 
