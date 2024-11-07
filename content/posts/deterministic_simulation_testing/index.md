@@ -89,7 +89,11 @@ The same idea could be used to test other systems, the difference is that instea
 
 ### Deterministic simulation testing
 
-For more complicated systems, it can be hard to find edge cases using example based testing. What if the input space could be explored automatically by generating inputs in the same way inputs are generated for property based testing?
+For more complicated systems, it can be hard to find edge cases using example based testing. What if the input space could be explored automatically by generating inputs in the same way inputs are generated for property based testing?  
+
+Start by having a seeded prng that's used to generate every input to the system and removing non-determinism introduced by things such as threads or iterating over a data structure that yields a different order in each iteration.  
+
+The seed will be used to re run the same sequence of inputs when something goes wrong.  
 
 #### The consensus problem
 
