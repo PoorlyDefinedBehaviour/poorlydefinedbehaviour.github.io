@@ -248,7 +248,7 @@ impl Replica {
 
 **The simulation**  
 
-Let's start by replacing the message bus with a fake one:
+Let's start by replacing the message bus with a fake one. The fake bus holds the messages in a in memory queue instead of sending them through the network.
 ```rust
 struct SimMessageBus {
     queue: RefCell<MessageQueue>,
