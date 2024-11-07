@@ -146,7 +146,7 @@ Given a set of computers that can propose values, how to get the computers to de
 The algorithm can be explained in two phases:
 
 **Phase 1**  
-- A computer that wants to propose a value is called a `proposer`. A value is proposed by broadcasting a `Prepare(n)` message to the computers in the cluster where `n` is a unique monotonically increasing number.
+- A computer that proposes values is called a `proposer`. A value is proposed by broadcasting a `Prepare(n)` message to the computers in the cluster where `n` is a unique monotonically increasing number.
 - When a computer receives a `Prepare(n)` message, it responds with `Ok(accepted_proposal_number, accepted_value)` if `n` if the greatest proposal number it has seen so far where `accepted_proposal_number` and `accepted_value` are from latest proposal the computer has accepted, if any.
 
 ```rust
