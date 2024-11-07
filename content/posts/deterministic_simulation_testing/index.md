@@ -359,6 +359,8 @@ mod tests {
 }
 ```
 
+In a sense, the number of times the simulation runs can be understood as the max number of paths in the we would like to visit from a input tree  and `max_actions` can be thought of as the depth of path.
+
 At the moment, the simulation doesn't do anything because there are no assertions. Let's add an oracle that will receive a copy of the messages sent from replicas.
 
 ```rust
