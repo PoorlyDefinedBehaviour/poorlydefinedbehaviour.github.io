@@ -9,7 +9,7 @@
       <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
-    <generator>Hugo -- 0.135.0</generator>
+    <generator>Hugo -- 0.138.0</generator>
     <language>en</language>
     <lastBuildDate>Sun, 19 Mar 2023 20:54:00 -0300</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/categories/parallelism/index.xml" rel="self" type="application/rss+xml" />
@@ -21,8 +21,7 @@
       <description>&lt;h2 id=&#34;the-problem&#34;&gt;The problem&lt;/h2&gt;
 &lt;p&gt;You are developing an application backed by a database, something happens and then several of your users try to access the same content.
 Several requests are sent to your backend at almost the same time and your backend hits the database once for each request to fetch the same data.&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/users_hitting_backend_at_the_same_time_1.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/request_coalescing/images/users_hitting_backend_at_the_same_time_1.png&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;fetching-the-data-only-once&#34;&gt;Fetching the data only once&lt;/h2&gt;
 &lt;p&gt;If &lt;code&gt;N&lt;/code&gt; requests asking for the same data arrive at the backend at around the same time, the backend could hit the database to fetch the data when the first request arrives and force the other requests to await until the data is fetched. When a response to the request sent to the database arrives at the backend with the data, the data can be shared with the requests that are waiting for it.&lt;/p&gt;</description>
     </item>

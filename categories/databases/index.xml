@@ -9,7 +9,7 @@
       <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
-    <generator>Hugo -- 0.135.0</generator>
+    <generator>Hugo -- 0.138.0</generator>
     <language>en</language>
     <lastBuildDate>Sat, 25 Mar 2023 20:35:00 -0300</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/categories/databases/index.xml" rel="self" type="application/rss+xml" />
@@ -18,14 +18,12 @@
       <link>https://poorlydefinedbehaviour.github.io/posts/the_simple_way_to_avoid_deadlocks/</link>
       <pubDate>Sat, 25 Mar 2023 20:35:00 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/the_simple_way_to_avoid_deadlocks/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/regular_show_deadlock_1.jpg&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/the_simple_way_to_avoid_deadlocks/images/regular_show_deadlock_1.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;A deadlock happens when there&amp;rsquo;s at least one resource that can be only acquired by one process at a time and there&amp;rsquo;s a process &lt;code&gt;P1&lt;/code&gt; that is waiting to acquire a resource currently held by a process &lt;code&gt;P2&lt;/code&gt; and &lt;code&gt;P2&lt;/code&gt; is waiting to acquire a resource currently held by &lt;code&gt;P1&lt;/code&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The word &lt;code&gt;process&lt;/code&gt; does not mean we are talking about just OS processes.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/deadlock_example_1.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/the_simple_way_to_avoid_deadlocks/images/deadlock_example_1.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;There are two processes: Process &lt;code&gt;A&lt;/code&gt; wants to acquire a lock on &lt;code&gt;resource 1&lt;/code&gt; and then a lock on &lt;code&gt;resource 2&lt;/code&gt;. Process &lt;code&gt;B&lt;/code&gt; wants to acquire a lock on &lt;code&gt;resource 2&lt;/code&gt; and then a lock on &lt;code&gt;resource 1&lt;/code&gt;.&lt;/p&gt;</description>
     </item>
     <item>
@@ -33,14 +31,12 @@
       <link>https://poorlydefinedbehaviour.github.io/posts/isolation_levels/</link>
       <pubDate>Fri, 24 Mar 2023 15:43:00 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/isolation_levels/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/tom_1.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/isolation_levels/images/tom_1.png&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;anomalies&#34;&gt;Anomalies&lt;/h2&gt;
 &lt;p&gt;An anomaly or read phenomena can happen when a transaction reads data that may have been modified by another concurrent transaction.&lt;/p&gt;
 &lt;h3 id=&#34;dirty-read&#34;&gt;Dirty read&lt;/h3&gt;
 &lt;p&gt;A &lt;code&gt;dirty read&lt;/code&gt; happens when a transaction &lt;code&gt;T1&lt;/code&gt; reads data that has been modified by a concurrent transaction &lt;code&gt;T2&lt;/code&gt; that has not has been committed or rolled back yet. &lt;code&gt;T1&lt;/code&gt; ends up working with stale data if &lt;code&gt;T2&lt;/code&gt; does not commit.&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/dirty_read_1.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/isolation_levels/images/dirty_read_1.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;T2&lt;/code&gt; starts executing and sets &lt;code&gt;x&lt;/code&gt; to a new value, &lt;code&gt;T1&lt;/code&gt; starts executing and reads &lt;code&gt;x&lt;/code&gt;, the value of &lt;code&gt;x&lt;/code&gt; is the value just set by &lt;code&gt;T2&lt;/code&gt;, &lt;code&gt;T2&lt;/code&gt; rolls back, the value of &lt;code&gt;x&lt;/code&gt; is not persisted to the database but &lt;code&gt;T1&lt;/code&gt; will move forward with the stale value of &lt;code&gt;x&lt;/code&gt; that was written before &lt;code&gt;T2&lt;/code&gt; rolled back.&lt;/p&gt;</description>
     </item>
   </channel>

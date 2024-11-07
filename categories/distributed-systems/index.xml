@@ -9,7 +9,7 @@
       <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
-    <generator>Hugo -- 0.135.0</generator>
+    <generator>Hugo -- 0.138.0</generator>
     <language>en</language>
     <lastBuildDate>Thu, 15 Aug 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/categories/distributed-systems/index.xml" rel="self" type="application/rss+xml" />
@@ -18,8 +18,7 @@
       <link>https://poorlydefinedbehaviour.github.io/posts/the_deadlock_empire/</link>
       <pubDate>Thu, 15 Aug 2024 00:00:00 +0000</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/the_deadlock_empire/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/banner.jpeg&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/the_deadlock_empire/images/banner.jpeg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;This post contains &lt;a href=&#34;https://learntla.com/&#34;&gt;TLA+&lt;/a&gt; solutions for &lt;a href=&#34;https://deadlockempire.github.io/&#34;&gt;The Deadlock Empire&lt;/a&gt; which is a collection of challenges where the objective is to break multithreaded programs by playing the role of a scheduler that can context switch at any time.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://deadlockempire.github.io/#T2-Expansion&#34;&gt;Non atomic instructions&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;There&amp;rsquo;s two threads executing the following code:&lt;/p&gt;
@@ -41,8 +40,7 @@
       <link>https://poorlydefinedbehaviour.github.io/posts/fair_loss_links_and_two_generals/</link>
       <pubDate>Tue, 28 Mar 2023 20:30:00 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/fair_loss_links_and_two_generals/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/spongebob_ol_reliable.jpg&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/fair_loss_links_and_two_generals/images/spongebob_ol_reliable.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;It feels like most people are not used to thinking about how things can fail, programming as if things always work as expected is the default modus operandi of most engineers i have talked to. Some examples that come to mind: http requests without handling responses that don&amp;rsquo;t have status 200, no timeouts, no retries, publishing a message to kafka and them updating a database, having a web client orchestrate a transaction across several systems without thinking: what if the user closes the browser tab?&lt;/p&gt;</description>
     </item>
     <item>

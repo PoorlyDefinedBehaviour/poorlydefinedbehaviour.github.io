@@ -9,7 +9,7 @@
       <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
-    <generator>Hugo -- 0.135.0</generator>
+    <generator>Hugo -- 0.138.0</generator>
     <language>en</language>
     <lastBuildDate>Sat, 05 Aug 2023 00:00:00 -0300</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/categories/rust/index.xml" rel="self" type="application/rss+xml" />
@@ -27,8 +27,7 @@
       <pubDate>Sat, 22 Jul 2023 12:00:00 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/rust_sending_logs_and_traces_to_grafana_cloud/</guid>
       <description>&lt;h1 id=&#34;sending-logs-and-traces-from-a-rust-app-to-grafana-cloud&#34;&gt;Sending logs and traces from a Rust app to Grafana cloud&lt;/h1&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/grafana-cloud-logs-and-traces-1.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/rust_sending_logs_and_traces_to_grafana_cloud/images/grafana-cloud-logs-and-traces-1.png&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;run-the-grafana-agent&#34;&gt;Run the Grafana agent&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Put the Grafana agent config in &lt;code&gt;grafana-agent/agent/agent.yaml&lt;/code&gt;.&lt;/li&gt;

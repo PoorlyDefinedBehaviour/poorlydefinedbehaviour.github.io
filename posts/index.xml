@@ -9,7 +9,7 @@
       <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
-    <generator>Hugo -- 0.135.0</generator>
+    <generator>Hugo -- 0.138.0</generator>
     <language>en</language>
     <lastBuildDate>Thu, 15 Aug 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
@@ -18,8 +18,7 @@
       <link>https://poorlydefinedbehaviour.github.io/posts/the_deadlock_empire/</link>
       <pubDate>Thu, 15 Aug 2024 00:00:00 +0000</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/the_deadlock_empire/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/banner.jpeg&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/the_deadlock_empire/images/banner.jpeg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;This post contains &lt;a href=&#34;https://learntla.com/&#34;&gt;TLA+&lt;/a&gt; solutions for &lt;a href=&#34;https://deadlockempire.github.io/&#34;&gt;The Deadlock Empire&lt;/a&gt; which is a collection of challenges where the objective is to break multithreaded programs by playing the role of a scheduler that can context switch at any time.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://deadlockempire.github.io/#T2-Expansion&#34;&gt;Non atomic instructions&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;There&amp;rsquo;s two threads executing the following code:&lt;/p&gt;
@@ -2076,8 +2075,7 @@
       <pubDate>Sat, 22 Jul 2023 12:00:00 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/rust_sending_logs_and_traces_to_grafana_cloud/</guid>
       <description>&lt;h1 id=&#34;sending-logs-and-traces-from-a-rust-app-to-grafana-cloud&#34;&gt;Sending logs and traces from a Rust app to Grafana cloud&lt;/h1&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/grafana-cloud-logs-and-traces-1.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/rust_sending_logs_and_traces_to_grafana_cloud/images/grafana-cloud-logs-and-traces-1.png&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;run-the-grafana-agent&#34;&gt;Run the Grafana agent&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;Put the Grafana agent config in &lt;code&gt;grafana-agent/agent/agent.yaml&lt;/code&gt;.&lt;/li&gt;
@@ -2135,8 +2133,7 @@
       <link>https://poorlydefinedbehaviour.github.io/posts/fair_loss_links_and_two_generals/</link>
       <pubDate>Tue, 28 Mar 2023 20:30:00 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/fair_loss_links_and_two_generals/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/spongebob_ol_reliable.jpg&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/fair_loss_links_and_two_generals/images/spongebob_ol_reliable.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;It feels like most people are not used to thinking about how things can fail, programming as if things always work as expected is the default modus operandi of most engineers i have talked to. Some examples that come to mind: http requests without handling responses that don&amp;rsquo;t have status 200, no timeouts, no retries, publishing a message to kafka and them updating a database, having a web client orchestrate a transaction across several systems without thinking: what if the user closes the browser tab?&lt;/p&gt;</description>
     </item>
     <item>
@@ -2144,14 +2141,12 @@
       <link>https://poorlydefinedbehaviour.github.io/posts/the_simple_way_to_avoid_deadlocks/</link>
       <pubDate>Sat, 25 Mar 2023 20:35:00 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/the_simple_way_to_avoid_deadlocks/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/regular_show_deadlock_1.jpg&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/the_simple_way_to_avoid_deadlocks/images/regular_show_deadlock_1.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;A deadlock happens when there&amp;rsquo;s at least one resource that can be only acquired by one process at a time and there&amp;rsquo;s a process &lt;code&gt;P1&lt;/code&gt; that is waiting to acquire a resource currently held by a process &lt;code&gt;P2&lt;/code&gt; and &lt;code&gt;P2&lt;/code&gt; is waiting to acquire a resource currently held by &lt;code&gt;P1&lt;/code&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The word &lt;code&gt;process&lt;/code&gt; does not mean we are talking about just OS processes.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/deadlock_example_1.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/the_simple_way_to_avoid_deadlocks/images/deadlock_example_1.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;There are two processes: Process &lt;code&gt;A&lt;/code&gt; wants to acquire a lock on &lt;code&gt;resource 1&lt;/code&gt; and then a lock on &lt;code&gt;resource 2&lt;/code&gt;. Process &lt;code&gt;B&lt;/code&gt; wants to acquire a lock on &lt;code&gt;resource 2&lt;/code&gt; and then a lock on &lt;code&gt;resource 1&lt;/code&gt;.&lt;/p&gt;</description>
     </item>
     <item>
@@ -2159,14 +2154,12 @@
       <link>https://poorlydefinedbehaviour.github.io/posts/isolation_levels/</link>
       <pubDate>Fri, 24 Mar 2023 15:43:00 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/isolation_levels/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/tom_1.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
+      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/isolation_levels/images/tom_1.png&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;anomalies&#34;&gt;Anomalies&lt;/h2&gt;
 &lt;p&gt;An anomaly or read phenomena can happen when a transaction reads data that may have been modified by another concurrent transaction.&lt;/p&gt;
 &lt;h3 id=&#34;dirty-read&#34;&gt;Dirty read&lt;/h3&gt;
 &lt;p&gt;A &lt;code&gt;dirty read&lt;/code&gt; happens when a transaction &lt;code&gt;T1&lt;/code&gt; reads data that has been modified by a concurrent transaction &lt;code&gt;T2&lt;/code&gt; that has not has been committed or rolled back yet. &lt;code&gt;T1&lt;/code&gt; ends up working with stale data if &lt;code&gt;T2&lt;/code&gt; does not commit.&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/dirty_read_1.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/isolation_levels/images/dirty_read_1.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;T2&lt;/code&gt; starts executing and sets &lt;code&gt;x&lt;/code&gt; to a new value, &lt;code&gt;T1&lt;/code&gt; starts executing and reads &lt;code&gt;x&lt;/code&gt;, the value of &lt;code&gt;x&lt;/code&gt; is the value just set by &lt;code&gt;T2&lt;/code&gt;, &lt;code&gt;T2&lt;/code&gt; rolls back, the value of &lt;code&gt;x&lt;/code&gt; is not persisted to the database but &lt;code&gt;T1&lt;/code&gt; will move forward with the stale value of &lt;code&gt;x&lt;/code&gt; that was written before &lt;code&gt;T2&lt;/code&gt; rolled back.&lt;/p&gt;</description>
     </item>
     <item>
@@ -2177,8 +2170,7 @@
       <description>&lt;h2 id=&#34;the-problem&#34;&gt;The problem&lt;/h2&gt;
 &lt;p&gt;You are developing an application backed by a database, something happens and then several of your users try to access the same content.
 Several requests are sent to your backend at almost the same time and your backend hits the database once for each request to fetch the same data.&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;images/users_hitting_backend_at_the_same_time_1.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/request_coalescing/images/users_hitting_backend_at_the_same_time_1.png&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;fetching-the-data-only-once&#34;&gt;Fetching the data only once&lt;/h2&gt;
 &lt;p&gt;If &lt;code&gt;N&lt;/code&gt; requests asking for the same data arrive at the backend at around the same time, the backend could hit the database to fetch the data when the first request arrives and force the other requests to await until the data is fetched. When a response to the request sent to the database arrives at the backend with the data, the data can be shared with the requests that are waiting for it.&lt;/p&gt;</description>
     </item>
