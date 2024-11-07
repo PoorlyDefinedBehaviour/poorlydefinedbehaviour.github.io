@@ -266,6 +266,7 @@ enum Action {
 impl ActionSimulator {
     fn next_action(&mut self) -> Action {
       // Use the prng + knowledge about the current system state to generate the next action.
+      // It's not that useful to crash a replica that's already in the crashed state.
     }
     fn run(&mut self) {
         for i in 0..self.config.max_actions {
