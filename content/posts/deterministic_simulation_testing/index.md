@@ -120,7 +120,9 @@ For more complicated systems, it can be hard to find edge cases using example ba
 
 Start by having a seeded prng that's used to generate every input to the system and removing non-determinism introduced by things such as threads or iterating over a data structure that yields a different order in each iteration.  
 
-The seed will be used to generate the same sequence of inputs when something goes wrong.  
+The seed will be used to generate the same sequence of inputs when something goes wrong and the system will end up hitting the same bug.
+
+*Bugs are reproducible* by running the simulation with the seed that was used when the bug was found.
 
 #### The consensus problem
 
