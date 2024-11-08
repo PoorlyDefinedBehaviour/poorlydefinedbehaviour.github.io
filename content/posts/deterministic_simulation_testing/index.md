@@ -330,6 +330,23 @@ impl ActionSimulator {
 }
 ```
 
+When a `Action::DeliverMessage` is executed, a random message is popped from the queue and delivered to the target replica:
+```rust
+fn pop(&mut self) -> Option<PendingMessage> {
+        if self.items.is_empty() {
+            return None;
+        }
+
+        let i = self
+            .rng
+            .as_ref()
+            .borrow_mut()
+            .gen_range(0..self.items.len());
+        let item = self.items.swap_remove(i);
+        Some(item)
+}
+```
+
 Then instantiate the replicas and start the simulator. The simulation will run `10000` times where each run will generate `1000` actions (e.g. `CrashReplica`, `DeliverMessage`)
 
 ```rust
@@ -414,6 +431,145 @@ impl Oracle {
 
 The basic oracle keeps track of accepted proposals, after a proposal has been accepted by a majority of replicas, it asserts that no other value is even chosen.  
 
-In this case, the system state is seen from the perspective of an outside observer that only has access to the messages sent from the replicas but there's nothing stopping assertions from being added to the internal modules or having the oracle inspect the internal state of the system under test.
+In this case, the system state is seen from the perspective of an outside observer that only has access to the messages sent from the replicas but there's nothing stopping assertions from being added to the internal modules or having the oracle inspect the internal state of the system under test.  
+
+Even basic simulations can catch bugs. Let's ignore the requirement the proposal numbers must be unique by accepting proposal numbers that are the highest the replica has seen.
+
+```rust
+impl Replica {
+    fn on_prepare(&mut self, input: PrepareInput) {
+        --> Change from `>` to `>=`
+        // if input.proposal_number > self.state.min_proposal_number {
+        if input.proposal_number >= self.state.min_proposal_number {
+            ...
+        }
+    }
+  ...
+}
+```
+
+Run the simulation:
+```sh
+cargo t action_simulation -- --nocapture
+
+...
+[BUS] Replica(1) -> Replica(1) RECEIVED Prepare(RID(R1, P12))
+[BUS] Replica(1) -> Replica(1) QUEUED PrepareResponse(RID(R1, P12), Some(12), Some("V(3, 71)"))
+[BUS] Replica(2) -> Replica(3) RECEIVED AcceptResponse(RID(R3, P12), 12)
+[BUS] Replica(1) -> Replica(1) RECEIVED PrepareResponse(RID(R1, P12), Some(12), Some("V(3, 71)"))
+[BUS] Replica(1) -> Replica(2) RECEIVED Prepare(RID(R1, P5))
+[ORACLE] value accepted by majority of replicas: majority=2 RID(R3, P12) value=V(3, 71) replicas=[2, 1]
+[BUS] Replica(1) -> Replica(3) RECEIVED AcceptResponse(RID(R3, P12), 12)
+[ORACLE] value accepted by majority of replicas: majority=2 RID(R1, P12) value=V(1, 80) replicas=[2, 3]
+SEED=13326481090957263017
+```
+
+Replay the bug by running the simulation with the seed to get the same sequence of inputs:
+```sh
+SEED=13326481090957263017 cargo t action_simulation -- --nocapture
+
+...
+[BUS] Replica(1) -> Replica(1) RECEIVED Prepare(RID(R1, P12))
+[BUS] Replica(1) -> Replica(1) QUEUED PrepareResponse(RID(R1, P12), Some(12), Some("V(3, 71)"))
+[BUS] Replica(2) -> Replica(3) RECEIVED AcceptResponse(RID(R3, P12), 12)
+[BUS] Replica(1) -> Replica(1) RECEIVED PrepareResponse(RID(R1, P12), Some(12), Some("V(3, 71)"))
+[BUS] Replica(1) -> Replica(2) RECEIVED Prepare(RID(R1, P5))
+[ORACLE] value accepted by majority of replicas: majority=2 RID(R3, P12) value=V(3, 71) replicas=[2, 1]
+[BUS] Replica(1) -> Replica(3) RECEIVED AcceptResponse(RID(R3, P12), 12)
+[ORACLE] value accepted by majority of replicas: majority=2 RID(R1, P12) value=V(1, 80) replicas=[2, 3]
+SEED=13326481090957263017
+```
+
+The simulator will generate `1000` actions by default it only needs to generate `2` actions to find this bug. The advantage of generating less actions is that the error trace will contain less events:
+```sh
+MAX_ACTIONS=2 cargo t action_simulation -- --nocapture
+
+...
+[BUS] Replica(1) -> Replica(2) RECEIVED Prepare(RID(R1, P1))
+[BUS] Replica(2) -> Replica(1) QUEUED PrepareResponse(RID(R1, P1), Some(1), Some("V(3, 1)"))
+[BUS] Replica(1) -> Replica(3) RECEIVED PrepareResponse(RID(R3, P1), Some(1), Some("V(1, 0)"))
+[BUS] Replica(2) -> Replica(1) RECEIVED PrepareResponse(RID(R1, P1), Some(1), Some("V(3, 1)"))
+[BUS] Replica(3) -> Replica(3) RECEIVED AcceptResponse(RID(R3, P1), 1)
+[ORACLE] value accepted by majority of replicas: majority=2 RID(R3, P1) value=V(3, 1) replicas=[1, 3]
+[BUS] Replica(1) -> Replica(3) RECEIVED AcceptResponse(RID(R3, P1), 1)
+[BUS] Replica(1) -> Replica(1) RECEIVED AcceptResponse(RID(R1, P1), 1)
+[ORACLE] value accepted by majority of replicas: majority=2 RID(R1, P1) value=V(1, 0) replicas=[2, 1]
+SEED=3996709105568464579
+```
+
+The accepted proposal number and value must be persisted to durable storage. Let's forget to do that and see what happens.
+
+```rust
+impl Replica {
+    fn on_accept(&mut self, input: AcceptInput) {
+        if input.proposal_number >= self.state.min_proposal_number {
+            let mut state = self.state.clone();
+            state.accepted_proposal_number = Some(input.proposal_number);
+            state.accepted_value = Some(input.value);
+            // self.storage.store(&state).unwrap();
+            self.state = state;
+
+            self.bus.send_accept_response(
+                input.from_replica_id,
+                AcceptOutput {
+                    from_replica_id: self.config.id,
+                    request_id: input.request_id,
+                    min_proposal_number: self.state.min_proposal_number,
+                },
+            );
+        }
+    }
+}
+```
+
+Run the simulation:
+```sh
+cargo t action_simulation -- --nocapture
+
+...
+assertion `left == right` failed: majority of replicas decided on a different value after a value was accepted
+  left: Some("V(1, 17)")
+ right: Some("V(2, 38)")
+SEED=6875993431596082141
+```
+
+The value sent in `Accept(n, v)` messages must be the value accepted in the proposal with the highest proposal number. Let's forget to look for the accepted value and always send the value the proposer wants to.
+
+```rust
+impl Replica {
+    fn on_prepare_response(&mut self, input: PrepareOutput) {
+        let majority = self.majority();
+        let request_id = input.request_id;
+
+        if let Some(req) = self.inflight_requests.get_mut(&request_id) {
+            req.responses.insert(input);
+
+            if req.responses.len() < majority {
+                return;
+            }
+
+            let value = req.proposed_value.clone().unwrap();
+
+            let proposal_number = req.proposal_number;
+            self.broadcast_accept(proposal_number, value);
+            self.inflight_requests.remove(&request_id);
+        }
+    }
+}
+```
+
+Run the simulation:
+```sh
+cargo t action_simulation -- --nocapture
+
+...
+assertion `left == right` failed: majority of replicas decided on a different value after a value was accepted
+  left: Some("V(1, 99)")
+ right: Some("V(1, 40)")
+...
+[BUS] Replica(1) -> Replica(1) RECEIVED AcceptResponse(RID(R1, P10), 10)
+[ORACLE] value accepted by majority of replicas: majority=2 RID(R1, P10) value=V(1, 40) replicas=[1, 2]
+SEED=6369495520157998847
+```
 
 [Paxos]: https://lamport.azurewebsites.net/pubs/paxos-simple.pdf  
