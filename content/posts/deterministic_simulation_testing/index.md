@@ -480,7 +480,7 @@ SEED=13326481090957263017 cargo t action_simulation -- --nocapture
 SEED=13326481090957263017
 ```
 
-The simulator will generate `1000` actions by default it only needs to generate `2` actions to find this bug. The advantage of generating less actions is that the error trace will contain less events:
+The simulator will generate `1000` actions by default but it only needs to generate `2` actions to find this bug. The advantage of generating less actions is that the error trace will contain less events:
 ```sh
 MAX_ACTIONS=2 cargo t action_simulation -- --nocapture
 
