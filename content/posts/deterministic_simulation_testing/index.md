@@ -834,4 +834,144 @@ note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 SEED=11856967350924232882
 ```
 
+### Note on P
+
+[P] is a state machine programming language for modeling and specifying distributed systems. P is used for modeling while the simulator is used to test the real system, using the real components whenever possible. The overall structure of the system is pretty similar to the structure of a P program.
+
+The implementation:
+```js
+type request_id = (node_id: int, request_number: int);
+
+type prepareReq = (node: Node, request_id: request_id, proposal_number: int);
+type prepareResp = (node: Node, request_id: request_id, node_id: int, proposal_number: int, accepted_proposal_number: int, accepted_value: int);
+
+type acceptReq = (node: Node, request_id: request_id, node_id: int, proposal_number: int, value: int);
+type acceptResp = (request_id: request_id, node_id: int, min_proposal_number: int);
+
+type valueAcceptedReq = (node_id: int, value: int);
+
+type setNodesReq = (m: machine, nodes: seq[Node]);
+event eSetNodes: setNodesReq;
+event eSetNodesResponse;
+
+event eTriggerPrepare;
+
+event ePrepare: prepareReq;
+event ePrepareResp: prepareResp;
+
+event eAccept: acceptReq;
+event eAcceptResp: acceptResp;
+
+event eValueAccepted: valueAcceptedReq;
+event eRestart;
+event eCrash;
+
+enum MessageType {
+  PREPARE,
+  ACCEPT
+}
+
+machine Node {
+  start state Init {
+    entry (node_id: int) {
+      ...
+    }
+  }
+
+  state Crashed {
+    on eRestart goto Restarting;
+    ignore eCrash, eTriggerPrepare, ePrepare, ePrepareResp, eAccept, eAcceptResp;
+  }
+
+  state Restarting {
+    entry {
+      requests = default(map[(MessageType, int), (value: int, responses: set[(node_id: int, accepted_proposal_number: int, accepted_value: int)])]);
+      goto HandleRequests;
+    }
+  }
+
+  state HandleRequests {
+    ignore eRestart;
+
+    on eCrash goto Crashed;
+    
+    on eTriggerPrepare do {
+      ...
+    }
+
+    on ePrepare do (req: prepareReq) {
+      ...
+    }
+
+    on ePrepareResp do (req: prepareResp) {
+      ...
+    }
+
+    on eAccept do (req: acceptReq) {
+      ...
+    }
+
+    on eAcceptResp do (req: acceptResp) {
+      ...
+    }
+  }
+}
+
+fun quorum(num_nodes: int): int {
+  return num_nodes / 2 + 1;
+}
+```
+
+The spec:
+```js
+event spec_EventuallyDecideOnSameValue_num_nodes: int;
+
+spec EventuallyDecideOnSameValue observes spec_EventuallyDecideOnSameValue_num_nodes, eValueAccepted {
+  // Node id -> value the node accepted. Node ids for nodes that haven't accepted a value aren't in the map.
+  var accepted_values: map[int, int];
+  // The value accepted by a majority of nodes. 0 means unset.
+  var accepted_value: int;
+  // The minimum number of nodes that form a majority in the cluster.
+  var majority: int;
+
+  start state Init {
+    on spec_EventuallyDecideOnSameValue_num_nodes do (num_nodes: int) {
+      majority = num_nodes / 2 + 1;
+      goto WaitingForDecision;
+    }
+  }
+
+  // Nodes must eventually decide.
+  hot state WaitingForDecision {
+    on eValueAccepted do (req: valueAcceptedReq) {
+      accepted_values[req.node_id] = req.value;
+
+      accepted_value = getValueAcceptedByMajority();
+      print format("debug: WaitingForDecision accepted_values={0}", accepted_values);
+      // No value accepted yet.
+      if(accepted_value == 0) {
+        return;
+      }
+
+      goto EnsuringDecisionDoesntChange;
+    }    
+  }
+
+
+  // After a majority of the nodes decide on a value, the value cannot change.
+  state EnsuringDecisionDoesntChange {
+    on eValueAccepted do (req: valueAcceptedReq) {
+      var value: int;
+
+      accepted_values[req.node_id] = req.value;
+
+      value = getValueAcceptedByMajority();
+
+      assert accepted_value == value, format("nodes decided on a new value after a value has already been decided. old={0} new={1}", accepted_value, value);
+    }    
+  }
+}
+```
+
+[P]: https://p-org.github.io/P/
 [Paxos]: https://lamport.azurewebsites.net/pubs/paxos-simple.pdf  
