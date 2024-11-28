@@ -979,7 +979,7 @@ The P implementation includes a failure injector as well. The code can be found 
 
 ### Can't catch them all
 
-It's obvious that some bugs won't be found because the inputs are generated randomly and some components will end up being replaced by fake implementations to remove non-determinism of to make the simulation run at an acceptable speed. Combine dst with other testing and modeling techniques for maximum effectiveness.
+It's obvious that some bugs won't be found because the inputs are generated randomly and some components will end up being replaced by fake implementations to remove non-determinism or to make the simulation run at an acceptable speed. Combine dst with other testing and modeling techniques for maximum effectiveness.
 
 [P]: https://p-org.github.io/P/
 [Paxos]: https://lamport.azurewebsites.net/pubs/paxos-simple.pdf  
