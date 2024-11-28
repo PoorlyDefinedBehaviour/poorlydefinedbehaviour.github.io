@@ -374,14 +374,14 @@ impl Replica {
 
 **The simulation**  
 
-Let's start by replacing the message bus with a fake one. The fake bus holds messages in a in-memory queue instead of sending them through the network.
+Let's start by replacing the message bus with a fake one. The fake bus holds messages in an in-memory queue instead of sending them through the network.
 ```rust
 struct SimMessageBus {
     queue: RefCell<MessageQueue>,
 }
 ```
 
-Let's start by generating a seed that will be used by the prng to generate inputs to the system. The seed can be passed as input to generate the same sequence of inputs after a test failure happens.
+Then generate a seed that will be used by the prng to generate inputs to the system. The seed can be passed as input to generate the same sequence of inputs after a test failure happens.
 
 ```rust
 #[cfg(test)]
@@ -454,7 +454,7 @@ impl ActionSimulator {
 }
 ```
 
-When a `Action::DeliverMessage` is executed, a random message is popped from the queue and delivered to the target replica:
+When a `Action::DeliverMessage` is executed, a random message is removed from the queue and delivered to the target replica:
 ```rust
 fn pop(&mut self) -> Option<PendingMessage> {
         if self.items.is_empty() {
@@ -471,7 +471,7 @@ fn pop(&mut self) -> Option<PendingMessage> {
 }
 ```
 
-Then instantiate the replicas and start the simulator. The simulation will run `10000` times where each run will generate `1000` actions (e.g. `CrashReplica`, `DeliverMessage`)
+Then instantiate the replicas and start the simulator. The simulation will run `10000` times where each run will generate `1000` actions (e.g. `CrashReplica`, `DeliverMessage`). This simulator is actually running several threads with one simulation each to find bugs faster. The simulation is in each thread is deterministic.
 
 ```rust
 #[cfg(test)]
