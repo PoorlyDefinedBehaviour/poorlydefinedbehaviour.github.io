@@ -554,6 +554,33 @@ MAX_ACTIONS=2 cargo t action_simulation -- --nocapture
 SEED=3996709105568464579
 ```
 
+> Always remove the current bug before introducing a new one.
+
+Let's have the replica reuse a proposal number:
+```rust
+impl Replica {
+    fn next_proposal_number(&mut self) -> Result<u64> {
+        ...
+        // Comment this line
+        // self.storage.store(&state)?;
+        ...
+        Ok(self.state.min_proposal_number)
+    }
+}
+```
+
+Run the simulation:
+```sh
+cargo t action_simulation -- --nocapture
+
+...
+assertion failed: `(left == right)`
+  left: `Some("V(2, 14)")`,
+ right: `Some("V(2, 98)")`: majority of replicas decided on a different value after a value was accepted
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+SEED=6875993431596082141
+```
+
 The accepted proposal number and value must be persisted to durable storage. Let's forget to do that and see what happens.
 
 ```rust
@@ -590,7 +617,7 @@ assertion `left == right` failed: majority of replicas decided on a different va
 SEED=6875993431596082141
 ```
 
-The value sent in `Accept(n, v)` messages must be the value accepted in the proposal with the highest proposal number. Let's forget to look for the accepted value and always send the value the proposer wants to.
+After sending a `Prepare(n)` message and receiving responses from a quorum, the value sent in `Accept(n, v)` messages must be the value accepted in the proposal with the highest proposal number. Let's forget to look for the accepted value and always send the value the proposer wants to.
 
 ```rust
 impl Replica {
