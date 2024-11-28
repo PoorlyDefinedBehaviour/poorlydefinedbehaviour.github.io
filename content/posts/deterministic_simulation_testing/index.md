@@ -834,6 +834,8 @@ note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 SEED=11856967350924232882
 ```
 
+The code for the Paxos implementation and the simulator can be found [here](https://github.com/PoorlyDefinedBehaviour/single_decree_paxos_deterministic_simulation).
+
 ### Note on P
 
 [P] is a state machine programming language for modeling and specifying distributed systems. P is used for modeling while the simulator is used to test the real system, using the real components whenever possible. The overall structure of the system is pretty similar to the structure of a P program.
@@ -972,6 +974,8 @@ spec EventuallyDecideOnSameValue observes spec_EventuallyDecideOnSameValue_num_n
   }
 }
 ```
+
+The P implementation includes a failure injector as well. The code can be found [here](https://github.com/PoorlyDefinedBehaviour/formal-methods/tree/main/single_decree_paxos_p_lang).
 
 [P]: https://p-org.github.io/P/
 [Paxos]: https://lamport.azurewebsites.net/pubs/paxos-simple.pdf  
