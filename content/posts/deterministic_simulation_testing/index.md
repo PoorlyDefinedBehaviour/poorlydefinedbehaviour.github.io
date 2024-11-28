@@ -117,8 +117,8 @@ mod tests {
 
 - Generate a large number of inputs randomly instead of writing just a few of them manually.
 
-**More sophisticated actions**  
-Imagine a max heap with a different implementation from the std library was being written. The std heap could be used as a model to check that our heap behaves correctly from the user's point of view.
+**More sophisticated inputs**  
+Imagine that a max heap with a different implementation from the std library was being written. The std heap could be used as a model to check that our heap behaves correctly from the user's point of view.
 
 ```rust
 #[cfg(test)]
@@ -146,7 +146,7 @@ mod tests {
 }
 ```
 
-The same idea could be used to test other systems, the difference is that instead of using the std heap, a simplified model of the real thing would be used, for example, an in memory map that models a disk-based key-value store. Here's an example in Go.
+The same idea could be used to test other systems, the difference is that instead of using the std heap, a simplified model of the real thing would be used, for example, an in memory map that models a disk-based key-value store. Here's an example of a append-only log in Go.
 ```go
 func TestFileStorage(t *testing.T) {
 	t.Parallel()
