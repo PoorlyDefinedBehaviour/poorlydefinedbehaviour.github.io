@@ -355,53 +355,110 @@ mod tests {
     ...
     #[test]
     fn action_simulation() -> Result<()> {
-        for _ in 0..10_000 {
-            let simulator_config = {
-                let mut rng = rng.borrow_mut();
-                ActionSimulatorConfig {
-                    max_actions: 1000,
-                    max_user_requests: rng.gen::<u32>() % 100 + 1,
-                    max_replica_crashes: rng.gen::<u32>() % 100,
-                    max_replica_restarts: rng.gen::<u32>() % 100,
-                }
-            };
+        let count = if std::env::var("SEED").is_ok() {
+            1
+        } else {
+            std::env::var("MAX_THREADS")
+                .map(|v| v.parse::<usize>().unwrap())
+                .unwrap_or_else(|_| std::thread::available_parallelism().unwrap().get())
+        };
 
+        let max_iters = std::env::var("MAX_ITERS")
+            .map(|v| v.parse::<u64>().unwrap())
+            .unwrap_or_else(|_| 10_000);
 
-            let servers = vec![1, 2, 3];
+        let max_actions = std::env::var("MAX_ACTIONS")
+            .map(|v| v.parse::<u32>().unwrap())
+            .unwrap_or_else(|_| 100);
 
-            let majority = servers.len() / 2 + 1;
+        eprintln!("Spawning {count} threads");
 
-            let bus: Rc<SimMessageBus> = Rc::new(SimMessageBus::new(Rc::clone(&rng),));
+        let handles = (0..count)
+            .map(|thread_id| {
+                std::thread::Builder::new()
+                    .name(format!("Thread({thread_id})"))
+                    .spawn(move || {
+                        let seed: u64 = std::env::var("SEED")
+                            .map(|v| v.parse::<u64>().unwrap())
+                            .unwrap_or_else(|_| rand::thread_rng().gen());
 
-            let replicas: Vec<_> = servers
-                .iter()
-                .map(|id| {
-                    Replica::new(
-                        Config {
-                            id: *id,
-                            replicas: servers.clone(),
-                        },
-                        Rc::clone(&bus) as Rc<dyn contracts::MessageBus>,
-                        Rc::new(InMemoryStorage::new()),
-                    )
-                })
-                .collect();
+                        eprintln!("SEED={seed}");
 
-            let mut sim = ActionSimulator::new(
-                simulator_config,
-                Rc::clone(&rng),
-                replicas,
-                Rc::clone(&bus),
-            );
+                        let rng = Rc::new(RefCell::new(rand::rngs::StdRng::seed_from_u64(seed)));
 
-            let result = std::panic::catch_unwind(move || {
-                sim.run();
-                assert!(sim.bus.queue.borrow().items.is_empty());
-            });
-            if result.is_err() {
-                eprintln!("SEED={seed}");
-                std::process::exit(1);
-            }
+                        for i in 0..max_iters {
+                            if i % 1_000 == 0 {
+                                eprintln!("Thread({thread_id}) Running simulation {i}");
+                            }
+
+                            let simulator_config = {
+                                let mut rng = rng.borrow_mut();
+                                ActionSimulatorConfig {
+                                    max_actions,
+                                    max_user_requests: rng.gen::<u32>() % 100 + 1,
+                                }
+                            };
+
+                            let activity_log = Rc::new(RefCell::new(ActivityLog::new()));
+
+                            let servers = vec![1, 2, 3];
+
+                            let majority = servers.len() / 2 + 1;
+
+                            let bus: Rc<SimMessageBus> = Rc::new(SimMessageBus::new(
+                                Rc::clone(&rng),
+                                Oracle::new(majority, Rc::clone(&activity_log)),
+                                Rc::clone(&activity_log),
+                            ));
+
+                            let nodes: Vec<_> = servers
+                                .iter()
+                                .map(|id| {
+                                    let fs = Rc::new(SimFileSystem::new());
+                                    Node {
+                                        replica: Replica::new(
+                                            Config {
+                                                id: *id,
+                                                replicas: servers.clone(),
+                                            },
+                                            Rc::clone(&bus) as Rc<dyn contracts::MessageBus>,
+                                            Rc::new(
+                                                FileStorage::new(
+                                                    Rc::clone(&fs) as Rc<dyn contracts::FileSystem>,
+                                                    PathBuf::from("dir"),
+                                                )
+                                                .unwrap(),
+                                            ),
+                                        ),
+                                        fs,
+                                    }
+                                })
+                                .collect();
+
+                            let mut sim = ActionSimulator::new(
+                                simulator_config,
+                                Rc::clone(&rng),
+                                nodes,
+                                Rc::clone(&bus),
+                                Rc::clone(&activity_log),
+                            );
+
+                            let result = std::panic::catch_unwind(move || {
+                                sim.run();
+                                assert!(sim.bus.is_empty());
+                            });
+                            if result.is_err() {
+                                activity_log.borrow_mut().print_events();
+                                eprintln!("SEED={seed}");
+                                std::process::exit(1);
+                            }
+                        }
+                    })
+            })
+            .collect::<Result<Vec<_>, _>>()?;
+
+        for handle in handles {
+            handle.join().unwrap();
         }
 
         Ok(())
@@ -570,6 +627,59 @@ assertion `left == right` failed: majority of replicas decided on a different va
 [BUS] Replica(1) -> Replica(1) RECEIVED AcceptResponse(RID(R1, P10), 10)
 [ORACLE] value accepted by majority of replicas: majority=2 RID(R1, P10) value=V(1, 40) replicas=[1, 2]
 SEED=6369495520157998847
+```
+
+Even better, let's forget to fsync the file that contains the replica state:
+```rust
+impl FileStorage {
+    fn store(&self, state: &contracts::DurableState) -> std::io::Result<()> {
+        ...
+        // Comment this line.
+        // file.sync_all()?;
+        ...
+        Ok(())
+    }
+}
+```
+
+Run the simulation:
+```sh
+cargo t action_simulation -- --nocapture
+
+...
+assertion failed: `(left == right)`
+  left: `Some("V(1, 0)")`,
+ right: `Some("V(1, 58)")`: majority of replicas decided on a different value after a value was accepted
+...
+[BUS] Replica(3) -> Replica(1) QUEUED AcceptResponse(RID(R1, P5), 5)
+[BUS] Replica(1) -> Replica(1) RECEIVED AcceptResponse(RID(R1, P5), 5)
+[ORACLE] value accepted by majority of replicas: majority=2 RID(R1, P5) value=V(3, 59) replicas=[1, 2]
+SEED=7923659261799353388
+```
+
+Atomically writing to a file is complicated, let's forget to fsync the directory since the atomic rename trick is being used:
+```rust
+impl FileStorage {
+    fn store(&self, state: &contracts::DurableState) -> std::io::Result<()> {
+        ...
+        // Comment this line.
+        // self.dir_file.sync_all()?;
+        ...
+        Ok(())
+    }
+}
+```
+
+Run the simulation:
+```sh
+cargo t action_simulation -- --nocapture
+
+...
+assertion failed: `(left == right)`
+  left: `Some("V(1, 2)")`,
+ right: `Some("V(3, 27)")`: majority of replicas decided on a different value after a value was accepted
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+SEED=11856967350924232882
 ```
 
 [Paxos]: https://lamport.azurewebsites.net/pubs/paxos-simple.pdf  
