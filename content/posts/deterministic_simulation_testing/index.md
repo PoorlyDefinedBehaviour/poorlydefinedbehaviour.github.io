@@ -472,7 +472,7 @@ In a sense, the number of times the simulation runs can be understood as the max
 
 **Verifying the system state is valid**  
 
-At the moment, the simulation doesn't do anything because there are no assertions. Let's add an oracle that will receive a copy of the messages sent from replicas.
+At the moment, the simulation doesn't do anything because there are no assertions. Let's add an oracle -- something that has a bird's eye view of the system -- that will receive a copy of the messages sent from replicas.
 
 ```rust
 impl Oracle {
