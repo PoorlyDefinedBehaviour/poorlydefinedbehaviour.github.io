@@ -35,7 +35,7 @@ let%test_unit "append entries: truncates the log on entry conflict" =
   assert (entry_at_index storage 4L = Some { term = 4L; data = "4" })
 ```
 
-It becomes way harder to think of and write the examples when the bugs you're looking for only happen after several actions that need to happen in a specific point in time.
+It becomes way harder to think of and write the examples when the bugs you're looking for only happen after several actions that need to happen in a specific order.
 
 ![](images/input_tree_0.png)
 <center>A bug found deep in the input tree.</center>
