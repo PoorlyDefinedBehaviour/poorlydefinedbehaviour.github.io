@@ -59,7 +59,7 @@ fn find_kth_largest(nums: Vec<i32>, k: i32) -> i32 {
 }
 ```
 
-The test generates a random `Vec<i32>`, finds the kth largest element by sorting the vec -- *using a different and probably easier to understand implementation from the function being tested* -- and asserts that the function returns the same value.
+The test generates a random `Vec<i32>`, finds the kth largest element by sorting the vec -- *using a different and probably easier to understand implementation than the function being tested* -- and asserts that the function returns the same value.
 
 ```rust
 #[cfg(test)]
