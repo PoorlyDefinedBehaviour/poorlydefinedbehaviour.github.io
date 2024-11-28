@@ -7,6 +7,38 @@ draft: true
 
 # <center>𝔇𝔢𝔱𝔢𝔯𝔪𝔦𝔫𝔦𝔰𝔱𝔦𝔠 𝔰𝔦𝔪𝔲𝔩𝔞𝔱𝔦𝔬𝔫 𝔱𝔢𝔰𝔱𝔦𝔫𝔤</center>
 
+### Example based testing
+
+Example based testing works fine for simple cases where there's only a small number of actions that matter.
+
+```ocaml
+let%test_unit "append entries: truncates the log on entry conflict" =
+  let storage = make { dir = Test_util.temp_dir () } in
+
+  (* Leader adds some entries to the replica's log. *)
+  append_entries storage (last_log_index storage)
+    [
+      { term = 1L; data = "1" };
+      { term = 2L; data = "2" };
+      { term = 3L; data = "3" };
+    ];
+
+  (* Another leader overrides the replica's log. *)
+  append_entries storage 2L
+    [ { term = 4L; data = "3" }; { term = 4L; data = "4" } ];
+
+  assert (entry_at_index storage 1L = Some { term = 1L; data = "1" });
+  assert (entry_at_index storage 2L = Some { term = 2L; data = "2" });
+  (* Entry at index 3 has been overwritten. *)
+  assert (entry_at_index storage 3L = Some { term = 4L; data = "3" });
+  (* Entry at index 4 is new. *)
+  assert (entry_at_index storage 4L = Some { term = 4L; data = "4" })
+```
+
+It becomes way harder when the bugs you're looking for only happen after several actions that need to happen in a specific point in time.
+
+![](images/input_tree_0.png)
+<center>A bug found deep in the input tree.</center>
 
 ### Property based testing
 
@@ -114,7 +146,96 @@ mod tests {
 }
 ```
 
-The same idea could be used to test other systems, the difference is that instead of using the std heap, a simplified model of the real thing would be used, for example, an in memory map that models a disk-based key-value store.
+The same idea could be used to test other systems, the difference is that instead of using the std heap, a simplified model of the real thing would be used, for example, an in memory map that models a disk-based key-value store. Here's an example in Go.
+```go
+func TestFileStorage(t *testing.T) {
+	t.Parallel()
+
+	const (
+		OpAppendEntries           = "AppendEntries"
+		OpTruncateLogStartingFrom = "TruncateLogStartingFrom"
+		OpGetEntryAtIndex         = "GetEntryAtIndex"
+		OpGetBatch                = "GetBatch"
+		OpLastLogIndex            = "LastLogIndex"
+	)
+
+	rapid.Check(t, func(t *rapid.T) {
+		storage, err := NewFileStorage(fmt.Sprintf("%s/raft-go/%s", os.TempDir(), uuid.New().String()))
+		assert.NoError(t, err)
+
+		model := newModel()
+
+		ops := rapid.SliceOf(rapid.SampledFrom([]string{
+			OpAppendEntries,
+			OpTruncateLogStartingFrom,
+			OpGetEntryAtIndex,
+			OpGetBatch,
+			OpLastLogIndex,
+		})).
+			Draw(t, "ops")
+
+		for _, op := range ops {
+			switch op {
+			case OpAppendEntries:
+				entries := rapid.SliceOf(entryGenerator()).Draw(t, "append: entries")
+				assert.NoError(t, storage.AppendEntries(entries))
+				assert.NoError(t, model.AppendEntries(entries))
+
+				t.Logf("appended %d entries\n", len(entries))
+
+			case OpTruncateLogStartingFrom:
+				maybeExistingIndex := rapid.Uint64Range(1, uint64(len(model.entries)*2)+1).Draw(t, "truncate: maybeExistingIndex")
+
+				storageErr := storage.TruncateLogStartingFrom(maybeExistingIndex)
+				modelErr := model.TruncateLogStartingFrom(maybeExistingIndex)
+
+				t.Logf("truncated from index %d len(model.entries)=%+v storageErr=%+v modelErr=%+v\n", maybeExistingIndex, len(model.entries), storageErr, modelErr)
+
+				assert.ErrorIs(t, storageErr, modelErr)
+
+			case OpGetEntryAtIndex:
+				maybeExistingIndex := rapid.Uint64Range(1, uint64(len(model.entries)*2)+1).Draw(t, "get entry: maybeExistingIndex")
+
+				storageEntry, storageErr := storage.GetEntryAtIndex(maybeExistingIndex)
+				modelEntry, modelErr := model.GetEntryAtIndex(maybeExistingIndex)
+
+				t.Logf("getting entry at index %d storageErr=%+v modelErr=%+v\n", maybeExistingIndex, storageErr, modelErr)
+
+				assert.Equal(t, modelEntry, storageEntry)
+				assert.ErrorIs(t, storageErr, modelErr)
+
+			case OpGetBatch:
+				maybeExistingIndex := rapid.Uint64Range(1, uint64(len(model.entries)*2)+1).Draw(t, "get batch: maybe existing index")
+				batchSize := rapid.Uint64Range(1, uint64(len(model.entries)*2)+1).Draw(t, "get batch: batch size")
+
+				storageBatch, storageErr := storage.GetBatch(maybeExistingIndex, batchSize)
+				modelBatch, modelErr := model.GetBatch(maybeExistingIndex, batchSize)
+
+				t.Logf("get batch index=%d batchSize=%d len(storageBatch)=%+v storageErr=%+v len(modelBatch)=%+v modelErr=%+v\n",
+					maybeExistingIndex,
+					batchSize,
+					len(storageBatch),
+					storageErr,
+					len(modelBatch),
+					modelErr,
+				)
+
+				assert.ErrorIs(t, storageErr, modelErr)
+				assert.Equal(t, modelBatch, storageBatch)
+
+			case OpLastLogIndex:
+				storageLastLogIndex := storage.LastLogIndex()
+				modelLastLogIndex := model.LastLogIndex()
+
+				assert.Equal(t, modelLastLogIndex, storageLastLogIndex)
+
+			default:
+				panic(fmt.Sprintf("unexpected op: %s", op))
+			}
+		}
+	})
+}
+```
 
 ### Deterministic simulation testing
 
@@ -247,6 +368,7 @@ impl Replica {
 ```
 
 ![](images/paxos_flow_1.png)
+<center>An example of a Paxos round.</center>
 
 **The simulation**  
 
@@ -469,6 +591,7 @@ mod tests {
 In a sense, the number of times the simulation runs can be understood as the max number of paths we would like to visit from a input tree  and `max_actions` can be thought of as the depth of every path in the tree. The simulation may end up visiting the same path multiple times, solving that is an optimization for the future.
 
 ![](images/input_tree_1.png)
+<center>An example of a path in the input tree where a message is delivered and then the replica crashes.</center>
 
 **Verifying the system state is valid**  
 
