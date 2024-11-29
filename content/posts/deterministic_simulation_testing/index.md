@@ -64,18 +64,19 @@ The test generates a random `Vec<i32>`, finds the kth largest element by sorting
 ```rust
 #[cfg(test)]
 mod tests {
-    use quickcheck::quickcheck;
     use super::*;
+    use quickcheck::quickcheck;
     fn check(nums: Vec<i32>, k: usize, f: fn(Vec<i32>, i32) -> i32) -> bool {
         if nums.is_empty() {
             return true;
         }
         let k = 1 + k % nums.len();
+        let result = f(nums.clone(), k as i32);
         let mut nums = nums;
         nums.sort_unstable();
         nums.reverse();
         let expected = nums[k - 1];
-        expected == f(nums, k as i32)
+        expected == result
     }
     quickcheck! {
       #[test]
