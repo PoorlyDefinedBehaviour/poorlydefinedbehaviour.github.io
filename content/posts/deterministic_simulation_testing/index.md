@@ -381,7 +381,7 @@ struct SimMessageBus {
 }
 ```
 
-Then generate a seed that will be used by the prng to generate inputs to the system. The seed can be passed as input to generate the same sequence of inputs after a test failure happens.
+Generate a seed for the prng. The prng will be used to generate actions during the simulation. The seed can be passed as input the program to generate the same sequence of inputs after a test failure.
 
 ```rust
 #[cfg(test)]
@@ -401,7 +401,7 @@ mod tests {
 }
 ```
 
-The simulator uses the seeded prng to generate actions, which include actions such as delivering a message, crashing a replica, generating a user request and more. The simulator generates `max_actions` actions where each action is generated based on the current state of the system, this is done to improve the number of interesting input sequences. It is not that useful to crash a replica that's already in the crashed state.
+The simulator uses the seeded prng to generate actions, which include actions such as delivering a message, crashing a replica, generating a user request and more. The simulator generates `max_actions` actions where each action is generated based on the current state of the system, this is done to improve the number of interesting input sequences. It is not that useful to crash a replica that's already in the crashed state or to crash more than `F` replicas if we are intereted in testing that a cluster with `2F + 1` replicas can make progress as long as the majority of replicas are up.
 
 ```rust
 struct ActionSimulator {
