@@ -86,7 +86,7 @@ mod tests {
 }
 ```
 
-Ideally, one or more properties would be defined and checked against the output but starting simple like this works well in a lot of cases.
+Ideally, one or more properties would be defined and checked against the output but starting simple by just checking that the output makes sense works well in a lot of cases.
 
 ```rust
 fn sort(nums: &mut Vec<i32>) {
