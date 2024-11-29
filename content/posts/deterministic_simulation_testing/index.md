@@ -246,7 +246,7 @@ For more complicated systems with several components, it may be complicated to w
 
 Start by removing non-determinism introduced by things such as threads or iterating over a data structure that yields a different order in each iteration. This means moving IO to the edges of the system and replacing the real implementation -- where it is not deterministic or fast enough -- with a fake version that behaves like the real thing.  
 
-Next, generate actions using a seeded prng. When a bug is found, the simulation can be re-run with the same seed to hit the same bug over and over again.
+Next, generate actions such as simulating an user request using a seeded prng. When a bug is found, the simulation can be re-run with the same seed to hit the same bug over and over again.
 
 - *Bugs are reproducible* by running the simulation with the seed that was used when the bug was found.
 
