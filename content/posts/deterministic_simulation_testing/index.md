@@ -149,7 +149,7 @@ mod tests {
 }
 ```
 
-The same idea could be used to test other systems, the difference is that instead of using the std heap, a simplified model of the real thing would be used, for example, an in memory map that models a disk-based key-value store. Here's an example of a append-only log in Go that uses an in-memory slice as the model.
+The same idea could be used to test other systems, the difference is that instead of using the std heap, a simplified model of the real thing -- that hopefully behaves correctly -- would be used, for example, an in memory map that models a disk-based key-value store. Here's an example of a append-only log in Go that uses an in-memory slice as the model.
 ```go
 func TestFileStorage(t *testing.T) {
 	t.Parallel()
