@@ -374,7 +374,7 @@ impl Replica {
 
 **The simulation**  
 
-Let's start by replacing the message bus with a fake one. The fake bus holds messages in an in-memory queue instead of sending them through the network.
+The network calls were replaced by a fake implementation to make it easier to drop, duplicate and delay messages. Insteading of sending messages using TCP or UDP, messages are held in an in-memory queue and are delivered by calling a method since every replica is running in memory.  
 ```rust
 struct SimMessageBus {
     queue: RefCell<MessageQueue>,
