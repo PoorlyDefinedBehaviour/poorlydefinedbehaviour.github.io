@@ -454,7 +454,7 @@ impl ActionSimulator {
 }
 ```
 
-When a `Action::DeliverMessage` is executed, a random message is removed from the queue and delivered to the target replica:
+The network was replaced by fake implementation to make it easier to drop, duplicate and delay messages. Insteading of sending messages using TCP or UDP, messages are delivered by calling a method since every replica is running in memory. When a `Action::DeliverMessage` is executed, a random message is removed from the queue and delivered to the target replica:
 ```rust
 fn pop(&mut self) -> Option<PendingMessage> {
         if self.items.is_empty() {
