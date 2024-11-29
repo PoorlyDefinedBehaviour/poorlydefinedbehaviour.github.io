@@ -119,7 +119,7 @@ mod tests {
 - Generate a large number of inputs randomly instead of writing just a few of them manually.
 
 **More sophisticated inputs**  
-Imagine that a max heap with a different implementation from the std library was being written. The std heap could be used as a model to check that our heap behaves correctly from the user's point of view.
+It may be possible to interact with the system under testing in several ways. Imagine that a max heap with a different implementation from the std library was being written. Sometimes a bug will be found only when a specific setr of events happen in a specific order, popping from an empty heap, pushing two elements and popping 3 times, for example. Insteading of thinking of all possible interleavings of operations, generate a list of operations at random and apply them to the heap. The std heap could be used as a model to check that our heap behaves correctly from the user's point of view.
 
 ```rust
 #[cfg(test)]
