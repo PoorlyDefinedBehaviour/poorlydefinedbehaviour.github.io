@@ -45,7 +45,7 @@ It becomes way harder to think of and write the examples when the bugs you're lo
 Property based testing is a testing technique where a wide range of inputs are generated automatically unlike traditional example based testing where the inputs have to be manually thought of and written. The idea is that by auto generating inputs, the system will end up being tested with inputs that the programmer wouldn't think of otherwise.
 
 **Basic input**  
-Given a vec of integers `nums` and an integer `k`, returns the the kth largest element in the array.  
+Given a vec of integers `nums` and an integer `k`, returns the kth largest element in the array.  
 
 In this case, the implementation uses a max heap instead of sorting the input to find the kth largest element in the array.  
 
