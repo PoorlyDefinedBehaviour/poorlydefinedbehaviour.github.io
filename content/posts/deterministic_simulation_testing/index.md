@@ -834,6 +834,60 @@ note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 SEED=11856967350924232882
 ```
 
+Without introducing any bugs, let's run the simulator and see what happens:
+
+Run the simulation:
+```sh
+cargo t action_simulation -- --nocapture
+
+Spawning 4 threads
+SEED=3616773477915676583
+Thread(0) Running simulation 0
+SEED=10055364015445278185
+Thread(1) Running simulation 0
+SEED=17460562123704731307
+Thread(2) Running simulation 0
+SEED=6671866141078837726
+Thread(3) Running simulation 0
+Thread(3) Running simulation 1000
+Thread(1) Running simulation 1000
+Thread(2) Running simulation 1000
+Thread(0) Running simulation 1000
+Thread(3) Running simulation 2000
+Thread(0) Running simulation 2000
+Thread(2) Running simulation 2000
+Thread(1) Running simulation 2000
+Thread(0) Running simulation 3000
+Thread(3) Running simulation 3000
+Thread(2) Running simulation 3000
+Thread(0) Running simulation 4000
+Thread(1) Running simulation 3000
+Thread(3) Running simulation 4000
+Thread(2) Running simulation 4000
+Thread(0) Running simulation 5000
+Thread(2) Running simulation 5000
+Thread(1) Running simulation 4000
+Thread(3) Running simulation 5000
+Thread(1) Running simulation 5000
+Thread(0) Running simulation 6000
+Thread(3) Running simulation 6000
+Thread(2) Running simulation 6000
+Thread(1) Running simulation 6000
+Thread(3) Running simulation 7000
+Thread(2) Running simulation 7000
+Thread(0) Running simulation 7000
+Thread(3) Running simulation 8000
+Thread(1) Running simulation 7000
+Thread(2) Running simulation 8000
+Thread(0) Running simulation 8000
+Thread(3) Running simulation 9000
+Thread(1) Running simulation 8000
+Thread(2) Running simulation 9000
+Thread(0) Running simulation 9000
+Thread(1) Running simulation 9000
+test simulation::simulator::tests::action_simulation ... ok
+```
+
 The code for the Paxos implementation and the simulator can be found [here](https://github.com/PoorlyDefinedBehaviour/single_decree_paxos_deterministic_simulation).
 
 ### Note on P
