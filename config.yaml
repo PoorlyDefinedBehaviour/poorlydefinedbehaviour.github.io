@@ -80,7 +80,7 @@ params:
     - name: linkedin
       url: "https://www.linkedin.com/in/bruno-felipe-francisco"
     - name: email
-      url: mailto:email@brunotj2015@hotmail.com
+      url: mailto:brunotj2015@hotmail.com
 
   editPost:
     URL: "https://github.com/PoorlyDefinedBehaviour/poorlydefinedbehaviour.github.io/tree/main/content"
