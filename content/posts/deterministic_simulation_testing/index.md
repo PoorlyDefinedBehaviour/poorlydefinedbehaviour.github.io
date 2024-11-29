@@ -679,7 +679,7 @@ MAX_ACTIONS=2 cargo t action_simulation -- --nocapture
 SEED=3996709105568464579
 ```
 
-> Always remove the current bug before introducing a new one.
+**Always remove the current bug before introducing a new one.**
 
 Let's have the replica reuse a proposal number:
 ```rust
