@@ -79,6 +79,8 @@ params:
       url: "https://twitter.com/poorlydefinedbr"
     - name: linkedin
       url: "https://www.linkedin.com/in/bruno-felipe-francisco"
+    - name: email
+      url: brunotj2015@hotmail.com
 
   editPost:
     URL: "https://github.com/PoorlyDefinedBehaviour/poorlydefinedbehaviour.github.io/tree/main/content"
