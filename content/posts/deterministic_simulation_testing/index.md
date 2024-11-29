@@ -242,7 +242,7 @@ func TestFileStorage(t *testing.T) {
 
 ### Deterministic simulation testing
 
-For more complicated systems, it can be hard to find edge cases using example based testing. What if the input space could be explored automatically by generating inputs in the same way inputs are generated for property based testing? After defining a model of how the system should work -- which actions and events the system should be able to handle -- component failures can be injected according to the failure model -- the failures the system should be able to handle --.
+For more complicated systems with several components, it may be complicated to write useful tests. What if the input space could be explored automatically by generating inputs in the same way inputs are generated for property based testing? After defining a model of how the system should work -- which actions and events the system should be able to handle -- component failures can be injected according to the failure model -- the failures the system should be able to handle --.
 
 Start by removing non-determinism introduced by things such as threads or iterating over a data structure that yields a different order in each iteration. This means moving IO to the edges of the system and replacing the real implementation -- where it is not deterministic or fast enough -- with a fake version that behaves like the real thing.  
 
