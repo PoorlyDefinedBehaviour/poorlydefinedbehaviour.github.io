@@ -47,7 +47,7 @@ Property based testing is a testing technique where a wide range of inputs are g
 **Basic input**  
 Problem: Create a function that given a vec of integers `nums` and an integer `k`, returns the kth largest element in the vec.  
 
-In this case, the implementation uses a max heap instead of sorting the input to find the kth largest element in the vec.  
+In this case, the implementation uses a max heap to find the kth largest element in the vec in `O(k log n)`.  
 
 ```rust
 fn find_kth_largest(nums: Vec<i32>, k: i32) -> i32 {
