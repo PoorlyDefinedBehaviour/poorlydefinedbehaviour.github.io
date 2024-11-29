@@ -471,7 +471,7 @@ fn pop(&mut self) -> Option<PendingMessage> {
 }
 ```
 
-Replicas get instantiated and passed to the simulator along with the configuration. The simulation will run `10000` times where each run will generate `1000` actions (e.g. `CrashReplica`, `DeliverMessage`). This simulator is actually running several threads with one simulation each to find bugs faster. The simulation is in each thread is deterministic.
+Replicas get instantiated and passed to the simulator along with the configuration. The simulation will run `10000` times where each run will generate `1000` actions (e.g. `CrashReplica`, `DeliverMessage`). This simulator is actually running several threads with one simulation each to find bugs faster. The simulation in each thread is deterministic and isolated.
 
 ```rust
 #[cfg(test)]
