@@ -454,7 +454,7 @@ impl ActionSimulator {
 }
 ```
 
-The network was replaced by a fake implementation to make it easier to drop, duplicate and delay messages. Insteading of sending messages using TCP or UDP, messages are delivered by calling a method since every replica is running in memory. When a `Action::DeliverMessage` is generated, a random message is removed from the queue and delivered to the target replica:
+When a `Action::DeliverMessage` is generated, a random message is removed from the queue and delivered to the target replica:
 ```rust
 fn pop(&mut self) -> Option<PendingMessage> {
         if self.items.is_empty() {
@@ -471,7 +471,7 @@ fn pop(&mut self) -> Option<PendingMessage> {
 }
 ```
 
-Then instantiate the replicas and start the simulator. The simulation will run `10000` times where each run will generate `1000` actions (e.g. `CrashReplica`, `DeliverMessage`). This simulator is actually running several threads with one simulation each to find bugs faster. The simulation is in each thread is deterministic.
+Replicas get instantiated and passed to the simulator along with the configuration. The simulation will run `10000` times where each run will generate `1000` actions (e.g. `CrashReplica`, `DeliverMessage`). This simulator is actually running several threads with one simulation each to find bugs faster. The simulation is in each thread is deterministic.
 
 ```rust
 #[cfg(test)]
