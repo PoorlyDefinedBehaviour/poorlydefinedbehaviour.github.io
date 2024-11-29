@@ -75,6 +75,10 @@ params:
   socialIcons:
     - name: github
       url: "https://github.com/poorlydefinedbehaviour"
+    - name: twitter
+      url: "https://twitter.com/poorlydefinedbr"
+    - name: linkedin
+      url: "https://www.linkedin.com/in/bruno-felipe-francisco"
 
   editPost:
     URL: "https://github.com/PoorlyDefinedBehaviour/poorlydefinedbehaviour.github.io/tree/main/content"
