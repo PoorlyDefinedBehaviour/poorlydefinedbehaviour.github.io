@@ -317,7 +317,7 @@ impl Replica {
 
 **Phase 2**
 - After broadcasting `Prepare(n)`, the proposer waits for responses from a majority of computers in the cluster
-- After receiving responses from the majority, the proposer broadcasts a `Accept(n, v)` message to the computers in the cluster where `n` is the same proposal number sent in `Prepare(n)` message and `v` is the `accepted_value` from the message with the highest `accepted_proposal_number` received in response to the `Prepare(n)` messages or the value the proposer would like to choose if no proposals have been accepted yet.
+- After receiving responses from the majority, the proposer broadcasts a `Accept(n, v)` message to the computers in the cluster where `n` is the same proposal number sent in `Prepare(n)` message and `v` is the `accepted_value` from the message with the highest `accepted_proposal_number` received in response to the `Prepare(n)` messages or the value the proposer would like the computers to decide on if no proposals have been accepted yet.
 - When a computer receives a `Accept(n, v)` message, it responds with `Ok()` if `n` is greater than or equal to the greatest proposal number it has seen in `Phase 1`.
 
 >- The last used proposal number, the highest proposal number seen by a computer, the accepted proposal number and the accepted value are stored in durable storage.
