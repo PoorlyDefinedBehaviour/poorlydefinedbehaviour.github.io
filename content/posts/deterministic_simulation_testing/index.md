@@ -38,6 +38,7 @@ let%test_unit "append entries: truncates the log on entry conflict" =
 It becomes way harder to think of and write the examples when the bugs you're looking for only happen after several events that need to happen in a specific order.
 
 ![](images/input_tree_0.png)
+
 <center>A bug found deep in the input tree.</center>
 
 ### Property based testing
@@ -45,9 +46,9 @@ It becomes way harder to think of and write the examples when the bugs you're lo
 Property based testing is a testing technique where a wide range of inputs are generated automatically unlike traditional example based testing where the inputs have to be manually thought of and written. The idea is that by auto generating inputs, the system will end up being tested with inputs that the programmer wouldn't think of otherwise.
 
 **Basic input**  
-Problem: Create a function that given a vec of integers `nums` and an integer `k`, returns the kth largest element in the vec.  
+Problem: Create a function that given a vec of integers `nums` and an integer `k`, returns the kth largest element in the vec.
 
-In this case, the implementation uses a max heap to find the kth largest element in the vec in `O(k log n)`.  
+In this case, the implementation uses a max heap to find the kth largest element in the vec in `O(k log n)`.
 
 ```rust
 fn find_kth_largest(nums: Vec<i32>, k: i32) -> i32 {
@@ -59,7 +60,7 @@ fn find_kth_largest(nums: Vec<i32>, k: i32) -> i32 {
 }
 ```
 
-The test generates a random `Vec<i32>`, finds the kth largest element by sorting the vec -- *using a different and probably easier to understand implementation than the function being tested* -- and asserts that the function returns the same value.
+The test generates a random `Vec<i32>`, finds the kth largest element by sorting the vec -- _using a different and probably easier to understand implementation than the function being tested_ -- and asserts that the function returns the same value.
 
 ```rust
 #[cfg(test)]
@@ -114,14 +115,14 @@ mod tests {
 }
 ```
 
-*Property*: After sorting, every `nums[i]` is less than or equal to `nums[i + 1]`.
+_Property_: After sorting, every `nums[i]` is less than or equal to `nums[i + 1]`.
 
 - Generate a large number of inputs randomly instead of writing just a few of them manually.
 
 **More sophisticated inputs**  
-It may be possible to interact with the system under testing in several ways. Imagine that a max heap with a different implementation from the std library was being written. Sometimes a bug will be found only when a specific set of events happen in a specific order, popping from an empty heap, pushing two elements and popping 3 times, for example.  
+It may be possible to interact with the system under testing in several ways. Imagine that a max heap with a different implementation from the std library was being written. Sometimes a bug will be found only when a specific set of events happen in a specific order, popping from an empty heap, pushing two elements and popping 3 times, for example.
 
-Insteading of thinking of all possible operation interleavings, generate a list of operations at random and apply them to the heap. The std heap could be used as a model to check that our heap behaves correctly from the user's point of view. Run the test several times to increase the chance of a finding a bug.
+Instead of thinking of all possible operation interleavings, generate a list of operations at random and apply them to the heap. The std heap could be used as a model to check that our heap behaves correctly from the user's point of view. Run the test several times to increase the chance of a finding a bug.
 
 ```rust
 #[cfg(test)]
@@ -150,6 +151,7 @@ mod tests {
 ```
 
 The same idea could be used to test other systems, the difference is that instead of using the std heap, a simplified model of the real thing -- that hopefully behaves correctly -- would be used, for example, an in memory map that models a disk-based key-value store. Here's an example of a append-only log in Go that uses an in-memory slice as the model.
+
 ```go
 func TestFileStorage(t *testing.T) {
 	t.Parallel()
@@ -244,17 +246,17 @@ func TestFileStorage(t *testing.T) {
 
 For more complicated systems with several components, it may be complicated to write useful tests. What if the input space could be explored automatically by generating inputs in the same way inputs are generated for property based testing and the events that led to the bug replayed without effort? After defining a model of how the system should work -- which actions and events the system should be able to handle -- component failures can be injected according to the failure model -- the failures the system should be able to handle --.
 
-Start by removing non-determinism introduced by things such as threads or iterating over a data structure that yields a different order in each iteration. This means moving IO to the edges of the system and replacing the real implementation -- where it is not deterministic or fast enough -- with a fake version that behaves like the real thing.  
+Start by removing non-determinism introduced by things such as threads or iterating over a data structure that yields a different order in each iteration. This means moving IO to the edges of the system and replacing the real implementation -- where it is not deterministic or fast enough -- with a fake version that behaves like the real thing.
 
 Next, generate actions such as simulating an user request using a seeded prng. When a bug is found, the simulation can be re-run with the same seed to hit the same bug over and over again.
 
-- *Bugs are reproducible* by running the simulation with the seed that was used when the bug was found.
+- _Bugs are reproducible_ by running the simulation with the seed that was used when the bug was found.
 
 #### Example: The consensus problem
 
 Applying deterministic simulation testing to single-decree Paxos.
 
-Given a set of computers that can propose values, how to get the computers to decide on a value?  
+Given a set of computers that can propose values, how to get the computers to decide on a value?
 
 - The chosen value must be proposed by one of the computers
 - Only a single value can be chosen
@@ -267,11 +269,12 @@ Given a set of computers that can propose values, how to get the computers to de
 
 #### Single-decree Paxos
 
-[Paxos] is one of the algorithms that can be used to solve the consensus problem.  
+[Paxos] is one of the algorithms that can be used to solve the consensus problem.
 
 The algorithm can be explained in two phases:
 
-**Phase 1**  
+**Phase 1**
+
 - A computer that proposes values is called a `proposer`. A value is proposed by broadcasting a `Prepare(n)` message to the computers in the cluster where `n` is a unique monotonically increasing number.
 - When a computer receives a `Prepare(n)` message, it responds with `Ok(accepted_proposal_number, accepted_value)` if `n` is the greatest proposal number it has seen so far where `accepted_proposal_number` and `accepted_value` are from latest proposal the computer has accepted, if any.
 
@@ -316,11 +319,12 @@ impl Replica {
 ```
 
 **Phase 2**
+
 - After broadcasting `Prepare(n)`, the proposer waits for responses from a majority of computers in the cluster
 - After receiving responses from the majority, the proposer broadcasts a `Accept(n, v)` message to the computers in the cluster where `n` is the same proposal number sent in `Prepare(n)` message and `v` is the `accepted_value` from the message with the highest `accepted_proposal_number` received in response to the `Prepare(n)` messages or the value the proposer would like the computers to decide on if no proposals have been accepted yet.
 - When a computer receives a `Accept(n, v)` message, it responds with `Ok()` if `n` is greater than or equal to the greatest proposal number it has seen in `Phase 1`.
 
->- The last used proposal number, the highest proposal number seen by a computer, the accepted proposal number and the accepted value are stored in durable storage.
+> - The last used proposal number, the highest proposal number seen by a computer, the accepted proposal number and the accepted value are stored in durable storage.
 
 ```rust
 ...
@@ -373,11 +377,13 @@ impl Replica {
 ```
 
 ![](images/paxos_flow_1.png)
+
 <center>An example of a Paxos round.</center>
 
-**The simulation**  
+**The simulation**
 
-The network calls were replaced by a fake implementation to make it easier to drop, duplicate and delay messages. Insteading of sending messages using TCP or UDP, messages are held in an in-memory queue and are delivered by calling a method since every replica is running in memory.  
+The network calls were replaced by a fake implementation to make it easier to drop, duplicate and delay messages. Insteading of sending messages using TCP or UDP, messages are held in an in-memory queue and are delivered by calling a method since every replica is running in memory.
+
 ```rust
 struct SimMessageBus {
     queue: RefCell<MessageQueue>,
@@ -404,7 +410,7 @@ mod tests {
 }
 ```
 
-The simulator uses the seeded prng to generate actions, which include actions such as delivering a message, crashing a replica, generating a user request and more. The simulator generates `max_actions` actions where each action is generated based on the current state of the system, this is done to improve the number of interesting input sequences.  
+The simulator uses the seeded prng to generate actions, which include actions such as delivering a message, crashing a replica, generating a user request and more. The simulator generates `max_actions` actions where each action is generated based on the current state of the system, this is done to improve the number of interesting input sequences.
 
 It is not that useful to crash a replica that's already in the crashed state or to crash more than `F` replicas if we are intereted in testing that a cluster with `2F + 1` replicas can make progress as long as the majority of replicas are up. In general, actions that trigger failures should be generated according to the failure model.
 
@@ -460,6 +466,7 @@ impl ActionSimulator {
 ```
 
 When a `Action::DeliverMessage` is generated, a random message is removed from the queue and delivered to the target replica:
+
 ```rust
 fn pop(&mut self) -> Option<PendingMessage> {
         if self.items.is_empty() {
@@ -595,12 +602,13 @@ mod tests {
 }
 ```
 
-In a sense, the number of times the simulation runs can be understood as the max number of paths we would like to visit from an input tree  and `max_actions` can be thought of as the depth of every path in the tree. The simulation may end up visiting the same path multiple times, solving that is an optimization for the future.
+In a sense, the number of times the simulation runs can be understood as the max number of paths we would like to visit from an input tree and `max_actions` can be thought of as the depth of every path in the tree. The simulation may end up visiting the same path multiple times, solving that is an optimization for the future.
 
 ![](images/input_tree_1.png)
-<center>An example of a path in the input tree where a message is delivered and then the replica crashes.</center>  
 
-**Verifying the system state is valid**  
+<center>An example of a path in the input tree where a message is delivered and then the replica crashes.</center>
+
+**Verifying the system state is valid**
 
 At the moment, the simulation doesn't do anything because there are no assertions. Let's add an oracle -- something that has a bird's eye view of the system -- that will receive a copy of the messages sent from replicas.
 
@@ -616,9 +624,9 @@ impl Oracle {
 }
 ```
 
-The basic oracle keeps track of accepted proposals, after a proposal has been accepted by a majority of replicas, it asserts that no other value is even chosen.  
+The basic oracle keeps track of accepted proposals, after a proposal has been accepted by a majority of replicas, it asserts that no other value is even chosen.
 
-In this case, the system state is seen from the perspective of an outside observer that only has access to the messages sent from the replicas but there's nothing stopping assertions from being added to the internal modules or having the oracle inspect the internal state of the system under test.  
+In this case, the system state is seen from the perspective of an outside observer that only has access to the messages sent from the replicas but there's nothing stopping assertions from being added to the internal modules or having the oracle inspect the internal state of the system under test.
 
 Even basic simulations can catch bugs. Let's ignore the requirement the proposal numbers must be unique by accepting proposal numbers that are the highest the replica has seen.
 
@@ -636,6 +644,7 @@ impl Replica {
 ```
 
 Run the simulation:
+
 ```sh
 cargo t action_simulation -- --nocapture
 
@@ -652,6 +661,7 @@ SEED=13326481090957263017
 ```
 
 Replay the bug by running the simulation with the seed to get the same sequence of inputs:
+
 ```sh
 SEED=13326481090957263017 cargo t action_simulation -- --nocapture
 
@@ -668,6 +678,7 @@ SEED=13326481090957263017
 ```
 
 The simulator will generate `1000` actions by default but it only needs to generate `2` actions to find this bug. The advantage of generating less actions is that the error trace will contain less events:
+
 ```sh
 MAX_ACTIONS=2 cargo t action_simulation -- --nocapture
 
@@ -687,6 +698,7 @@ SEED=3996709105568464579
 **Always remove the current bug before introducing a new one.**
 
 Let's have the replica reuse a proposal number:
+
 ```rust
 impl Replica {
     fn next_proposal_number(&mut self) -> Result<u64> {
@@ -700,6 +712,7 @@ impl Replica {
 ```
 
 Run the simulation:
+
 ```sh
 cargo t action_simulation -- --nocapture
 
@@ -737,6 +750,7 @@ impl Replica {
 ```
 
 Run the simulation:
+
 ```sh
 cargo t action_simulation -- --nocapture
 
@@ -773,6 +787,7 @@ impl Replica {
 ```
 
 Run the simulation:
+
 ```sh
 cargo t action_simulation -- --nocapture
 
@@ -787,6 +802,7 @@ SEED=6369495520157998847
 ```
 
 Even better, let's forget to fsync the file that contains the replica state:
+
 ```rust
 impl FileStorage {
     fn store(&self, state: &contracts::DurableState) -> std::io::Result<()> {
@@ -800,6 +816,7 @@ impl FileStorage {
 ```
 
 Run the simulation:
+
 ```sh
 cargo t action_simulation -- --nocapture
 
@@ -815,6 +832,7 @@ SEED=7923659261799353388
 ```
 
 Atomically writing to a file is complicated, let's forget to fsync the directory since the atomic rename trick is being used:
+
 ```rust
 impl FileStorage {
     fn store(&self, state: &contracts::DurableState) -> std::io::Result<()> {
@@ -828,6 +846,7 @@ impl FileStorage {
 ```
 
 Run the simulation:
+
 ```sh
 cargo t action_simulation -- --nocapture
 
@@ -842,6 +861,7 @@ SEED=11856967350924232882
 Without introducing any bugs, let's run the simulator and see what happens:
 
 Run the simulation:
+
 ```sh
 cargo t action_simulation -- --nocapture
 
@@ -900,6 +920,7 @@ The code for the Paxos implementation and the simulator can be found [here](http
 [P] is a state machine programming language for modeling and specifying distributed systems. P is used for modeling while the simulator is used to test the real system, using the real components whenever possible. The overall structure of the system is pretty similar to the structure of a P program.
 
 The implementation:
+
 ```js
 type request_id = (node_id: int, request_number: int);
 
@@ -955,7 +976,7 @@ machine Node {
     ignore eRestart;
 
     on eCrash goto Crashed;
-    
+
     on eTriggerPrepare do {
       ...
     }
@@ -984,6 +1005,7 @@ fun quorum(num_nodes: int): int {
 ```
 
 The spec:
+
 ```js
 event spec_EventuallyDecideOnSameValue_num_nodes: int;
 
@@ -1015,7 +1037,7 @@ spec EventuallyDecideOnSameValue observes spec_EventuallyDecideOnSameValue_num_n
       }
 
       goto EnsuringDecisionDoesntChange;
-    }    
+    }
   }
 
 
@@ -1029,7 +1051,7 @@ spec EventuallyDecideOnSameValue observes spec_EventuallyDecideOnSameValue_num_n
       value = getValueAcceptedByMajority();
 
       assert accepted_value == value, format("nodes decided on a new value after a value has already been decided. old={0} new={1}", accepted_value, value);
-    }    
+    }
   }
 }
 ```
@@ -1041,4 +1063,4 @@ The P implementation includes a failure injector as well. The code can be found 
 It's obvious that some bugs won't be found because the inputs are generated randomly and some components will end up being replaced by fake implementations to remove non-determinism or to make the simulation run at an acceptable speed. Combine dst with other testing and modeling techniques for maximum effectiveness.
 
 [P]: https://p-org.github.io/P/
-[Paxos]: https://lamport.azurewebsites.net/pubs/paxos-simple.pdf  
+[Paxos]: https://lamport.azurewebsites.net/pubs/paxos-simple.pdf
