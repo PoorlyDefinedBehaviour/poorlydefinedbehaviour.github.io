@@ -7,6 +7,9 @@ draft: true
 
 # <center>𝔇𝔢𝔱𝔢𝔯𝔪𝔦𝔫𝔦𝔰𝔱𝔦𝔠 𝔰𝔦𝔪𝔲𝔩𝔞𝔱𝔦𝔬𝔫 𝔱𝔢𝔰𝔱𝔦𝔫𝔤</center>
 
+*[deterministic](https://www.dictionary.com/browse/deterministic)*:  of or relating to a process or model in which the output is determined solely by the input and initial conditions, thereby always returning the same results ( stochastic ):
+The algorithms are simple and deterministic, so the results are predictable and reproducible.
+
 ### Example based testing
 
 Example based testing works fine for simple cases where there's only a small number of actions that matter.
