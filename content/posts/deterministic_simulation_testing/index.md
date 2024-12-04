@@ -1065,5 +1065,15 @@ The P implementation includes a failure injector as well. The code can be found 
 
 It's obvious that some bugs won't be found because the inputs are generated randomly and some components will end up being replaced by fake implementations to remove non-determinism or to make the simulation run at an acceptable speed. Combine dst with other testing and modeling techniques for maximum effectiveness.
 
+### References
+
+[P]  
+[Paxos made simple](https://lamport.azurewebsites.net/pubs/paxos-simple.pdf)  
+[Tigerbeetle](https://github.com/tigerbeetle/tigerbeetle)  
+["Testing Distributed Systems w/ Deterministic Simulation" by Will Wilson](https://www.youtube.com/watch?v=4fFDFbi3toc)  
+[FF meetup #4 - Deterministic simulation testing](https://www.youtube.com/live/29Vz5wkoUR8)  
+[What's the big deal about Deterministic Simulation Testing?](https://notes.eatonphil.com/2024-08-20-deterministic-simulation-testing.html)  
+
 [P]: https://p-org.github.io/P/
 [Paxos]: https://lamport.azurewebsites.net/pubs/paxos-simple.pdf
+
