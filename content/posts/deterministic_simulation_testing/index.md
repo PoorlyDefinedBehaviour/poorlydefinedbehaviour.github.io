@@ -1067,8 +1067,8 @@ It's obvious that some bugs won't be found because the inputs are generated rand
 
 ### References
 
-[P]  
 [Paxos made simple](https://lamport.azurewebsites.net/pubs/paxos-simple.pdf)  
+[P]  
 [Tigerbeetle](https://github.com/tigerbeetle/tigerbeetle)  
 ["Testing Distributed Systems w/ Deterministic Simulation" by Will Wilson](https://www.youtube.com/watch?v=4fFDFbi3toc)  
 [FF meetup #4 - Deterministic simulation testing](https://www.youtube.com/live/29Vz5wkoUR8)  
