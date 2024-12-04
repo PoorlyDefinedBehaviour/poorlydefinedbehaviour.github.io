@@ -777,6 +777,13 @@ impl Replica {
                 return;
             }
 
+            // let value = req
+            //     .responses
+            //     .iter()
+            //     .filter(|response| response.accepted_proposal_number.is_some())
+            //     .max_by_key(|response| response.accepted_proposal_number)
+            //     .map(|response| response.accepted_value.clone().unwrap())
+            //     .unwrap_or_else(|| req.proposed_value.clone().unwrap());
             let value = req.proposed_value.clone().unwrap();
 
             let proposal_number = req.proposal_number;
