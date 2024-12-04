@@ -125,7 +125,7 @@ _Property_: After sorting, every `nums[i]` is less than or equal to `nums[i + 1]
 **More sophisticated inputs**  
 It may be possible to interact with the system under test in several ways. Imagine that a max heap with a different implementation from the std library was being written. Sometimes a bug will be found only when a specific set of events happen in a specific order, popping from an empty heap, pushing two elements and popping 3 times, for example.
 
-Instead of thinking of all possible operation interleavings, generate a list of operations at random and apply them to the heap. The std heap could be used as a model to check that our heap behaves correctly from the user's point of view. Run the test several times to increase the chance of a finding a bug.
+Instead of thinking of all possible operation interleavings, generate a list of operations at random and apply them to the heap. The std heap could be used as a model -- by having the same operations applied to it -- to check that our heap behaves correctly from the user's point of view. Run the test several times to increase the chance of a finding a bug.
 
 ```rust
 #[cfg(test)]
