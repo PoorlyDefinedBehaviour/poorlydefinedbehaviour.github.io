@@ -650,32 +650,30 @@ Run the simulation:
 cargo t action_simulation -- --nocapture
 
 ...
-[BUS] Replica(1) -> Replica(1) RECEIVED Prepare(RID(R1, P12))
-[BUS] Replica(1) -> Replica(1) QUEUED PrepareResponse(RID(R1, P12), Some(12), Some("V(3, 71)"))
-[BUS] Replica(2) -> Replica(3) RECEIVED AcceptResponse(RID(R3, P12), 12)
-[BUS] Replica(1) -> Replica(1) RECEIVED PrepareResponse(RID(R1, P12), Some(12), Some("V(3, 71)"))
-[BUS] Replica(1) -> Replica(2) RECEIVED Prepare(RID(R1, P5))
-[ORACLE] value accepted by majority of replicas: majority=2 RID(R3, P12) value=V(3, 71) replicas=[2, 1]
-[BUS] Replica(1) -> Replica(3) RECEIVED AcceptResponse(RID(R3, P12), 12)
-[ORACLE] value accepted by majority of replicas: majority=2 RID(R1, P12) value=V(1, 80) replicas=[2, 3]
-SEED=13326481090957263017
+thread 'Thread(3)' panicked at src/simulation/oracle.rs:75:17:
+assertion failed: `(left == right)`
+  left: `Some("V(1, 44)")`,
+ right: `Some("V(2, 93)")`: majority of replicas decided on a different value after a value was accepted
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+SEED=6948436056757512111
 ```
 
 Replay the bug by running the simulation with the seed to get the same sequence of inputs:
 
 ```sh
-SEED=13326481090957263017 cargo t action_simulation -- --nocapture
+SEED=6948436056757512111 cargo t action_simulation -- --nocapture
 
 ...
-[BUS] Replica(1) -> Replica(1) RECEIVED Prepare(RID(R1, P12))
-[BUS] Replica(1) -> Replica(1) QUEUED PrepareResponse(RID(R1, P12), Some(12), Some("V(3, 71)"))
-[BUS] Replica(2) -> Replica(3) RECEIVED AcceptResponse(RID(R3, P12), 12)
-[BUS] Replica(1) -> Replica(1) RECEIVED PrepareResponse(RID(R1, P12), Some(12), Some("V(3, 71)"))
-[BUS] Replica(1) -> Replica(2) RECEIVED Prepare(RID(R1, P5))
-[ORACLE] value accepted by majority of replicas: majority=2 RID(R3, P12) value=V(3, 71) replicas=[2, 1]
-[BUS] Replica(1) -> Replica(3) RECEIVED AcceptResponse(RID(R3, P12), 12)
-[ORACLE] value accepted by majority of replicas: majority=2 RID(R1, P12) value=V(1, 80) replicas=[2, 3]
-SEED=13326481090957263017
+[BUS] Replica(1) -> Replica(3) RECEIVED Prepare(RID(R1, P9))
+[BUS] Replica(3) -> Replica(1) RECEIVED AcceptResponse(RID(R1, P12), 12)
+[BUS] Replica(1) -> Replica(1) RECEIVED PrepareResponse(RID(R1, P12), None, None)
+[ORACLE] value accepted by majority of replicas: majority=2 RID(R1, P12) value=V(1, 44) replicas=[2, 3]
+[BUS] Replica(2) -> Replica(1) RECEIVED AcceptResponse(RID(R1, P12), 12)
+[BUS] Replica(2) -> Replica(1) RECEIVED Accept(RID(R2, P12), 12, V(2, 93))
+[BUS] Replica(1) -> Replica(2) QUEUED AcceptResponse(RID(R2, P12), 12)
+[BUS] Replica(2) -> Replica(2) RECEIVED AcceptResponse(RID(R2, P12), 12)
+[ORACLE] value accepted by majority of replicas: majority=2 RID(R2, P12) value=V(2, 93) replicas=[3, 2]
+SEED=6948436056757512111
 ```
 
 The simulator will generate `1000` actions by default but it only needs to generate `2` actions to find this bug. The advantage of generating less actions is that the error trace will contain less events:
@@ -684,16 +682,22 @@ The simulator will generate `1000` actions by default but it only needs to gener
 MAX_ACTIONS=2 cargo t action_simulation -- --nocapture
 
 ...
-[BUS] Replica(1) -> Replica(2) RECEIVED Prepare(RID(R1, P1))
-[BUS] Replica(2) -> Replica(1) QUEUED PrepareResponse(RID(R1, P1), Some(1), Some("V(3, 1)"))
-[BUS] Replica(1) -> Replica(3) RECEIVED PrepareResponse(RID(R3, P1), Some(1), Some("V(1, 0)"))
-[BUS] Replica(2) -> Replica(1) RECEIVED PrepareResponse(RID(R1, P1), Some(1), Some("V(3, 1)"))
-[BUS] Replica(3) -> Replica(3) RECEIVED AcceptResponse(RID(R3, P1), 1)
-[ORACLE] value accepted by majority of replicas: majority=2 RID(R3, P1) value=V(3, 1) replicas=[1, 3]
-[BUS] Replica(1) -> Replica(3) RECEIVED AcceptResponse(RID(R3, P1), 1)
-[BUS] Replica(1) -> Replica(1) RECEIVED AcceptResponse(RID(R1, P1), 1)
-[ORACLE] value accepted by majority of replicas: majority=2 RID(R1, P1) value=V(1, 0) replicas=[2, 1]
-SEED=3996709105568464579
+[BUS] Replica(2) -> Replica(2) QUEUED AcceptResponse(RID(R2, P1), 1)
+[BUS] Replica(1) -> Replica(2) RECEIVED AcceptResponse(RID(R2, P1), 1)
+[ORACLE] value accepted by majority of replicas: majority=2 RID(R2, P1) value=V(2, 0) replicas=[2, 1]
+[BUS] Replica(2) -> Replica(2) RECEIVED AcceptResponse(RID(R2, P1), 1)
+[BUS] Replica(1) -> Replica(1) RECEIVED Accept(RID(R1, P1), 1, V(1, 1))
+[BUS] Replica(1) -> Replica(1) QUEUED AcceptResponse(RID(R1, P1), 1)
+[BUS] Replica(2) -> Replica(2) RECEIVED PrepareResponse(RID(R2, P1), None, None)
+[BUS] Replica(2) -> Replica(3) RECEIVED Accept(RID(R2, P1), 1, V(2, 0))
+[BUS] Replica(3) -> Replica(2) QUEUED AcceptResponse(RID(R2, P1), 1)
+[BUS] Replica(1) -> Replica(2) RECEIVED Accept(RID(R1, P1), 1, V(1, 1))
+[BUS] Replica(2) -> Replica(1) QUEUED AcceptResponse(RID(R1, P1), 1)
+[BUS] Replica(1) -> Replica(3) RECEIVED Accept(RID(R1, P1), 1, V(1, 1))
+[BUS] Replica(3) -> Replica(1) QUEUED AcceptResponse(RID(R1, P1), 1)
+[BUS] Replica(3) -> Replica(1) RECEIVED AcceptResponse(RID(R1, P1), 1)
+[ORACLE] value accepted by majority of replicas: majority=2 RID(R1, P1) value=V(1, 1) replicas=[3, 1]
+SEED=9075634049329737353
 ```
 
 > Always remove the current bug before introducing a new one.
