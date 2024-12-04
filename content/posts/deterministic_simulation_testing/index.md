@@ -413,7 +413,7 @@ mod tests {
 
 The simulator uses the seeded prng to generate actions, which include actions such as delivering a message, crashing a replica, generating a user request and more. The simulator generates `max_actions` actions where each action is generated based on the current state of the system, this is done to improve the number of interesting input sequences.
 
-It is not that useful to crash a replica that's already in the crashed state or to crash more than `F` replicas if we are intereted in testing that a cluster with `2F + 1` replicas can make progress as long as the majority of replicas are up. In general, actions that trigger failures should be generated according to the failure model.
+It is not that useful to crash a replica that's already in the crashed state or to crash more than `F` replicas if we are interested in testing that a cluster with `2F + 1` replicas can make progress as long as the majority of replicas are up. In general, actions that trigger failures should be generated according to the failure model.
 
 ```rust
 struct ActionSimulator {
