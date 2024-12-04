@@ -255,7 +255,7 @@ Next, generate actions such as simulating an user request using a seeded prng. W
 
 - _Bugs are reproducible_ by running the simulation with the seed that was used when the bug was found.
 
-#### Example: Applying deterministic simulation testing to single-decree Paxos
+### Example: Applying deterministic simulation testing to single-decree Paxos
 
 Given a set of computers that can propose values, how to get the computers to decide on a value?
 
