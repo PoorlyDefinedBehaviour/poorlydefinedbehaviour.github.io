@@ -255,14 +255,14 @@ Next, generate actions such as simulating an user request using a seeded prng. W
 
 - _Bugs are reproducible_ by running the simulation with the seed that was used when the bug was found.
 
-#### Example: The consensus problem
-
-Applying deterministic simulation testing to single-decree Paxos.
+#### Example: Applying deterministic simulation testing to single-decree Paxos
 
 Given a set of computers that can propose values, how to get the computers to decide on a value?
 
 - The chosen value must be proposed by one of the computers
 - Only a single value can be chosen
+
+[Paxos] is one of the algorithms that can be used to solve the consensus problem.
 
 #### The model
 
@@ -271,8 +271,6 @@ Given a set of computers that can propose values, how to get the computers to de
 - Messages sent from one computer to another can be lost, delayed or duplicated
 
 #### Single-decree Paxos
-
-[Paxos] is one of the algorithms that can be used to solve the consensus problem.
 
 The algorithm can be explained in two phases:
 
