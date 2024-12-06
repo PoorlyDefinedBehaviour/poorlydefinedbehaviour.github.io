@@ -349,6 +349,7 @@ impl Replica {
     fn on_accept(&mut self, input: AcceptInput) {
         if input.proposal_number >= self.state.min_proposal_number {
             let mut state = self.state.clone();
+            state.min_proposal_number = input.proposal_number;
             state.accepted_proposal_number = Some(input.proposal_number);
             state.accepted_value = Some(input.value);
             self.storage.store(&state).unwrap();
@@ -359,7 +360,7 @@ impl Replica {
                 AcceptOutput {
                     from_replica_id: self.config.id,
                     request_id: input.request_id,
-                    min_proposal_number: self.state.min_proposal_number,
+                    proposal_number: input.proposal_number,
                 },
             );
         }
@@ -701,7 +702,7 @@ impl Replica {
         // Comment this line
         // self.storage.store(&state)?;
         ...
-        Ok(self.state.min_proposal_number)
+        Ok(proposal_number)
     }
 }
 ```
