@@ -862,6 +862,33 @@ note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
 SEED=11856967350924232882
 ```
 
+In the accept phase, the highest proposal number the replica has seen must be updated as well. Let's forget to do that.
+
+```rust
+impl Replica {
+    pub fn on_accept(&mut self, input: AcceptInput) {
+        if input.proposal_number >= self.state.min_proposal_number {
+            ...
+            // state.min_proposal_number = input.proposal_number;
+            ...
+        }
+    }
+}
+```
+
+Run the simulation:
+
+```sh
+cargo t action_simulation -- --nocapture
+
+...
+assertion failed: `(left == right)`
+  left: `Some("V(3, 93)")`,
+ right: `Some("V(3, 53)")`: majority of replicas decided on a different value after a value was accepted
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+SEED=10068138891262037375
+```
+
 Without introducing any bugs, let's run the simulator and see what happens:
 
 Run the simulation:
