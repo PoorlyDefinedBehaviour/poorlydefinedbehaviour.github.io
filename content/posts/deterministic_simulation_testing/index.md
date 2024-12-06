@@ -281,16 +281,6 @@ The algorithm can be explained in two phases:
 
 ```rust
 impl Replica {
-    fn next_proposal_number(&mut self) -> Result<u64> {
-        let state = contracts::DurableState {
-            min_proposal_number: self.state.min_proposal_number + 1,
-            ..self.state.clone()
-        };
-        self.storage.store(&state)?;
-        self.state = state;
-        Ok(self.state.min_proposal_number)
-    }
-
     // Phase 1.
     fn on_start_proposal(&mut self, value: String) {
         let proposal_number = self.next_proposal_number().unwrap();
