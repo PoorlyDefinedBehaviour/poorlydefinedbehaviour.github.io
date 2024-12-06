@@ -727,6 +727,7 @@ impl Replica {
     fn on_accept(&mut self, input: AcceptInput) {
         if input.proposal_number >= self.state.min_proposal_number {
             let mut state = self.state.clone();
+            self.min_proposal_number = input.proposal_number;
             state.accepted_proposal_number = Some(input.proposal_number);
             state.accepted_value = Some(input.value);
             // self.storage.store(&state).unwrap();
