@@ -9,10 +9,17 @@
       <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
-    <generator>Hugo -- 0.139.3</generator>
+    <generator>Hugo -- 0.140.2</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 03 Dec 2024 00:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Thu, 02 Jan 2025 00:00:00 -0300</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reading List</title>
+      <link>https://poorlydefinedbehaviour.github.io/categories/reading-list/</link>
+      <pubDate>Thu, 02 Jan 2025 00:00:00 -0300</pubDate>
+      <guid>https://poorlydefinedbehaviour.github.io/categories/reading-list/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Algorithms</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/algorithms/</link>
@@ -39,13 +46,6 @@
       <link>https://poorlydefinedbehaviour.github.io/categories/formal-methods/</link>
       <pubDate>Thu, 15 Aug 2024 00:00:00 +0000</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/categories/formal-methods/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Reading List</title>
-      <link>https://poorlydefinedbehaviour.github.io/categories/reading-list/</link>
-      <pubDate>Mon, 01 Jan 2024 00:00:00 -0300</pubDate>
-      <guid>https://poorlydefinedbehaviour.github.io/categories/reading-list/</guid>
       <description></description>
     </item>
     <item>

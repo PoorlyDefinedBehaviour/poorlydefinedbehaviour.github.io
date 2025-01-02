@@ -9,7 +9,7 @@
       <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
-    <generator>Hugo -- 0.139.3</generator>
+    <generator>Hugo -- 0.140.2</generator>
     <language>en</language>
     <lastBuildDate>Tue, 08 Aug 2023 00:00:00 -0300</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/categories/today-i-learned/index.xml" rel="self" type="application/rss+xml" />
@@ -59,7 +59,7 @@ that can survive the failures of some of its members.&lt;/p&gt;</description>
       <pubDate>Thu, 03 Mar 2022 20:56:31 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/bloom_filter/</guid>
       <description>&lt;h1 id=&#34;whats-a-bloom-filter&#34;&gt;What&amp;rsquo;s a Bloom filter&lt;/h1&gt;
-&lt;p&gt;A bloom filter is a data-structure that can be used to check if a set contains an element. It uses way less memory than a &lt;a href=&#34;https://en.wikipedia.org/wiki/Set_(abstract_data_type)#Implementations&#34;&gt;conventional set data-structure&lt;/a&gt; by sacrificing accuracy.&lt;/p&gt;
+&lt;p&gt;A bloom filter is a data-structure that can be used to check if a set contains an element. It uses way less memory than a &lt;a href=&#34;https://en.wikipedia.org/wiki/Set_%28abstract_data_type%29#Implementations&#34;&gt;conventional set data-structure&lt;/a&gt; by sacrificing accuracy.&lt;/p&gt;
 &lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
 &lt;p&gt;Say we are building a &lt;a href=&#34;https://www.cs.umb.edu/~poneil/lsmtree.pdf&#34;&gt;log-structured merge-tree&lt;/a&gt;, we can use a bloom filter to find out if the LSM-tree contains a particular key in O(1) time in most cases, the downside is that sometimes the bloom filter would say that the LSM-tree contains a key, but it actually does not and we would go searching for the value that&amp;rsquo;s mapped to the key and never actually find it.&lt;/p&gt;</description>
     </item>
