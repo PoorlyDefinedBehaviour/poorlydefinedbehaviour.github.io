@@ -355,7 +355,7 @@ error[E0499]: cannot borrow `err_map` as mutable more than once at a time
    |            `err_map` was mutably borrowed here in the previous iteration of the loop
 ```
 
-The correct version is also pretty simple in this case. Use a mutex to protect the data so it can be mutate by several tasks concurrently and reference counting to ensure the every task operates on the data guarded by the same mutex.
+The correct version is also pretty simple in this case. Use a mutex to protect the data so it can be mutated by several tasks concurrently and reference counting to ensure the every task operates on the data guarded by the same mutex.
 
 ```rust
 fn process_orders_2(uuids: Vec<String>) -> Result<(), Box<dyn std::error::Error>> {
