@@ -1,7 +1,7 @@
 ---
 title: "Generating tests from a TLA+ specification"
 date: 2025-07-20T00:00:00-00:00
-categories: ["distributed systems", "formal methods", "tla+"]
+categories: ["distributed systems", "formal methods", "tla+", "testing"]
 draft: false
 ---
 
