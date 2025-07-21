@@ -2,7 +2,7 @@
 title: "Generating tests from a TLA+ specification"
 date: 2025-07-21T00:00:00-00:00
 categories: ["distributed systems", "formal methods", "tla+"]
-draft: false
+draft: true
 ---
 
 ## Formal methods
@@ -116,23 +116,23 @@ An invariant that says that something **bad** never happens is known as a _safet
 Our specification defines that when an operation for a secret is added to the outbox queue, the operation will eventually succeed and the secret status will be set to **Succeeded.**
 
 ```
-    EventuallyEveryMetadataStatusIsReady ==
-        \* For all secrets
-        \A secret \in Secrets:
-            \* Transform the queue.pending tuple into a set
-            LET PendingQueueSet == {queue.pending[i]: i \in DOMAIN queue.pending} IN
-                \* If the secret is in the pending queue
-                /\ secret \in PendingQueueSet
-                \* Leads to it eventually
-                ~>
-                    \* Being in the processed queue
-                    /\ secret \in queue.processed
-                    \* And removed from the pending queue
-                    /\ secret \notin PendingQueueSet
-                    \* And the secret being in the metadata table with status "Succeeded"
-                    /\ \E metadata \in db.secret_metadata:
-                        /\ metadata.name = secret
-                        /\ metadata.status = "Succeeded"
+EventuallyEveryMetadataStatusIsReady ==
+    \* For all secrets
+    \A secret \in Secrets:
+        \* Transform the queue.pending tuple into a set
+        LET PendingQueueSet == {queue.pending[i]: i \in DOMAIN queue.pending} IN
+            \* If the secret is in the pending queue
+            /\ secret \in PendingQueueSet
+            \* Leads to it eventually
+            ~>
+                \* Being in the processed queue
+                /\ secret \in queue.processed
+                \* And removed from the pending queue
+                /\ secret \notin PendingQueueSet
+                \* And the secret being in the metadata table with status "Succeeded"
+                /\ \E metadata \in db.secret_metadata:
+                    /\ metadata.name = secret
+                    /\ metadata.status = "Succeeded"
 ```
 
 <div style="font-style:italic;text-align:center;font-size:90%">
@@ -359,39 +359,39 @@ The number of times each action was executed during the model checking of a spec
 Every invariant is satisfied by the behaviors allowed by the specification and you believe your spec gives you **_enough_** confidence to move on to the implementation.
 
 ```
-    DataKeyUidUniqueness ==
-       \A dk1 \in database:
-           {dk2 \in database : dk2.uid = dk1.uid} = {dk1}
+DataKeyUidUniqueness ==
+   \A dk1 \in database:
+       {dk2 \in database : dk2.uid = dk1.uid} = {dk1}
 
-    DataKeyUniqueness ==
-       \A dk1, dk2 \in database:
-           (/\ dk1.uid /= dk2.uid
-            /\ dk1.namespace = dk2.namespace)
-            /\ dk1.label = dk2.label
-            /\ dk1.active
-            /\ dk2.active
-               =>
-                   Assert(FALSE, <<"duplicated data key", dk1, dk2>>)
+DataKeyUniqueness ==
+   \A dk1, dk2 \in database:
+       (/\ dk1.uid /= dk2.uid
+        /\ dk1.namespace = dk2.namespace)
+        /\ dk1.label = dk2.label
+        /\ dk1.active
+        /\ dk2.active
+           =>
+               Assert(FALSE, <<"duplicated data key", dk1, dk2>>)
 
-    CacheConsistency ==
-       \A instance \in Instances:
-           /\  \A entry \in instances[instance].cache.by_id:
-                   \E row \in database:
-                       /\ entry.namespace = row.namespace
-                       /\ entry.data_key.uid = row.uid
-           /\  \A entry \in instances[instance].cache.by_label:
-                   \E row \in database:
-                       /\ entry.namespace = row.namespace
-                       /\ entry.data_key.uid = row.uid
+CacheConsistency ==
+   \A instance \in Instances:
+       /\  \A entry \in instances[instance].cache.by_id:
+               \E row \in database:
+                   /\ entry.namespace = row.namespace
+                   /\ entry.data_key.uid = row.uid
+       /\  \A entry \in instances[instance].cache.by_label:
+               \E row \in database:
+                   /\ entry.namespace = row.namespace
+                   /\ entry.data_key.uid = row.uid
 
-    DataKeysAreCachedByLabelOnlyAfterCautionPeriod ==
-       \A instance \in Instances:
-           \A entry \in instances[instance].cache.by_label:
-               Assert((now - entry.data_key.created) > CautionPeriod,
-                     <<"data key cached before caution period",
-                      "now", now,
-                      "entry.data_key.created", entry.created,
-                      "CautionPeriod", CautionPeriod>>)
+DataKeysAreCachedByLabelOnlyAfterCautionPeriod ==
+   \A instance \in Instances:
+       \A entry \in instances[instance].cache.by_label:
+           Assert((now - entry.data_key.created) > CautionPeriod,
+                 <<"data key cached before caution period",
+                  "now", now,
+                  "entry.data_key.created", entry.created,
+                  "CautionPeriod", CautionPeriod>>)
 ```
 
 <div style="font-style:italic;text-align:center;font-size:90%">
@@ -454,19 +454,19 @@ A diagram generated in the model checking process. The diagram contains every po
 The generated graph is stored in a _.dot_ file, the test starts by reading and parsing the graph stored in the file.
 
 ```go
-    func TestParseDotFile(t *testing.T) {
-     file, err := os.Open("./testdata/spec2.dot")
-     require.NoError(t, err)
-     defer file.Close()
+func TestParseDotFile(t *testing.T) {
+  file, err := os.Open("./testdata/spec2.dot")
+  require.NoError(t, err)
+  defer file.Close()
 
-     buffer, err := io.ReadAll(file)
-     require.NoError(t, err)
-     graphAst, _ := gographviz.ParseString(string(buffer))
-     graph := gographviz.NewGraph()
-     if err := gographviz.Analyse(graphAst, graph); err != nil {
-       panic(err)
-     }
-    }
+  buffer, err := io.ReadAll(file)
+  require.NoError(t, err)
+  graphAst, _ := gographviz.ParseString(string(buffer))
+  graph := gographviz.NewGraph()
+  if err := gographviz.Analyse(graphAst, graph); err != nil {
+    panic(err)
+  }
+}
 ```
 
 <div style="font-style:italic;text-align:center;font-size:90%">
