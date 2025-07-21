@@ -9,7 +9,7 @@
       <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
-    <generator>Hugo -- 0.140.2</generator>
+    <generator>Hugo -- 0.148.1</generator>
     <language>en</language>
     <lastBuildDate>Thu, 02 Jan 2025 00:00:00 -0300</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
@@ -84,7 +84,7 @@
       <link>https://poorlydefinedbehaviour.github.io/posts/deterministic_simulation_testing/</link>
       <pubDate>Tue, 03 Dec 2024 00:00:00 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/deterministic_simulation_testing/</guid>
-      <description>&lt;h1 id=&#34;center𝔇𝔢𝔱𝔢𝔯𝔪𝔦𝔫𝔦𝔰𝔱𝔦𝔠-𝔰𝔦𝔪𝔲𝔩𝔞𝔱𝔦𝔬𝔫-𝔱𝔢𝔰𝔱𝔦𝔫𝔤center&#34;&gt;&lt;center&gt;𝔇𝔢𝔱𝔢𝔯𝔪𝔦𝔫𝔦𝔰𝔱𝔦𝔠 𝔰𝔦𝔪𝔲𝔩𝔞𝔱𝔦𝔬𝔫 𝔱𝔢𝔰𝔱𝔦𝔫𝔤&lt;/center&gt;&lt;/h1&gt;
+      <description>&lt;h1 id=&#34;𝔇𝔢𝔱𝔢𝔯𝔪𝔦𝔫𝔦𝔰𝔱𝔦𝔠-𝔰𝔦𝔪𝔲𝔩𝔞𝔱𝔦𝔬𝔫-𝔱𝔢𝔰𝔱𝔦𝔫𝔤&#34;&gt;&lt;center&gt;𝔇𝔢𝔱𝔢𝔯𝔪𝔦𝔫𝔦𝔰𝔱𝔦𝔠 𝔰𝔦𝔪𝔲𝔩𝔞𝔱𝔦𝔬𝔫 𝔱𝔢𝔰𝔱𝔦𝔫𝔤&lt;/center&gt;&lt;/h1&gt;
 &lt;p&gt;&lt;em&gt;&lt;a href=&#34;https://www.dictionary.com/browse/deterministic&#34;&gt;deterministic&lt;/a&gt;&lt;/em&gt;:  of or relating to a process or model in which the output is determined solely by the input and initial conditions, thereby always returning the same results ( stochastic ):
 The algorithms are simple and deterministic, so the results are predictable and reproducible.&lt;/p&gt;
 &lt;h3 id=&#34;example-based-testing&#34;&gt;Example based testing&lt;/h3&gt;
@@ -2243,8 +2243,7 @@ The algorithms are simple and deterministic, so the results are predictable and 
       <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/the_simple_way_to_avoid_deadlocks/images/regular_show_deadlock_1.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;A deadlock happens when there&amp;rsquo;s at least one resource that can be only acquired by one process at a time and there&amp;rsquo;s a process &lt;code&gt;P1&lt;/code&gt; that is waiting to acquire a resource currently held by a process &lt;code&gt;P2&lt;/code&gt; and &lt;code&gt;P2&lt;/code&gt; is waiting to acquire a resource currently held by &lt;code&gt;P1&lt;/code&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The word &lt;code&gt;process&lt;/code&gt; does not mean we are talking about just OS processes.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;The word &lt;code&gt;process&lt;/code&gt; does not mean we are talking about just OS processes.&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/the_simple_way_to_avoid_deadlocks/images/deadlock_example_1.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;There are two processes: Process &lt;code&gt;A&lt;/code&gt; wants to acquire a lock on &lt;code&gt;resource 1&lt;/code&gt; and then a lock on &lt;code&gt;resource 2&lt;/code&gt;. Process &lt;code&gt;B&lt;/code&gt; wants to acquire a lock on &lt;code&gt;resource 2&lt;/code&gt; and then a lock on &lt;code&gt;resource 1&lt;/code&gt;.&lt;/p&gt;</description>
     </item>
@@ -2314,14 +2313,14 @@ Several requests are sent to your backend at almost the same time and your backe
       <link>https://poorlydefinedbehaviour.github.io/posts/why_rc_is_not_send/</link>
       <pubDate>Sun, 27 Mar 2022 17:20:07 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/posts/why_rc_is_not_send/</guid>
-      <description>&lt;h1 id=&#34;why-rct-cannot-be-sent-between-threads&#34;&gt;Why Rc&lt;T&gt; cannot be sent between threads&lt;/h1&gt;
+      <description>&lt;h1 id=&#34;why-rc-cannot-be-sent-between-threads&#34;&gt;Why Rc&lt;T&gt; cannot be sent between threads&lt;/h1&gt;
 &lt;p&gt;We get a compile error if we try to send &lt;code&gt;Rc&amp;lt;T&amp;gt;&lt;/code&gt; to another thread:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;use&lt;/span&gt; std::rc::Rc;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; rc &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; Rc::new(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  std::thread::spawn(&lt;span style=&#34;color:#f92672&#34;&gt;||&lt;/span&gt; {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    println!(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;{}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;rc);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;println!&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;{}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;rc);
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  })
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  .join();
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
@@ -2385,6 +2384,13 @@ that can survive the failures of some of its members.&lt;/p&gt;</description>
 &lt;p&gt;A bloom filter is a data-structure that can be used to check if a set contains an element. It uses way less memory than a &lt;a href=&#34;https://en.wikipedia.org/wiki/Set_%28abstract_data_type%29#Implementations&#34;&gt;conventional set data-structure&lt;/a&gt; by sacrificing accuracy.&lt;/p&gt;
 &lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
 &lt;p&gt;Say we are building a &lt;a href=&#34;https://www.cs.umb.edu/~poneil/lsmtree.pdf&#34;&gt;log-structured merge-tree&lt;/a&gt;, we can use a bloom filter to find out if the LSM-tree contains a particular key in O(1) time in most cases, the downside is that sometimes the bloom filter would say that the LSM-tree contains a key, but it actually does not and we would go searching for the value that&amp;rsquo;s mapped to the key and never actually find it.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://poorlydefinedbehaviour.github.io/posts/deterministic_simulation_testing_coroutines/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://poorlydefinedbehaviour.github.io/posts/deterministic_simulation_testing_coroutines/</guid>
+      <description></description>
     </item>
   </channel>
 </rss>

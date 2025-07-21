@@ -3,12 +3,12 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://poorlydefinedbehaviour.github.io/</loc>
-    <lastmod>2025-01-02T00:00:00-03:00</lastmod>
-  </url><url>
-    <loc>https://poorlydefinedbehaviour.github.io/categories/</loc>
-    <lastmod>2025-01-02T00:00:00-03:00</lastmod>
+    <lastmod>2025-07-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://poorlydefinedbehaviour.github.io/posts/</loc>
+    <lastmod>2025-07-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://poorlydefinedbehaviour.github.io/categories/</loc>
     <lastmod>2025-01-02T00:00:00-03:00</lastmod>
   </url><url>
     <loc>https://poorlydefinedbehaviour.github.io/categories/reading-list/</loc>
@@ -160,6 +160,8 @@
   </url><url>
     <loc>https://poorlydefinedbehaviour.github.io/categories/probabilistic/</loc>
     <lastmod>2022-03-03T20:56:31-03:00</lastmod>
+  </url><url>
+    <loc>https://poorlydefinedbehaviour.github.io/posts/deterministic_simulation_testing_coroutines/</loc>
   </url><url>
     <loc>https://poorlydefinedbehaviour.github.io/archives/</loc>
   </url><url>
