@@ -139,7 +139,7 @@ EventuallyEveryMetadataStatusIsReady ==
 A temporal property that says: when an operation for a secret is in the outbox queue, eventually the operation will be processed (retried if needed) and the secret will be moved to the Succeeded status
 </div>
 
-We didn't get to use the specification to generate tests yet but we were already able to reap one of the benefits of formal modelling: a deeper understanding of the system being specified. While writing the specification, we were forced to answer several questions since we needed to make the behaviour explicit.
+We didn't get to use the specification to generate tests yet but we were already able to reap one of the benefits of formal modelling: a deeper understanding of the system being specified. While writing the specification, we were forced to answer several questions since we needed to make the behavior explicit.
 
 ## Catching logic bugs with formal methods
 
@@ -155,7 +155,7 @@ After IAM found the bug, a basic specification that models the behavior of the s
 A counter example produced by the model checker. The counter example is a list of steps that lead to the invariant being violated
 </div>
 
-We are also exploring [deterministic simulation testing](https://poorlydefinedbehaviour.github.io/posts/deterministic_simulation_testing/) as a [lightweight formal method](https://dl.acm.org/doi/pdf/10.1145/3477132.3483540) but we haven't got far enough with it yet.
+We are also exploring [deterministic simulation testing](https://poorlydefinedbehavior.github.io/posts/deterministic_simulation_testing/) as a [lightweight formal method](https://dl.acm.org/doi/pdf/10.1145/3477132.3483540) but we haven't got far enough with it yet.
 
 ## Hands-on prerequisites: Install TLA+ tools
 
