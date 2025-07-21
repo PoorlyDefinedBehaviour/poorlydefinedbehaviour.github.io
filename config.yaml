@@ -1,6 +1,7 @@
 baseURL: "https://poorlydefinedbehaviour.github.io"
-paginate: 5
 theme: PaperMod
+pagination:
+  pageSize: 10
 
 enableInlineShortcodes: true
 enableRobotsTXT: true
