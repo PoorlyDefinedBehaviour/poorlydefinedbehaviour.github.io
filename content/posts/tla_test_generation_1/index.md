@@ -35,7 +35,7 @@ A design doc author could enumerate all assumptions and requirements the solutio
 <img style="width:50%" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXctXqlBFwrpTOCBcRBVluZwmFv_DVcTnPaQa9VCsR6TBoCpelWrgr76flhLhaabJyTalMCBiRO4RxborjeTsyueLiunK8CfuBnUu7h5tHYSHdy8atC_oaquIPeTGjhiyPfrCw-VVQ?key=CZuYqiYDpsuzokR8yCzjpg">
 </div>
 
-Formal methods can be included in the phase where the design doc is created. Instead of only describing the solution using words, build a specification of the solution and how it interacts with other parts of the system using a [specification language](https://en.wikipedia.org/wiki/Specification_language). The specification is then checked against the invariants you define by a model checker, the model checker outputs a sequence of steps that lead to the invariant being violated known as a counter example. The counter example is used for debugging and reproducing the issue.
+Formal methods can be included in the phase where the design doc is created. Instead of only describing the solution using words, build a specification of the solution and how it interacts with other parts of the system using a [specification language](https://en.wikipedia.org/wiki/Specification_language). The specification is then checked against the invariants you define by a model checker, the model checker outputs a sequence of steps that lead to an invariant being violated known as a counter example. The counter example is used for debugging and reproducing the issue.
 
 <div align="center">
 <img style="width:50%" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfgD4kUdKnf3cRMGHAwsRUfEhwGSXn5SnIwtynkELQ7YHDPxcvZvc5Pvhoj9M8H7yzLDIwX6S8sJADtBTeamNkOy6tUmD9F166S8Tct1BLAL9pD9viFs1dAU14T3nFiyugTzERfqg?key=CZuYqiYDpsuzokR8yCzjpg">
