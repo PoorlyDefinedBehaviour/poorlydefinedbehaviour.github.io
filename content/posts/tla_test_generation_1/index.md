@@ -145,7 +145,7 @@ We didn't get to use the specification to generate tests yet but we were already
 
 Some months ago, a team hit a bug where two regions sharing the same SQL database but with caches that were unique per instance would lead to valid tokens being cached as invalid. A cache invalidation bug.
 
-After IAM found the bug, a basic specification that models the behavior of the systems with the shared database was written in a few minutes. The spec is high-level, doesn't contain implementation details at all and found the same bug immediately.
+After the bug was found, a basic specification that models the behavior of the systems with the shared database was written in a few minutes. The spec is high-level, doesn't contain implementation details at all and found the same bug immediately.
 
 <div align="center">
 <img style="width:50%" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeJ3m9tmhogFXjCyGTOfo7BRwXJcMd_XDXMZ7giGIb3AaQRNmhHiRh76Wuo-zKTZ5dkHpaRlPSQWSGeNJqnCUp814RuOzhH6n7X5EK_Lez0-7172ONzf0oTuVl4XWBF37ZX-GwCMw?key=CZuYqiYDpsuzokR8yCzjpg">
