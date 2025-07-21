@@ -75,7 +75,7 @@ When a system already exists, it can be valuable to write a specification based 
 
 A model checked TLA+ specification will visit every possible behavior in the system, model checking is exhaustive up to a max number of inputs that the specification author defines. After writing a specification, it's possible to use the specification in combination with the model checker to generate test cases for the real implementation.
 
-MongoDB has a blog [post](https://www.mongodb.com/company/blog/engineering/conformance-checking-at-mongodb-testing-our-code-matches-our-tla-specs) where they talk about generating test cases for a real system using one of their TLA+ specs. They got 100% test coverage by doing that compared to 21% from manually written tests and 91% from [AFL](https://github.com/google/AFL)
+MongoDB has a blog [post](https://www.mongodb.com/company/blog/engineering/conformance-checking-at-mongodb-testing-our-code-matches-our-tla-specs) where they talk about generating test cases for a real system using one of their TLA+ specs. They got 100% test coverage by doing that compared to 21% from manually written tests and 91% from [AFL](https://github.com/google/AFL).
 
 The paper [Model-guided Fuzzing of Distributed Systems](https://arxiv.org/pdf/2410.02307) talks about using a TLA+ specification state space to guide a fuzzer to test the real implementation of the specifications. The authors found bugs in etcd-raft and RedisRaft by using this technique.
 
