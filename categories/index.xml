@@ -11,8 +11,29 @@
     </image>
     <generator>Hugo -- 0.148.1</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 02 Jan 2025 00:00:00 -0300</lastBuildDate>
+    <lastBuildDate>Mon, 21 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Distributed Systems</title>
+      <link>https://poorlydefinedbehaviour.github.io/categories/distributed-systems/</link>
+      <pubDate>Mon, 21 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://poorlydefinedbehaviour.github.io/categories/distributed-systems/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Formal Methods</title>
+      <link>https://poorlydefinedbehaviour.github.io/categories/formal-methods/</link>
+      <pubDate>Mon, 21 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://poorlydefinedbehaviour.github.io/categories/formal-methods/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tla&#43;</title>
+      <link>https://poorlydefinedbehaviour.github.io/categories/tla&#43;/</link>
+      <pubDate>Mon, 21 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://poorlydefinedbehaviour.github.io/categories/tla&#43;/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Reading List</title>
       <link>https://poorlydefinedbehaviour.github.io/categories/reading-list/</link>
@@ -32,20 +53,6 @@
       <link>https://poorlydefinedbehaviour.github.io/categories/concurrency/</link>
       <pubDate>Tue, 03 Dec 2024 00:00:00 -0300</pubDate>
       <guid>https://poorlydefinedbehaviour.github.io/categories/concurrency/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Distributed Systems</title>
-      <link>https://poorlydefinedbehaviour.github.io/categories/distributed-systems/</link>
-      <pubDate>Tue, 03 Dec 2024 00:00:00 -0300</pubDate>
-      <guid>https://poorlydefinedbehaviour.github.io/categories/distributed-systems/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Formal Methods</title>
-      <link>https://poorlydefinedbehaviour.github.io/categories/formal-methods/</link>
-      <pubDate>Thu, 15 Aug 2024 00:00:00 +0000</pubDate>
-      <guid>https://poorlydefinedbehaviour.github.io/categories/formal-methods/</guid>
       <description></description>
     </item>
     <item>
