@@ -605,7 +605,7 @@ A snippet of the code used to test the database with snapshot isolation with the
 The generated test cases resulted in 100% code coverage without any special effort.
 
 <div align="center">
-<img style="width:50%" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcNlUuBudJsjL451VG1S7rIT5-k_Nw2V1IbuiU6XrNem55GwjWQAHtUtSN-tdIe8sJAs2TDQNU6HSAz1kuIWpmmoKVTgnOeep6ud8s24ZYiRMHdFpu5GK_Qhyu-PbpqFULPUHKNnQ?key=2053luUD1bm7MwEnF9Bh-w)*"/>
+<img style="width:50%" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcNlUuBudJsjL451VG1S7rIT5-k_Nw2V1IbuiU6XrNem55GwjWQAHtUtSN-tdIe8sJAs2TDQNU6HSAz1kuIWpmmoKVTgnOeep6ud8s24ZYiRMHdFpu5GK_Qhyu-PbpqFULPUHKNnQ?key=2053luUD1bm7MwEnF9Bh-w"/>
 </div>
 
 <div style="font-style:italic;text-align:center;font-size:90%">
