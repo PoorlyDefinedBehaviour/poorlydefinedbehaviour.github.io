@@ -9,7 +9,7 @@
       <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
-    <generator>Hugo -- 0.148.1</generator>
+    <generator>Hugo -- 0.154.1</generator>
     <language>en</language>
     <lastBuildDate>Tue, 03 Dec 2024 00:00:00 -0300</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/categories/concurrency/index.xml" rel="self" type="application/rss+xml" />
@@ -54,7 +54,8 @@ The algorithms are simple and deterministic, so the results are predictable and 
       <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/the_simple_way_to_avoid_deadlocks/images/regular_show_deadlock_1.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;A deadlock happens when there&amp;rsquo;s at least one resource that can be only acquired by one process at a time and there&amp;rsquo;s a process &lt;code&gt;P1&lt;/code&gt; that is waiting to acquire a resource currently held by a process &lt;code&gt;P2&lt;/code&gt; and &lt;code&gt;P2&lt;/code&gt; is waiting to acquire a resource currently held by &lt;code&gt;P1&lt;/code&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The word &lt;code&gt;process&lt;/code&gt; does not mean we are talking about just OS processes.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;The word &lt;code&gt;process&lt;/code&gt; does not mean we are talking about just OS processes.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/the_simple_way_to_avoid_deadlocks/images/deadlock_example_1.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;There are two processes: Process &lt;code&gt;A&lt;/code&gt; wants to acquire a lock on &lt;code&gt;resource 1&lt;/code&gt; and then a lock on &lt;code&gt;resource 2&lt;/code&gt;. Process &lt;code&gt;B&lt;/code&gt; wants to acquire a lock on &lt;code&gt;resource 2&lt;/code&gt; and then a lock on &lt;code&gt;resource 1&lt;/code&gt;.&lt;/p&gt;</description>
     </item>

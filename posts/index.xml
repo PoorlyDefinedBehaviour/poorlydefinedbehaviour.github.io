@@ -9,7 +9,7 @@
       <url>https://poorlydefinedbehaviour.github.io/papermod-cover.png</url>
       <link>https://poorlydefinedbehaviour.github.io/papermod-cover.png</link>
     </image>
-    <generator>Hugo -- 0.148.1</generator>
+    <generator>Hugo -- 0.154.1</generator>
     <language>en</language>
     <lastBuildDate>Sun, 20 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://poorlydefinedbehaviour.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
@@ -95,6 +95,69 @@ Formal methods is the umbrella term that contains several techniques inside of i
 &lt;a href=&#34;https://avi.im/blag/2024/s3-log/&#34;&gt;Building a distributed log using S3 (under 150 lines of Go)&lt;/a&gt;&lt;br&gt;
 &lt;a href=&#34;https://jack-vanlightly.com/analyses/2024/12/3/verifying-kafka-transactions-diary-entry-2-writing-an-initial-tla-spec&#34;&gt;Verifying Kafka transactions - Diary entry 2 - Writing an initial TLA+ spec&lt;/a&gt;&lt;br&gt;
 &lt;a href=&#34;https://jack-vanlightly.com/analyses/2024/12/2/verifying-kafka-transactions-diary-entry-1-a-first-step&#34;&gt;Verifying Kafka transactions - Diary entry 1 - A first step&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Reading list 2025</title>
+      <link>https://poorlydefinedbehaviour.github.io/posts/reading_list_2025/</link>
+      <pubDate>Thu, 02 Jan 2025 00:00:00 -0300</pubDate>
+      <guid>https://poorlydefinedbehaviour.github.io/posts/reading_list_2025/</guid>
+      <description>&lt;h1 id=&#34;the-list-of-things-i-read-or-watched-in-2025&#34;&gt;The list of things I read or watched in 2025&lt;/h1&gt;
+&lt;h2 id=&#34;december&#34;&gt;December&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=BKTrNGAAtdk&#34;&gt;How Modern Christmas was Invented&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=8uAW5FQtcvE&#34;&gt;Trading at light speed: designing low latency systems in C++ - David Gross - Meeting C++ 2022&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=iwRaNYa8yTw&#34;&gt;Inside a Real High-Frequency Trading System | HFT Architecture&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=SKgkP15za_M&#34;&gt;What are wide characters?&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=iG_yRdJZKwA&#34;&gt;A Culpa Histórica do Brasileiro&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://arpitbhayani.me/blogs/clock-sync-nightmare/&#34;&gt;Clock Synchronization Is a Nightmare&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://muratbuffalo.blogspot.com/2025/02/what-makes-entrepreneurs-entrepreneurial.html&#34;&gt;What makes entrepreneurs entrepreneurial?&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://muratbuffalo.blogspot.com/2025/12/best-of-metadata-in-2025.html&#34;&gt;Best of metadata in 2025&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=DtMxK8TcJdE&#34;&gt;Por que Muitos Jovens Não Vão Conseguir Comprar um Apartamento (e Não é Culpa Deles)&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://blog.rastrian.dev/post/why-reliability-demands-functional-programming-adts-safety-and-critical-infrastructure&#34;&gt;Why Reliability Demands Functional Programming: ADTs, Safety, and Critical Infrastructure&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://charap.co/on-metastable-failures-and-interactions-between-systems/&#34;&gt;On Metastable Failures and Interactions Between Systems&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://jepsen.io/consistency/phenomena/g-single&#34;&gt;G-single (Single Anti-dependency Cycle)&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://jepsen.io/consistency/phenomena/p4&#34;&gt;P4 (Lost Update)&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=zzqDBSVljsQ&#34;&gt;Reconstructing History with XTDB (Jeremy Taylor + James Henderson)&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=uXEYuDwm7e4&amp;amp;list=PLeKd45zvjcDFUEv_ohr_HdUFe97RItdiB&#34;&gt;Distributed Systems 6.2: Raft&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=OVctSQERfsc&#34;&gt;Cheating the CAP Theorem by Jeff Swenson&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=vJP_oKN4Ez0&#34;&gt;Legends of the RISC Wars&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://emptysqua.re/blog/timers-distributed-algorithms/&#34;&gt;Can We Rely On Timers For Distributed Algorithms?&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://jepsen.io/consistency/models/read-your-writes&#34;&gt;Jepsen: Read Your Writes&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://muratbuffalo.blogspot.com/2021/08/does-tightly-synchronized-clocks-help.html&#34;&gt;Do tightly synchronized clocks help consensus?&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.nist.gov/atomic-clocks/how-do-atomic-clocks-work&#34;&gt;How Do Atomic Clocks Work?&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://arxiv.org/pdf/2512.15659&#34;&gt;LeaseGuard: Raft Leases Done Right*&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://muratbuffalo.blogspot.com/2025/12/leaseguard-raft-leases-done-right.html&#34;&gt;LeaseGuard: Raft Leases Done Right!&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=w38t-NhrADM&#34;&gt;The Folly of Liberal History&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://en.wikipedia.org/wiki/Delta_encoding&#34;&gt;Delta encoding&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://ferd.ca/handling-overload.html&#34;&gt;Handling Overload&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=sWKyrAXxzGA&#34;&gt;Ternary Computing: Theoretically Better than Binary&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=dcolM6W5Odc&#34;&gt;The Last Job On Earth&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=6P8_72cNZ8k&#34;&gt;Japanese Supercomputers Led to the Internet&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://muratbuffalo.blogspot.com/2025/12/tla-modeling-tips.html&#34;&gt;TLA+ modeling tips&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=lv03NAT4Mwc&#34;&gt;Latency Profiling and Optimization - Dmitry Vyukov&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=XDsYPXRCXAs&#34;&gt;How hackers reverse Math.random()&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=R0uMcXsfo2o&#34;&gt;The physics behind diffusion models&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=1pgiu--4W3I&#34;&gt;The Breakthrough Behind Modern AI Image Generators | Diffusion Models Part 1&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.answer.ai/posts/2024-03-06-fsdp-qlora.html&#34;&gt;You can now train a 70b language model at home&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://aryagxr.com/blogs/intro-to-nmc&#34;&gt;How to Build a Brain (without losing yours): Intro to Neuromorphic computing&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.morling.dev/blog/on-idempotency-keys/&#34;&gt;On Idempotency Keys&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://ochagavia.nl/blog/towards-interplanetary-quic-traffic/&#34;&gt;Towards interplanetary QUIC traffic&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://abhikja.in/blog/2025-12-07-get-in-line/&#34;&gt;Get in Line - superfast SPSC Queue&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;http://bailis.org/blog/when-is-acid-acid-rarely/&#34;&gt;When is &amp;ldquo;ACID&amp;rdquo; ACID? Rarely.&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://preshing.com/20120930/weak-vs-strong-memory-models/&#34;&gt;Weak vs. Strong Memory Models&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=Dzn0woX-WW0&#34;&gt;COMPLETE EMBEDDED SYSTEMS Roadmap - What Arduino Won&amp;rsquo;t Teach You&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=SHmJTgjldgg&#34;&gt;Manual memory management in Go using jemalloc&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.hudsonrivertrading.com/hrtbeat/distributed-filesystem-for-scalable-research/&#34;&gt;Building a Distributed Filesystem for Scalable Research&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://steveslab.substack.com/p/using-quint-to-harden-your-specifications&#34;&gt;Using Quint to Harden Your Specifications and Catch Hidden Bugs&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://pierrezemb.fr/posts/writing-rust-fdb-workloads-that-find-bugs/&#34;&gt;Designing Rust FDB Workloads That Actually Find Bugs&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://jepsen.io/analyses/nats-2.12.1&#34;&gt;Jepsen: NATS 2.12.1&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://aivarsk.com/2025/12/07/tigerbeetle-blob-storage/&#34;&gt;TigerBeetle as a file storage&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=Gv4sDL9Ljww&#34;&gt;Why Fighter Jets Ban 90% of C++ Features&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=cPYK8s2OdMY&#34;&gt;How Computers Almost Killed the Chinese Language&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://bcantrill.dtrace.org/2025/12/05/your-intellectual-fly-is-open/&#34;&gt;Your intellectual fly is open&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://blog.janestreet.com/getting-from-tested-to-battle-tested/&#34;&gt;Getting from tested to battle-tested&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=zc4cqtibTzs&#34;&gt;Testing a single-node, single threaded, distributed system written in 1985&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=KnCRTP11p5U&#34;&gt;The biggest shift in computer vision&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=rjx4XRvw9PY&#34;&gt;Freeing HTTP/1.1 Connection&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>𝔇𝔢𝔱𝔢𝔯𝔪𝔦𝔫𝔦𝔰𝔱𝔦𝔠 𝔰𝔦𝔪𝔲𝔩𝔞𝔱𝔦𝔬𝔫 𝔱𝔢𝔰𝔱𝔦𝔫𝔤</title>
@@ -2236,11 +2299,11 @@ The algorithms are simple and deterministic, so the results are predictable and 
 &lt;li&gt;Run the Grafana agent&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker run &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;  -v $PWD/grafana-agent/data:/etc/agent/data &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;  -v $PWD/grafana-agent/agent.yaml:/etc/agent/agent.yaml &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;  -v $PWD/log:/var/log/app &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;  -p 4317:4317 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;&lt;/span&gt;  grafana/agent:v0.35.0
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  -v $PWD/grafana-agent/data:/etc/agent/data &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  -v $PWD/grafana-agent/agent.yaml:/etc/agent/agent.yaml &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  -v $PWD/log:/var/log/app &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  -p 4317:4317 &lt;span style=&#34;color:#ae81ff&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  grafana/agent:v0.35.0
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;dependencies-being-used&#34;&gt;Dependencies being used&lt;/h2&gt;
 &lt;p&gt;Replace &lt;code&gt;axum&lt;/code&gt; with whatever dependency you are using. The ones you&amp;rsquo;ll use no matter the framework are:&lt;/p&gt;</description>
     </item>
@@ -2260,7 +2323,8 @@ The algorithms are simple and deterministic, so the results are predictable and 
       <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/the_simple_way_to_avoid_deadlocks/images/regular_show_deadlock_1.jpg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;A deadlock happens when there&amp;rsquo;s at least one resource that can be only acquired by one process at a time and there&amp;rsquo;s a process &lt;code&gt;P1&lt;/code&gt; that is waiting to acquire a resource currently held by a process &lt;code&gt;P2&lt;/code&gt; and &lt;code&gt;P2&lt;/code&gt; is waiting to acquire a resource currently held by &lt;code&gt;P1&lt;/code&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The word &lt;code&gt;process&lt;/code&gt; does not mean we are talking about just OS processes.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;The word &lt;code&gt;process&lt;/code&gt; does not mean we are talking about just OS processes.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://poorlydefinedbehaviour.github.io/posts/the_simple_way_to_avoid_deadlocks/images/deadlock_example_1.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;There are two processes: Process &lt;code&gt;A&lt;/code&gt; wants to acquire a lock on &lt;code&gt;resource 1&lt;/code&gt; and then a lock on &lt;code&gt;resource 2&lt;/code&gt;. Process &lt;code&gt;B&lt;/code&gt; wants to acquire a lock on &lt;code&gt;resource 2&lt;/code&gt; and then a lock on &lt;code&gt;resource 1&lt;/code&gt;.&lt;/p&gt;</description>
     </item>
